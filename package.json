@@ -14,10 +14,10 @@
   "author": "David Cole <david@davidmcole.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/misterdavemeister/MEAN.git"
+    "url": "https://github.com/misterdavemeister/IMS.git"
   },
   "bugs": {
-    "url": "https://github.com/misterdavemeister/MEAN.git/issues"
+    "url": "https://github.com/misterdavemeister/IMS.git/issues"
   },
   "license": "ISC",
   "dependencies": {
