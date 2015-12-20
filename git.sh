@@ -27,11 +27,12 @@ elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
 fi
 
 echo "-Git.sh- Merge this branch into master? (y/n): "
-branch = "\$(__git_ps1)"
-echo $branch
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+currentBranch=${branch:2}
+echo $currentBranch
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-  git checkout master ; git merge $branch
+  git checkout master ; git merge $currentBranch
 elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
   exit 1
 fi
@@ -43,10 +44,10 @@ if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
 fi
 
 
-echo "-Git.sh- Push \$(branch) to origin/\$(branch)? (y/n): "
+echo "-Git.sh- Push $currentBranch to origin/$currentBranch)? (y/n): "
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-  git push origin $branch
+  git push origin $currentBranch
 fi
 
 echo "-Git.sh- Push master to heroku/master? (y/n): "
