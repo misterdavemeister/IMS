@@ -3,7 +3,6 @@ angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUs
     collection.forEach(function(user) {
       if (user._id === $routeParams.id) {
         $scope.user = user;
-        console.log(user);
       }
     });
   });
