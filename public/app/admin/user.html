@@ -1,1 +1,1 @@
-<div class="container"><h1>{{ user.firstName + ' ' + user.lastName }}</h1><button ng-click="deleteUser(user._id, user.firstName, user.lastName)">Delete User</button></div>
+<div class="container"><h1 class="form-inline">{{ user.firstName + ' ' + user.lastName }}</h1><button ng-click="deleteUser(user._id, user.firstName, user.lastName)" class="breadcrumb">Delete User</button><hr/><h4 ng-repeat="(key, val) in user">{{ key }}: {{ val }}</h4></div>

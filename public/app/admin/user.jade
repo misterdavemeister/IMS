@@ -1,3 +1,5 @@
 .container
-  h1 {{ user.firstName + ' ' + user.lastName }}
-  button(ng-click="deleteUser(user._id, user.firstName, user.lastName)") Delete User
+  h1.form-inline {{ user.firstName + ' ' + user.lastName }}
+  button.breadcrumb(ng-click="deleteUser(user._id, user.firstName, user.lastName)") Delete User
+  hr
+  h4(ng-repeat="(key, val) in user") {{ key }}: {{ val }}
