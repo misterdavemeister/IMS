@@ -27,7 +27,7 @@ elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
 fi
 
 echo "-Git.sh- Merge this branch into master? (y/n): "
-branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 currentBranch=${branch:2}
 echo $currentBranch
 read -n 1 answer
