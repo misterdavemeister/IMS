@@ -1,7 +1,7 @@
 extends ../includes/layout
 
 block main-content
-  .navbar.navbar-inverse.navbar-fixed-top
+  .navbar.navbar-inverse.navbar-fixed-top(ng-controller="mvMainCtrl")
     .container
       .navbar-header
       .navbar-collapse.collapse
@@ -11,7 +11,7 @@ block main-content
           li
             a(href="/courses") Courses
           li.dropdown
-            a.dropdown-toggle(href="", data-toggle="dropdown") Screens
+            a.dropdown-toggle(href="", data-toggle="dropdown", ng-show="identity.isAuthenticated()") Screens
               b.caret
             ul.dropdown-menu
               li
@@ -32,4 +32,4 @@ block main-content
     div(ng-view)
 
   footer.container.text-center
-    p &copy; 2015 MultiVision Corp International Ltd.
+    p &copy; 2015 David Cole
