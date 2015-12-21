@@ -76,4 +76,6 @@ elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
 fi
 
 echo
-git checkout $currentBranch
+if [[ "$currentBranch" != "master" ]]; then
+  git checkout $currentBranch
+fi
