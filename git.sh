@@ -19,6 +19,10 @@ else
 fi
 
 echo "-Git.sh- Merge master into this branch? (y/n/q): "
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+currentBranch=${branch:0}
+echo -n "Current branch is: " 
+echo $currentBranch
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
   git merge master
