@@ -50,13 +50,14 @@ elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
   exit 1
 fi
 
-
-echo "-Git.sh- Push $currentBranch to origin/$currentBranch? (y/n/q): "
-read -n 1 answer
-if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-  git push origin $currentBranch
-elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
-  exit 1
+if [[ "$currentBranch" != "master" ]]; then
+  echo "-Git.sh- Push $currentBranch to origin/$currentBranch? (y/n/q): "
+  read -n 1 answer
+  if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    git push origin $currentBranch
+  elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
+    exit 1
+  fi
 fi
 
 echo "-Git.sh- Push master to heroku/master? (y/n/q): "
