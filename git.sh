@@ -1,5 +1,6 @@
 source ~/.git-prompt.sh
 
+echo
 echo "-Git.sh- Add all? (y/n): "
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
@@ -8,6 +9,7 @@ else
   exit 1
 fi
 
+echo
 echo "-Git.sh- Commit changes? (y/n): "
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
@@ -18,39 +20,42 @@ else
   exit 1
 fi
 
-echo "-Git.sh- Merge master into this branch? (y/n/q): "
 branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 currentBranch=${branch:0}
-echo -n "Current branch is: " 
-echo $currentBranch
-read -n 1 answer
-if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-  git merge master
-elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
-  exit 1
+
+if [[ "$currentBranch" != "master" ]]; then
+  echo
+  echo "-Git.sh- Merge master into $currentBranch? (y/n/q): "
+  read -n 1 answer
+  if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    git merge master
+  elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
+    exit 1
+  fi
 fi
 
-echo "-Git.sh- Merge this branch into master? (y/n/q): "
-branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
-currentBranch=${branch:0}
-echo -n "Current branch is: " 
-echo $currentBranch
-read -n 1 answer
-if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-  git checkout master ; git merge $currentBranch
-elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
-  exit 1
+if [[ "$currentBranch" != "master" ]]; then
+  echo
+  echo "-Git.sh- Merge $currentBranch into master? (y/n/q): "
+  read -n 1 answer
+  if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    git checkout master ; git merge $currentBranch
+  elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
+    exit 1
+  fi
 fi
 
+echo
 echo "-Git.sh- Push master to origin/master? (y/n/q): "
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
- git push origin master
+  git push origin master
 elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
   exit 1
 fi
 
 if [[ "$currentBranch" != "master" ]]; then
+  echo
   echo "-Git.sh- Push $currentBranch to origin/$currentBranch? (y/n/q): "
   read -n 1 answer
   if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
@@ -60,6 +65,7 @@ if [[ "$currentBranch" != "master" ]]; then
   fi
 fi
 
+echo
 echo "-Git.sh- Push master to heroku/master? (y/n/q): "
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
