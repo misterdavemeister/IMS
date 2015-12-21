@@ -35,6 +35,26 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
     })
+
+    // Screens //
+    .when('/screens/inventory', { templateUrl: '/partials/screens/inventory',
+      controller: 'mvInventoryScreenCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/outbound', { templateUrl: '/partials/screens/outbound',
+      controller: 'mvOutboundScreenCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/inbound', { templateUrl: '/partials/screens/inbound',
+      controller: 'mvInboundScreenCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/locations', { templateUrl: '/partials/screens/locations',
+      controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/products', { templateUrl: '/partials/screens/products',
+      controller: 'mvProductsScreenCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/search', { templateUrl: '/partials/screens/search',
+      controller: 'mvSearchScreenCtrl', resolve: routeRoleChecks.user
+    })
 });
 
 angular.module('app').run(function($rootScope, $location) {
