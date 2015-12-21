@@ -1,1 +1,0 @@
-/Users/david/bin/git.sh
