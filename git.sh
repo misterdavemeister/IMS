@@ -13,6 +13,7 @@ echo
 echo "-Git.sh- Commit changes? (y/n): "
 read -n 1 answer
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+  echo
   echo "-Git.sh- Enter commit message: " 
   read answer
   git commit -m "$answer"
@@ -73,3 +74,6 @@ if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
 elif [[ "$answer" == "q" || "$answer" == "Q" ]]; then
   exit 1
 fi
+
+echo
+git checkout $currentBranch
