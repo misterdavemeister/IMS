@@ -2,3 +2,6 @@
 data/
 database-log.txt
 .idea/
+.bower-cache/
+.bower-registry/
+.bower-tmp/
