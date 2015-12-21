@@ -1,5 +1,3 @@
-source ~/.git-prompt.sh
-
 echo
 echo "-Git.sh- Add all? (y/n): "
 read -n 1 answer
