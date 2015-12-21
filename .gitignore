@@ -5,3 +5,4 @@ database-log.txt
 .bower-cache/
 .bower-registry/
 .bower-tmp/
+/public/vendor/
