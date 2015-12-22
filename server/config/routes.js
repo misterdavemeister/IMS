@@ -16,8 +16,8 @@ module.exports = function(app) {
 
   //TODO: delete these...
   //courses
-  app.get('/api/courses', courses.getCourses);
-  app.get('/api/courses/:id', courses.getCourseById);
+  //app.get('/api/courses', courses.getCourses);
+  //app.get('/api/courses/:id', courses.getCourseById);
 
   //screens
 

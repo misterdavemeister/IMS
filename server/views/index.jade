@@ -8,22 +8,14 @@ block main-content
         ul.nav.navbar-nav
           li
             a(href="/") Home
+          li.dropdown(ng-include="'/partials/screens/screens'")
           li.dropdown
-            a.dropdown-toggle(href="", data-toggle ="dropdown", ng-show="identity.isAuthenticated()") Screens
+            a.dropdown-toggle(href="", data-toggle = "dropdown", ng-show="identity.currentUser.isAdmin()") Admin
               b.caret
             ul.dropdown-menu
               li
-                a(href="/screens/inventory") Inventory
-              li
-                a(href="/screens/outbound") Outbound
-              li
-                a(href="/screens/inbound") Inbound
-              li
-                a(href="/screens/locations") Locations
-              li
-                a(href="/screens/products") Products
-              li
-                a(href="/screens/search") Search
+                a(href='/admin/users') User Admin
+
         div(ng-include="'/partials/account/navbar-login'")
             
   section.content

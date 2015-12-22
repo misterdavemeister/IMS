@@ -1,0 +1,3 @@
+TODO: Screens with WRITING abilities must require admin role
+TODO: Screens with READING abilities only don't require admin role
+
