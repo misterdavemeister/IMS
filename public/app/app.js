@@ -37,22 +37,22 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     })
 
     // Screens //
-    .when('/screens/inventory', { templateUrl: '/partials/screens/inventory',
+    .when('/screens/inventory', { templateUrl: '/partials/screens/inventory/inventory',
       controller: 'mvInventoryScreenCtrl', resolve: routeRoleChecks.user
     })
-    .when('/screens/outbound', { templateUrl: '/partials/screens/outbound',
+    .when('/screens/outbound', { templateUrl: '/partials/screens/outbound/outbound',
       controller: 'mvOutboundScreenCtrl', resolve: routeRoleChecks.user
     })
-    .when('/screens/inbound', { templateUrl: '/partials/screens/inbound',
+    .when('/screens/inbound', { templateUrl: '/partials/screens/inbound/inbound',
       controller: 'mvInboundScreenCtrl', resolve: routeRoleChecks.user
     })
-    .when('/screens/locations', { templateUrl: '/partials/screens/locations',
+    .when('/screens/locations', { templateUrl: '/partials/screens/locations/locations',
       controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user
     })
-    .when('/screens/products', { templateUrl: '/partials/screens/products',
+    .when('/screens/products', { templateUrl: '/partials/screens/products/products',
       controller: 'mvProductsScreenCtrl', resolve: routeRoleChecks.user
     })
-    .when('/screens/search', { templateUrl: '/partials/screens/search',
+    .when('/screens/search', { templateUrl: '/partials/screens/search/search',
       controller: 'mvSearchScreenCtrl', resolve: routeRoleChecks.user
     })
 });
