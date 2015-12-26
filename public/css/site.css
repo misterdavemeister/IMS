@@ -31,12 +31,18 @@ footer p {
 .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button).ok {
   background-color: #008000;
 }
+.toast-top-right {
+  top: 70px;
+}
+.product button.btn {
+  width: 130px;
+}
+.vertical-center {
+  vertical-align: middle;
+}
 .top-padding-med {
   padding-top: 10px;
 }
 .margin-left-med {
   margin-left: 10px;
-}
-.toast-top-right {
-  top: 70px;
 }

@@ -1,0 +1,26 @@
+.container
+  h1.text-center Products
+  .well.product(ng-repeat="product in products")
+    .row
+      label.col-md-2.text-right Product:
+      p.col-md-8 {{ product.name }}
+      button.btn.col-md-2.pull-right(ng-show="identity.currentUser.isAdmin()") Edit Product
+    .row
+      label.col-md-2.text-right Description:
+      p.col-md-10 {{ product.description }}
+    .row
+      label.col-md-2.text-right UPC:
+      p.col-md-10 {{ product.upc }}
+    .row
+      label.col-md-2.text-right Product ID:
+      p.col-md-10 {{ product.product_id }}
+    .row
+      label.col-md-2.text-right Quantity:
+      p.col-md-10 {{ product.quantity }}
+    .row
+      label.col-md-2.text-right Price:
+      p.col-md-10 {{ product.price }}
+    .row
+      label.col-md-2.text-right Manufacturer:
+      p.col-md-10 {{ product.manufacturer }}
+

@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose'),
-    userModel = require('../models/User');
+    userModel = require('../models/User'),
+    productModel = require('../models/Product');
     //courseModel = require('../models/Course');
 
 module.exports = function(config) {
@@ -12,6 +13,7 @@ module.exports = function(config) {
   });
 
   userModel.createDefaultUsers();
+  productModel.createDefaultProducts();
 
   //courseModel.createDefaultCourses();
 

@@ -1,4 +1,12 @@
 FRI 12/25/15
+    - 10:40pm -
+        added products to database
+        products screen implemented
+        admin-only edit-product button
+    - 7:23pm -
+        added Product.js (for database) and filled with dummy data
+        added products controller on server side
+FRI 12/25/15
     - 11:26am -
         moved screen files into individual folders
 MON 12/21/15

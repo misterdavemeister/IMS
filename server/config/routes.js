@@ -1,8 +1,10 @@
 'use strict';
 var auth = require('./auth'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    users = require('../controllers/users');
+    //TODO: next line doesn't need to be there, right? try commenting out
+    //User = mongoose.model('User'),
+    users = require('../controllers/users'),
+    products = require('../controllers/products');
     //courses = require('../controllers/courses');
 
 module.exports = function(app) {
@@ -20,8 +22,10 @@ module.exports = function(app) {
   //app.get('/api/courses/:id', courses.getCourseById);
 
   //screens
+  //products
+  app.get('/api/products', products.getProducts);
 
-  //* will equal *directory*/*filename*
+  //'*' will equal <directory>/<filename>
   app.get('/partials/*', function(req, res) {
     res.render('../../public/app/' + req.params[0])
   });

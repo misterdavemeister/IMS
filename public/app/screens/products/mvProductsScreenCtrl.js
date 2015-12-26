@@ -1,4 +1,5 @@
-angular.module('app').controller('mvProductsScreenCtrl', function($scope) {
-  this.name = "mvProductsScreenCtrl";
-  //console.log("You are in: " + this.name);
+angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvProduct, mvIdentity) {
+  $scope.products = mvProduct.query();
+  $scope.name = "mvProductsScreenCtrl";
+  $scope.identity = mvIdentity;
 });

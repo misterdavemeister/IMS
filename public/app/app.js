@@ -49,7 +49,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/screens/locations', { templateUrl: '/partials/screens/locations/locations',
       controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user
     })
-    .when('/screens/products', { templateUrl: '/partials/screens/products/products',
+    .when('/screens/products', { templateUrl: '/partials/screens/products/products-list',
       controller: 'mvProductsScreenCtrl', resolve: routeRoleChecks.user
     })
     .when('/screens/search', { templateUrl: '/partials/screens/search/search',

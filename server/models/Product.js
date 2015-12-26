@@ -1,0 +1,86 @@
+var mongoose = require('mongoose');
+
+var productSchema = mongoose.Schema({
+  name: {type:String, required:'{PATH} is required!'},
+  description: {type:String, required:'{PATH} is required!'},
+  upc: {type:Number, required:'{PATH} is required!'},
+  product_id: {type:Number, required:'{PATH} is required!'},
+  quantity: {type:Number, required:'{PATH} is required!'},
+  price: {type:String, required:'{PATH} is required!'},
+  manufacturer: {type:String, required:'{PATH} is required!'}
+});
+
+var Product = mongoose.model('Product', productSchema);
+
+function createDefaultProducts() {
+  Product.find({}).exec(function(err, collection) {
+    if (collection.length === 0) {
+        Product.create({name: "Azithromycin", description: "aliquam", upc: 192139489, product_id: 100001, quantity: 2883, price: "$31.66", manufacturer: "Penatibus Et Foundation"});
+        Product.create({name: "Cialis", description: "non sapien molestie orci tincidunt adipiscing. Mauris", upc: 157385776, product_id: 100002, quantity: 7426, price: "$33.33", manufacturer: "Eleifend Cras Sed Corp."});
+        Product.create({name: "Doxycycline Hyclate", description: "eu", upc: 178114430, product_id: 100003, quantity: 6741, price: "$23.61", manufacturer: "Mauris Sit Amet Incorporated"});
+        Product.create({name: "Allopurinol", description: "diam.", upc: 164116951, product_id: 100004, quantity: 3388, price: "$0.94", manufacturer: "Vulputate Corporation"});
+        Product.create({name: "Citalopram HBR", description: "semper tellus id nunc interdum feugiat. Sed nec", upc: 188541839, product_id: 100005, quantity: 2494, price: "$66.46", manufacturer: "Gravida Sit Amet Institute"});
+        Product.create({name: "Fluticasone Propionate", description: "ipsum primis in faucibus orci luctus", upc: 109269138, product_id: 100006, quantity: 6866, price: "$80.15", manufacturer: "Vestibulum Lorem Sit Corp."});
+        Product.create({name: "Prednisone", description: "tincidunt aliquam arcu. Aliquam ultrices", upc: 194059602, product_id: 100007, quantity: 4105, price: "$71.71", manufacturer: "Elit Pede Malesuada Ltd"});
+        Product.create({name: "Nasonex", description: "cursus", upc: 125855610, product_id: 100008, quantity: 6222, price: "$79.66", manufacturer: "Magna Lorem Industries"});
+        Product.create({name: "Methylprednisolone", description: "egestas, urna justo faucibus lectus, a", upc: 180311855, product_id: 100009, quantity: 199, price: "$68.88", manufacturer: "Gravida Molestie Arcu PC"});
+        Product.create({name: "Lovaza", description: "turpis egestas.", upc: 160846374, product_id: 100010, quantity: 910, price: "$66.06", manufacturer: "Velit Ltd"});
+        Product.create({name: "Diazepam", description: "Duis at lacus. Quisque purus sapien,", upc: 130208003, product_id: 100011, quantity: 6806, price: "$77.57", manufacturer: "Posuere Cubilia Curae; Consulting"});
+        Product.create({name: "Digoxin", description: "sed consequat auctor, nunc nulla", upc: 111149613, product_id: 100012, quantity: 4000, price: "$84.52", manufacturer: "Mi Duis Risus Industries"});
+        Product.create({name: "Vyvanse", description: "erat vel pede blandit congue. In scelerisque", upc: 173872768, product_id: 100015, quantity: 8616, price: "$84.88", manufacturer: "Nec Corp."});
+        Product.create({name: "Hydrochlorothiazide", description: "Sed nulla ante, iaculis nec, eleifend non, dapibus", upc: 165333639, product_id: 100016, quantity: 1219, price: "$46.84", manufacturer: "Tempor Arcu LLP"});
+        Product.create({name: "Lovastatin", description: "et, magna. Praesent interdum ligula eu enim.", upc: 190352456, product_id: 100017, quantity: 7149, price: "$73.97", manufacturer: "Quis Corporation"});
+        Product.create({name: "Crestor", description: "libero. Proin mi. Aliquam gravida mauris", upc: 171917888, product_id: 100018, quantity: 1076, price: "$43.36", manufacturer: "Morbi Tristique PC"});
+        Product.create({name: "Suboxone", description: "mollis. Duis sit", upc: 123218617, product_id: 100019, quantity: 8873, price: "$61.32", manufacturer: "Facilisis Vitae Orci Consulting"});
+        Product.create({name: "Oxycontin", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing", upc: 173278710, product_id: 100020, quantity: 4168, price: "$47.00", manufacturer: "Vel Mauris Integer Consulting"});
+        Product.create({name: "Amlodipine Besylate", description: "erat eget ipsum. Suspendisse", upc: 180690494, product_id: 100022, quantity: 7485, price: "$74.74", manufacturer: "In Faucibus Inc."});
+        Product.create({name: "Cyclobenzaprin HCl", description: "egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae,", upc: 162946418, product_id: 100023, quantity: 8797, price: "$69.65", manufacturer: "Cursus Integer Corporation"});
+        Product.create({name: "Potassium Chloride", description: "sed orci lobortis augue scelerisque mollis. Phasellus libero mauris,", upc: 153030350, product_id: 100024, quantity: 1524, price: "$59.06", manufacturer: "Tellus Lorem Eu Associates"});
+        Product.create({name: "Nuvaring", description: "turpis. Aliquam adipiscing", upc: 174383816, product_id: 100025, quantity: 8847, price: "$23.46", manufacturer: "Magna Nec PC"});
+        Product.create({name: "Lantus Solostar", description: "Sed molestie. Sed id risus quis diam luctus lobortis.", upc: 167778329, product_id: 100026, quantity: 9799, price: "$85.34", manufacturer: "Nam LLC"});
+        Product.create({name: "Zolpidem Tartrate", description: "nunc sed libero. Proin sed", upc: 135695597, product_id: 100027, quantity: 6829, price: "$65.02", manufacturer: "Mus Proin Foundation"});
+        Product.create({name: "Alprazolam", description: "non, hendrerit", upc: 157236172, product_id: 100028, quantity: 7114, price: "$86.63", manufacturer: "Est Congue A LLC"});
+        Product.create({name: "Benicar HCT", description: "ac risus. Morbi metus. Vivamus", upc: 151683588, product_id: 100029, quantity: 2287, price: "$31.25", manufacturer: "Arcu Sed LLC"});
+        Product.create({name: "Flovent HFA", description: "rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede", upc: 114820801, product_id: 100030, quantity: 6775, price: "$53.57", manufacturer: "In Faucibus Morbi Associates"});
+        Product.create({name: "Carvedilol", description: "fringilla", upc: 188269450, product_id: 100031, quantity: 5938, price: "$2.28", manufacturer: "Neque Incorporated"});
+        Product.create({name: "Zetia", description: "ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor,", upc: 149877816, product_id: 100032, quantity: 5157, price: "$7.50", manufacturer: "Feugiat Metus Sit Consulting"});
+        Product.create({name: "Promethazine HCl", description: "magna tellus faucibus leo, in lobortis tellus justo", upc: 199667777, product_id: 100033, quantity: 1499, price: "$83.82", manufacturer: "Rutrum Company"});
+        Product.create({name: "Sulfamethoxazole/Trimethoprim", description: "at,", upc: 101348657, product_id: 100034, quantity: 9321, price: "$75.81", manufacturer: "Nulla Incorporated"});
+        Product.create({name: "Metformin HCl", description: "turpis nec mauris blandit mattis. Cras eget nisi", upc: 123358964, product_id: 100035, quantity: 1475, price: "$8.46", manufacturer: "Lobortis Quam Company"});
+        Product.create({name: "Carisoprodol", description: "nonummy. Fusce fermentum", upc: 110378708, product_id: 100036, quantity: 3280, price: "$80.24", manufacturer: "Aliquam Eu Accumsan Inc."});
+        Product.create({name: "Oxycodone HCl", description: "lectus. Cum sociis natoque penatibus et magnis dis parturient montes,", upc: 141899559, product_id: 100037, quantity: 1475, price: "$99.21", manufacturer: "Lacus Mauris Non LLP"});
+        Product.create({name: "Triamcinolone Acetonide", description: "libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus", upc: 176326475, product_id: 100038, quantity: 5622, price: "$78.13", manufacturer: "Cras Vulputate Associates"});
+        Product.create({name: "Amoxicillin Trihydrate/Potassium Clavulanate", description: "pretium et, rutrum non, hendrerit", upc: 172118722, product_id: 100041, quantity: 3005, price: "$95.29", manufacturer: "Duis At Inc."});
+        Product.create({name: "Enalapril Maleate", description: "arcu. Vestibulum", upc: 189161180, product_id: 100042, quantity: 4015, price: "$95.02", manufacturer: "Cursus Et LLP"});
+        Product.create({name: "Famotidine", description: "Aenean massa. Integer vitae nibh.", upc: 179448693, product_id: 100043, quantity: 3238, price: "$1.78", manufacturer: "Purus Foundation"});
+        Product.create({name: "Cymbalta", description: "et tristique pellentesque,", upc: 183852722, product_id: 100044, quantity: 6414, price: "$84.25", manufacturer: "Rhoncus Id Corp."});
+        Product.create({name: "Levothyroxine Sodium", description: "enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin", upc: 178440809, product_id: 100046, quantity: 6583, price: "$54.67", manufacturer: "Sed Molestie Sed Incorporated"});
+        Product.create({name: "Lorazepam", description: "hendrerit. Donec porttitor tellus non magna.", upc: 149345771, product_id: 100047, quantity: 3763, price: "$20.00", manufacturer: "Natoque Penatibus Et LLP"});
+        Product.create({name: "Amoxicillin", description: "ultrices a, auctor", upc: 114235749, product_id: 100051, quantity: 1267, price: "$54.32", manufacturer: "Semper Erat Industries"});
+        Product.create({name: "Ventolin HFA", description: "arcu. Sed eu", upc: 183718248, product_id: 100052, quantity: 9720, price: "$67.79", manufacturer: "Lobortis LLC"});
+        Product.create({name: "Tramadol HCl", description: "nulla. Integer urna. Vivamus molestie dapibus", upc: 183170073, product_id: 100054, quantity: 9964, price: "$25.87", manufacturer: "Vitae Aliquam Eros Company"});
+        Product.create({name: "Niaspan", description: "ultrices. Duis volutpat", upc: 163398937, product_id: 100057, quantity: 318, price: "$42.19", manufacturer: "Non Limited"});
+        Product.create({name: "Benicar", description: "tempus, lorem fringilla ornare", upc: 179124165, product_id: 100059, quantity: 2074, price: "$4.01", manufacturer: "Blandit Enim Ltd"});
+        Product.create({name: "Levaquin", description: "sed pede. Cum", upc: 141465064, product_id: 100060, quantity: 1749, price: "$84.85", manufacturer: "Lectus Rutrum Urna Corp."});
+        Product.create({name: "Atenolol", description: "scelerisque sed, sapien.", upc: 191138357, product_id: 100064, quantity: 2272, price: "$43.18", manufacturer: "Elementum Sem Vitae LLC"});
+        Product.create({name: "Lidoderm", description: "auctor ullamcorper,", upc: 167295296, product_id: 100065, quantity: 2601, price: "$67.34", manufacturer: "Aliquet Nec Imperdiet Industries"});
+        Product.create({name: "Gabapentin", description: "vel sapien", upc: 166252915, product_id: 100066, quantity: 2224, price: "$85.51", manufacturer: "Feugiat Non Lobortis Corp."});
+        Product.create({name: "Metoprolol Succinatee", description: "eu dui. Cum", upc: 129095336, product_id: 100067, quantity: 2867, price: "$93.57", manufacturer: "Odio Phasellus PC"});
+        Product.create({name: "Cheratussin AC", description: "vitae erat vel pede blandit congue. In scelerisque", upc: 121192516, product_id: 100071, quantity: 3351, price: "$62.20", manufacturer: "Iaculis Inc."});
+        Product.create({name: "Hydrocodone/APAP", description: "natoque", upc: 159710182, product_id: 100072, quantity: 9526, price: "$75.87", manufacturer: "Metus Associates"});
+        Product.create({name: "Januvia", description: "Mauris", upc: 141628156, product_id: 100075, quantity: 4337, price: "$53.59", manufacturer: "Vulputate Eu Consulting"});
+        Product.create({name: "Lipitor", description: "dignissim lacus.", upc: 184796433, product_id: 100076, quantity: 2090, price: "$99.98", manufacturer: "Bibendum Consulting"});
+        Product.create({name: "Gianvi", description: "tellus justo sit", upc: 168548689, product_id: 100077, quantity: 8358, price: "$63.52", manufacturer: "Orci Sem Eget Foundation"});
+        Product.create({name: "Klor-Con M20", description: "mollis. Duis sit amet", upc: 132580525, product_id: 100080, quantity: 9662, price: "$35.35", manufacturer: "Nascetur Limited"});
+        Product.create({name: "Proair HFA", description: "convallis erat, eget tincidunt dui", upc: 186940630, product_id: 100082, quantity: 221, price: "$68.28", manufacturer: "Vel Venenatis LLC"});
+        Product.create({name: "Losartan Potassium", description: "orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras", upc: 135569411, product_id: 100083, quantity: 9757, price: "$5.16", manufacturer: "Malesuada PC"});
+        Product.create({name: "Lisinopril", description: "dignissim tempor arcu. Vestibulum ut eros", upc: 107756496, product_id: 100085, quantity: 1115, price: "$28.78", manufacturer: "Quisque Imperdiet Erat Corporation"});
+        Product.create({name: "Ciprofloxacin HCl", description: "diam eu dolor egestas rhoncus. Proin nisl sem,", upc: 120976470, product_id: 100087, quantity: 5253, price: "$93.63", manufacturer: "Eros Consulting"});
+        Product.create({name: "TriNessa", description: "dolor, tempus non, lacinia", upc: 115105721, product_id: 100089, quantity: 2982, price: "$42.99", manufacturer: "In Hendrerit Consectetuer Corporation"});
+        Product.create({name: "Triamterene/Hydrochlorothiazide", description: "sit amet, dapibus id, blandit at, nisi.", upc: 141914097, product_id: 100097, quantity: 3800, price: "$29.79", manufacturer: "Risus At LLP"});
+        Product.create({name: "Clonazepam", description: "adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum.", upc: 159873054, product_id: 100098, quantity: 5079, price: "$61.28", manufacturer: "Magna Et Foundation"});
+    }
+  });
+}
+
+exports.createDefaultProducts = createDefaultProducts;
