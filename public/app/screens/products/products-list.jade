@@ -4,7 +4,7 @@
     .row
       label.col-md-2.text-right Product:
       p.col-md-8 {{ product.name }}
-      button.btn.col-md-2.pull-right(ng-show="identity.currentUser.isAdmin()") Edit Product
+      a.btn.btn-primary(href="/admin/product/{{product._id}}", ng-show="identity.currentUser.isAdmin()") Edit Product
     .row
       label.col-md-2.text-right Description:
       p.col-md-10 {{ product.description }}

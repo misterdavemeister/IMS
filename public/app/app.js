@@ -17,12 +17,18 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider
     .when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl' })
-    .when('/admin/users', { templateUrl: '/partials/admin/user-list',
+
+    // ADMIN //
+    .when('/admin/users', { templateUrl: '/partials/admin/user/user-list',
       controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin
     })
-    .when('/admin/user/:id', { templateUrl: 'partials/admin/user',
+    .when('/admin/user/:id', { templateUrl: '/partials/admin/user/user',
       controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.admin
     })
+    .when('/admin/product/:id', { templateUrl: '/partials/admin/product/product-details',
+      controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
+    })
+
     .when('/signup', { templateUrl: '/partials/account/signup',
       controller: 'mvSignupCtrl'
     })
@@ -36,7 +42,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
       controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
     })
 
-    // Screens //
+    // SCREENS //
     .when('/screens/inventory', { templateUrl: '/partials/screens/inventory/inventory',
       controller: 'mvInventoryScreenCtrl', resolve: routeRoleChecks.user
     })

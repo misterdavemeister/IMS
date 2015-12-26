@@ -1,0 +1,39 @@
+.container
+  .well
+    form.form-horizontal(name="productForm")
+      fieldset
+        legend Edit Product - {{ product.name }}
+        .form-group
+          label.col-md-2.control-label(for="name") Name
+          .col-md-10
+            input.form-control(name="name", type="text", placeholder="Product Name", ng-model="name", required)
+        .form-group
+          label.col-md-2.control-label(for="description") Description
+          .col-md-10
+            input.form-control(name="description", type="text", placeholder="Product Description", ng-model="description", required)
+        .form-group
+          label.col-md-2.control-label(for="upc") UPC
+          .col-md-10
+            input.form-control(name='upc', type="text", placeholder="Product UPC", ng-model="upc", required)
+        .form-group
+          label.col-md-2.control-label(for="product_id") Product ID
+          .col-md-10
+            input.form-control(name="product_id", type="text", placeholder="Product ID", ng-model="product_id", required)
+        .form-group
+          label.col-md-2.control-label(for="quantity") Quantity
+          .col-md-10
+            input.form-control(name="quantity", type="text", placeholder="Product Quantity", ng-model="quantity", required)
+        .form-group
+          label.col-md-2.control-label(for="price") Price
+          .col-md-10
+            input.form-control(name="price", type="text", placeholder="Product Price", ng-model="price", required)
+        .form-group
+          label.col-md-2.control-label(for="manufacturer") Manufacturer
+          .col-md-10
+            input.form-control(name="manufacturer", type="text", placeholder="Product Manufacturer", ng-model="manufacturer", required)
+        .form-group
+          .col-md-10.col-md-offset-2
+            .pull-right
+              button.btn.btn-primary(ng-click="update()", ng-disabled="productForm.$invalid") Confirm Changes
+              | &nbsp;
+              a.btn.btn-default(href="/screens/products") Cancel
