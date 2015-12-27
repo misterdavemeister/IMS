@@ -2,7 +2,7 @@
 var auth = require('./auth'),
     mongoose = require('mongoose'),
     //TODO: next line doesn't need to be there, right? try commenting out
-    //User = mongoose.model('User'),
+    User = mongoose.model('User'),
     users = require('../controllers/users'),
     products = require('../controllers/products');
     //courses = require('../controllers/courses');
@@ -24,6 +24,9 @@ module.exports = function(app) {
   //screens
   //products
   app.get('/api/products', products.getProducts);
+  app.post('/api/products', auth.requiresRole('admin'), products.createProduct);
+  app.put('/api/products', auth.requiresRole('admin'), products.updateProduct);
+  app.get('/api/products/:id', products.getProductById);
 
   //'*' will equal <directory>/<filename>
   app.get('/partials/*', function(req, res) {
