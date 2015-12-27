@@ -2,3 +2,51 @@ TODO: Implement Products √
 TODO: Screens with WRITING abilities must require admin role
 TODO: Screens with READING abilities only don't require admin role
 TODO: Remove all references to Courses completely (instead of commenting out)
+TODO: products-list.jade old:
+   .container
+     .pull-right
+       form.form-inline
+         .form-group
+           input.form-control(ng-model="searchText", placeholder="Filter")
+         .form-group
+           select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+     h1.text-center Products
+     table.table.table-hover.table-striped.table-condensed
+       thead
+         tr
+           th Name
+           th Description
+           th UPC
+           th Product ID
+           th Quantity
+           th Price
+           th Manufacturer
+       tbody
+         tr(ng-repeat="product in products | filter:searchText | orderBy:sortOrder")
+           td {{ product.name }}
+           td
+             a.btn.btn-primary(href="/admin/product/{{product._id}}", ng-show="identity.currentUser.isAdmin()") Edit Product
+     //.well.product(ng-repeat="product in products")
+     //  .row
+         label.col-md-2.text-right Product:
+         p.col-md-8 {{ product.name }}
+         a.btn.btn-primary(href="/admin/product/{{product._id}}", ng-show="identity.currentUser.isAdmin()") Edit Product
+       //.row
+         label.col-md-2.text-right Description:
+         p.col-md-10 {{ product.description }}
+       //.row
+         label.col-md-2.text-right UPC:
+         p.col-md-10 {{ product.upc }}
+       //.row
+         label.col-md-2.text-right Product ID:
+         p.col-md-10 {{ product.product_id }}
+       //.row
+         label.col-md-2.text-right Quantity:
+         p.col-md-10 {{ product.quantity }}
+       //.row
+         label.col-md-2.text-right Price:
+         p.col-md-10 {{ product.price }}
+       //.row
+         label.col-md-2.text-right Manufacturer:
+         p.col-md-10 {{ product.manufacturer }}
+
