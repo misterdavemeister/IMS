@@ -1,3 +1,7 @@
+SUN 12/27/15
+    - 1:00am -
+        added filter and search box for products page
+        changed price to type "Number" and set currency filter with angular
 SAT 12/26/15
     - 10:00pm -
         edit products page fully functional, updates server side/database
