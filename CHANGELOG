@@ -1,8 +1,8 @@
 SAT 12/26/15
-    - 8:38am -
-        implementing the admin-only edit-product button and the jade template
     - 10:00pm -
         edit products page fully functional, updates server side/database
+    - 8:38am -
+        implementing the admin-only edit-product button and the jade template
 FRI 12/25/15
     - 10:40pm -
         added products to database
