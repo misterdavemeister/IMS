@@ -4,3 +4,9 @@ TODO: Screens with WRITING abilities must require admin role
 TODO: Screens with READING abilities only don't require admin role
 TODO: Remove all references to Courses completely (instead of commenting out)
 TODO: Change "Price" to number instead of string, use currency filter throughout app √
+TODO: Admin dropdown -- product maintenance, list of products to edit
+    -!! maintenance "homepage" with different topics (product, user, customer) as dropdown options?
+    -clicking on product takes you to detail page, no editing.
+    -if admin, there is a button on this page to take you to product maintenance page specific for that product
+TODO: Products -- low quantity alarm
+TODO: User-list -- make it a table that lists beside each user the username and the roles like products-list page
