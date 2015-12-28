@@ -34,12 +34,15 @@ footer p {
 .toast-top-right {
   top: 70px;
 }
+a.link-alias {
+  color: #000;
+  text-decoration: none;
+}
 .product button {
   width: 120px;
 }
-.product button a {
-  color: #fff;
-  text-decoration: none;
+.btn-tabs button {
+  margin-right: 5px;
 }
 .vertical-center {
   vertical-align: middle;

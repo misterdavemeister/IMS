@@ -28,6 +28,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/product/:id', { templateUrl: '/partials/admin/product/product-details',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
+    .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product',
+      controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
+    })
 
     .when('/signup', { templateUrl: '/partials/account/signup',
       controller: 'mvSignupCtrl'

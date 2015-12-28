@@ -23,7 +23,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
    mvProductAdmin.updateProduct(newProductData, product).then(function () {
      mvNotifier.success("Product successfully updated!");
      $scope.products = mvCachedProduct.reload();
-     $location.path('/screens/products');
+     $location.path('/admin/product/' + $scope.product._id);
    }, function (reason) {
      mvNotifier.error(reason);
    });

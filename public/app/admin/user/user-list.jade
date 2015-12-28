@@ -1,13 +1,21 @@
 .container
-  h1.visible-lg-inline Users
+  h1.form-inline Users
   .pull-right
     form.form-inline
       .form-group
         input.form-control(ng-model="searchText", placeholder="Filter")
       .form-group
         select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
-  table.table
-    tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
-      td(ng-show="user.isAdmin()") {{ user.firstName + ' ' + user.lastName }}
-      td(ng-show="!user.isAdmin()")
-        a(href="/admin/user/{{user._id}}") {{ user.firstName + ' ' + user.lastName }}
+  table.table.table-hover.table-striped.table-condensed
+    thead
+      tr
+        th Full Name
+        th Username
+        th Roles
+    tbody
+      tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
+        td(ng-show="user.isAdmin()") {{ user.firstName + ' ' + user.lastName }}
+        td(ng-show="!user.isAdmin()")
+          a(href="/admin/user/{{user._id}}") {{ user.firstName + ' ' + user.lastName }}
+        td {{ user.username }}
+        td {{ user.roles }}
