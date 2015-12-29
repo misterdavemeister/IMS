@@ -6,9 +6,11 @@ angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUs
         $scope.backUrl = "/admin/users";
         $scope.backUrlText = "Users";
         $scope.heading = user.firstName + ' ' + user.lastName;
-        $scope.buttons = [{ url:"/admin/user/" + user._id, text:'Delete User', func: function(user) {
-          deleteUser(user);
-                          }
+        $scope.buttons = [{ url:"/admin/user/" + user._id,
+          text:'Delete User',
+          func: function(user) {
+            deleteUser(user);
+          }
         }];
       }
     });
