@@ -8,14 +8,19 @@ var productSchema = mongoose.Schema({
   quantity: {type:Number, required:'{PATH} is required!'},
   price: {type:Number, required:'{PATH} is required!'},
   manufacturer: {type:String, required:'{PATH} is required!'}
+//  alarm: {type:Boolean, required:'{PATH} is required!'},
+//  alarm_at: {type:Number, required:'{PATH} is required!'}
 });
 
 var Product = mongoose.model('Product', productSchema);
 
 function createDefaultProducts() {
   Product.find({}).exec(function(err, collection) {
+    if (err) {console.log(err.toString());}
     if (collection.length === 0) {
-        Product.create({name: "Azithromycin", description: "aliquam", upc: 192139489, product_id: 100001, quantity: 2883, price: 31.66, manufacturer: "Velit Ltd"});
+        Product.create({name: "Azithromycin", description: "aliquam", upc: 192139489, product_id: 100001, quantity: 2883, price: 31.66, manufacturer: "Velit Ltd"}, function(err) {
+            if (err) console.log(err.toString());
+        });
         Product.create({name: "Cialis", description: "non sapien molestie orci tincidunt adipiscing. Mauris", upc: 157385776, product_id: 100002, quantity: 7426, price: 33.33, manufacturer: "Velit Ltd"});
         Product.create({name: "Doxycycline Hyclate", description: "eu", upc: 178114430, product_id: 100003, quantity: 6741, price: 33.33, manufacturer: "Velit Ltd"});
         Product.create({name: "Allopurinol", description: "diam.", upc: 164116951, product_id: 100004, quantity: 3388, price: 0.94, manufacturer: "Velit Ltd"});

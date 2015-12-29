@@ -22,13 +22,13 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/users', { templateUrl: '/partials/admin/user/user-list',
       controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin
     })
-    .when('/admin/user/:id', { templateUrl: '/partials/admin/user/user',
+    .when('/admin/user/:id', { templateUrl: '/partials/admin/user/user-details',
       controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.admin
     })
     .when('/admin/product/:id', { templateUrl: '/partials/admin/product/product-details',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
-    .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product',
+    .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product-edit',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
 

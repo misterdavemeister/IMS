@@ -1,0 +1,6 @@
+a.btn.btn-tabs.btn-sm(href="{{ backUrl }}") << Back to Products
+h1.form-inline {{ product.name }}
+.btn-tabs
+  button.btn.btn-default(ng-repeat="itemButton in buttons")
+    a.link-alias(href="{{ itemButton.url }}") {{ itemButton.text }}
+hr

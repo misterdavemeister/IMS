@@ -1,6 +1,7 @@
 angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvCachedProduct, mvIdentity) {
   $scope.products = mvCachedProduct.query();
   $scope.identity = mvIdentity;
+  $scope.title = "Products";
 
   $scope.sortOptions = [{value:'name', text:'Sort by Product Name'},
     {value:'description', text:'Sort by Product Description'},
