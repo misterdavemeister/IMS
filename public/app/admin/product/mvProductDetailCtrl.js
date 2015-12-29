@@ -3,22 +3,25 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
   mvCachedProduct.query().$promise.then(function(collection) {
     collection.forEach(function(product) {
       if (product._id === $routeParams.id) {
-        $scope.product = new mvProduct(product);
+        $scope.currentItem = new mvProduct(product);
         for(var p in product) {
           $scope[p] = product[p];
         }
         $scope.backUrl = "/screens/products";
-        $scope.buttons = [{ url:"", text:'Order Product' },
-                          { url:"/admin/product/edit/" + product._id, text:'Edit Product' },
-                          { url:"", text:'Delete Product'}
-        ];
+        $scope.backUrlText = "Products";
+        $scope.heading = product.name;
+        $scope.buttons = [{ url:"", text:'Order Product'},
+                          { url:"/admin/product/edit/" + product._id, text:'Edit Product', func: function() {
+                            console.log("function works");
+                          } },
+                          { url:"", text:'Delete Product'}];
       }
     });
   });
 
 // For product edit page
   $scope.update = function(product) {
-    $scope.product = product;
+    $scope.currentItem = product;
     var newProductData = {
       name        : $scope.name,
       description : $scope.description,
@@ -31,7 +34,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
     mvProductAdmin.updateProduct(newProductData, product).then(function () {
       mvNotifier.success("Product successfully updated!");
       $scope.products = mvCachedProduct.reload();
-      $location.path('/admin/product/' + $scope.product._id);
+      $location.path('/admin/product/' + $scope.currentItem._id);
     },function (reason) {
      mvNotifier.error(reason);
     });

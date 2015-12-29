@@ -1,6 +1,3 @@
 .container
-  a.btn.btn-tabs.btn-sm(href="/admin/users") << Back to Users
-  h1.form-inline {{ user.firstName + ' ' + user.lastName }}
-  button.btn.btn-default(ng-click="deleteUser(user._id, user.firstName, user.lastName)") Delete User
-  hr
-  h4(ng-repeat="(key, val) in user") {{ key }}: {{ val }}
+  item-details
+  h4(ng-repeat="(key, val) in currentItem") {{ key }}: {{ val }}
