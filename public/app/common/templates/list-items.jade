@@ -1,8 +1,7 @@
-.container
-  h1.form-inline {{ title }}
-  .pull-right
-    form.form-inline
-      .form-group
-        input.form-control(ng-model="searchText", placeholder="Filter")
-      .form-group
-        select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+h1.form-inline {{ title }}
+.pull-right
+  form.form-inline
+    .form-group
+      input.form-control(ng-model="searchText", placeholder="Filter")
+    .form-group
+      select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
