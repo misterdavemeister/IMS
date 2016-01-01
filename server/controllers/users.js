@@ -13,7 +13,7 @@ exports.createUser = function(req, res, next) {
   userData.hashed_pwd = encrypt.hashPwd(userData.salt, userData.password);
   User.create(userData, function(err, user) {
     if (err) {
-      if (err.toString().indexOf('E11000') > -1) {
+      if (err.toString().indexOf('11000') > -1) {
         err = new Error('Duplicate Username');
       }
       res.status(400);
@@ -55,7 +55,7 @@ exports.getUserById = function(req, res) {
 
 exports.deleteUser = function(req, res) {
   User.remove({_id: req.params.id}, function(err) {
-    if (err) {res.sendStatus(400); res.send({reason:err.toString()});}
+    if (err) {res.status(400); res.send({reason:err.toString()});}
     res.sendStatus(200);
   });
 };

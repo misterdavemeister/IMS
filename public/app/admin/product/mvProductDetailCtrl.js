@@ -1,4 +1,4 @@
-angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeParams, $location, mvCachedProduct, mvProductAdmin, mvNotifier, mvProduct) {
+angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeParams, $location, mvCachedProduct, mvProductAdmin, mvNotifier, mvProduct, alertify) {
 // For product details page
   mvCachedProduct.query().$promise.then(function(collection) {
     collection.forEach(function(product) {
@@ -7,14 +7,28 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         for(var p in product) {
           $scope[p] = product[p];
         }
+        // FOR LIST-ITEMS TEMPLATE //
         $scope.backUrl = "/screens/products";
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
-        $scope.buttons = [{ url:"", text:'Order Product'},
-                          { url:"/admin/product/edit/" + product._id, text:'Edit Product', func: function() {
-                            console.log("function works");
-                          } },
-                          { url:"", text:'Delete Product'}];
+        $scope.buttons = [
+          { url:"",
+            text:'Order Product'
+          },
+
+          { url:"/admin/product/edit/" + product._id,
+            text:'Edit Product',
+            func: function() {
+            }
+          },
+
+          { url:"/admin/product/" + product._id,
+            text:'Delete Product' ,
+            func: function() {
+              deleteProduct(product);
+            }
+          }
+        ];
       }
     });
   });
@@ -39,4 +53,21 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
      mvNotifier.error(reason);
     });
   };
+
+  var deleteProduct = function(product) {
+    var id = product._id,
+        name = product.name;
+    alertify
+      .okBtn("Yes")
+      .cancelBtn("No")
+      .confirm("Delete " +name+ "?", function () {
+        mvProduct.delete({_id: id}, function () {
+          $scope.products = mvCachedProduct.reload();
+          $location.path("/screens/products/");
+          mvNotifier.success("You have successfully deleted the product '" + name + "'!");
+          alertify
+            .reset();
+        });
+      });
+  }
 });

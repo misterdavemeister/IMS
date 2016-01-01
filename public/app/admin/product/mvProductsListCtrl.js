@@ -2,7 +2,7 @@ angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvCach
   $scope.products = mvCachedProduct.query();
   $scope.identity = mvIdentity;
   $scope.title = "Products";
-  $scope.type = "product";
+  $scope.css = "product-header";
 
   $scope.sortOptions = [{value:'name', text:'Sort by Product Name'},
     {value:'description', text:'Sort by Product Description'},

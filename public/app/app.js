@@ -25,12 +25,16 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/user/:id', { templateUrl: '/partials/admin/user/user-details',
       controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.admin
     })
+    .when('/admin/product/add', { templateUrl: '/partials/admin/product/product-add',
+      controller: 'mvProductAddCtrl', resolve: routeRoleChecks.admin
+    })
     .when('/admin/product/:id', { templateUrl: '/partials/admin/product/product-details',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
     .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product-edit',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
+
 
     .when('/signup', { templateUrl: '/partials/account/signup',
       controller: 'mvSignupCtrl'

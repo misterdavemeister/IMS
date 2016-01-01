@@ -27,6 +27,7 @@ module.exports = function(app) {
   app.post('/api/products', auth.requiresRole('admin'), products.createProduct);
   app.put('/api/products', auth.requiresRole('admin'), products.updateProduct);
   app.get('/api/products/:id', products.getProductById);
+  app.delete('/api/products/:id', auth.requiresRole('admin'), products.deleteProduct);
 
   //'*' will equal <directory>/<filename>
   app.get('/partials/*', function(req, res) {

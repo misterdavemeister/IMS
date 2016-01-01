@@ -2,7 +2,7 @@
   .well
     form.form-horizontal(name="productForm")
       fieldset
-        legend Edit Product - {{ currentItem.name }}
+        legend Add Product
         .form-group
           label.col-md-2.control-label(for="name") Name *
           .col-md-10
@@ -34,6 +34,6 @@
         .form-group
           .col-md-10.col-md-offset-2
             .pull-right
-              button.btn.btn-primary(ng-click="update(currentItem)", ng-disabled="productForm.$invalid") Confirm Changes
+              button.btn.btn-primary(ng-click="addProduct()", ng-disabled="productForm.$invalid") Add Product
               | &nbsp;
-              a.btn.btn-default(href="/admin/product/{{currentItem._id}}") Cancel
+              a.btn.btn-default(href="/screens/products/") Cancel
