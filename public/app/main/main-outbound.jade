@@ -1,0 +1,8 @@
+.panel.panel-primary.outbound(ng-controller="mvMainOutboundCtrl")
+  a.link-alias-white(href="/screens/outbound")
+    .panel-heading.text-center.outbound Outbound
+    .panel-body.text-black
+      .text-center
+        .row Total Inventory: {{ inventory | number }}
+        .row Total value of inventory: {{ value | currency }}
+        .col-md-12

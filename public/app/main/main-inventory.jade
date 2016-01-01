@@ -1,0 +1,8 @@
+.panel.panel-primary.inventory(ng-controller="mvMainInventoryCtrl")
+  a.link-alias-white(href="/screens/inventory")
+    .panel-heading.text-center.inventory Inventory
+    .panel-body.text-black
+      .text-center
+        .row Total Inventory: {{ inventory | number }}
+        .row Total value of inventory: {{ value | currency }}
+        .col-md-12

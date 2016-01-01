@@ -38,20 +38,20 @@ function createDefaultUsers() {
         username  : 'DCole',
         salt      : salt,
         hashed_pwd: hash,
-        roles     : ['admin', 'clerk']
+        roles     : ['admin']
       }, function(err) {
         if (err) console.log(err.toString());
       });
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'SGray');
-      User.create({firstName: 'Susan', lastName: 'Gray', username: 'SGray', salt: salt, hashed_pwd: hash, roles: ['clerk']});
+      User.create({firstName: 'Susan', lastName: 'Gray', username: 'SGray', salt: salt, hashed_pwd: hash});
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'DGole');
       User.create({firstName: 'Dusan', lastName: 'Gole', username: 'DGole', salt: salt, hashed_pwd: hash});
     } else if (collection.length === 1) {
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'SGray');
-      User.create({firstName: 'Susan', lastName: 'Gray', username: 'SGray', salt: salt, hashed_pwd: hash, roles: ['clerk']});
+      User.create({firstName: 'Susan', lastName: 'Gray', username: 'SGray', salt: salt, hashed_pwd: hash});
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'DGole');
       User.create({firstName: 'Dusan', lastName: 'Gole', username: 'DGole', salt: salt, hashed_pwd: hash});

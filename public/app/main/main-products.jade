@@ -1,0 +1,8 @@
+.panel.panel-primary.product(ng-controller="mvMainProductsCtrl")
+  a.link-alias-white(href="/screens/products")
+    .panel-heading.text-center.product Product
+    .panel-body.text-black
+      .text-center
+        .row Total Products: {{ inventory | number }}
+        .row Total value of inventory: {{ value | currency }}
+        .col-md-12

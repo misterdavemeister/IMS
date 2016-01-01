@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 
 var productSchema = mongoose.Schema({
-  name: {type:String, required:'{PATH} is required!'},
+  name: {type:String, required:'{PATH} is required!', unique: true},
   description: {type:String, required:'{PATH} is required!'},
-  upc: {type:Number, required:'{PATH} is required!'},
-  product_id: {type:Number, required:'{PATH} is required!'},
+  upc: {type:Number, required:'{PATH} is required!', unique: true},
+  product_id: {type:Number, required:'{PATH} is required!', unique: true},
   quantity: {type:Number, required:'{PATH} is required!'},
+  allotted: {type:Number, required:'{PATH} is required!', default: 0},
   price: {type:Number, required:'{PATH} is required!'},
-  manufacturer: {type:String, required:'{PATH} is required!'}
-//  alarm: {type:Boolean, required:'{PATH} is required!'},
-//  alarm_at: {type:Number, required:'{PATH} is required!'}
+  manufacturer: {type:String, required:'{PATH} is required!'},
+  alarm: {type:Boolean, default: false},
+  alarm_at: {type:Number, default: 1000}
 });
 
 var Product = mongoose.model('Product', productSchema);
@@ -53,7 +54,7 @@ function createDefaultProducts() {
         Product.create({name: "Sulfamethoxazole/Trimethoprim", description: "at,", upc: 101348657, product_id: 100034, quantity: 9321, price: 75.81, manufacturer: "Arcu Sed LLC"});
         Product.create({name: "Metformin HCl", description: "turpis nec mauris blandit mattis. Cras eget nisi", upc: 123358964, product_id: 100035, quantity: 1475, price: 8.46, manufacturer: "Arcu Sed LLC"});
         Product.create({name: "Carisoprodol", description: "nonummy. Fusce fermentum", upc: 110378708, product_id: 100036, quantity: 3280, price: 80.24, manufacturer: "Arcu Sed LLC"});
-        Product.create({name: "Oxycodone HCl", description: "lectus. Cum sociis natoque penatibus et magnis dis parturient montes,", upc: 141899559, product_id: 100037, quantity: 1475, price: 99.21, manufacturer: "Arcu Sed LLC"});
+        Product.create({name: "Oxycodone HCl", description: "lectus. Sociis natoque penatibus et magnis dis parturient montes,", upc: 141899559, product_id: 100037, quantity: 1475, price: 99.21, manufacturer: "Arcu Sed LLC"});
         Product.create({name: "Triamcinolone Acetonide", description: "libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus", upc: 176326475, product_id: 100038, quantity: 5622, price: 78.13, manufacturer: "Arcu Sed LLC"});
         Product.create({name: "Amoxicillin Trihydrate/Potassium Clavulanate", description: "pretium et, rutrum non, hendrerit", upc: 172118722, product_id: 100041, quantity: 3005, price: 95.29, manufacturer: "Arcu Sed LLC"});
         Product.create({name: "Enalapril Maleate", description: "arcu. Vestibulum", upc: 189161180, product_id: 100042, quantity: 4015, price: 95.02, manufacturer: "Arcu Sed LLC"});
@@ -66,11 +67,11 @@ function createDefaultProducts() {
         Product.create({name: "Tramadol HCl", description: "nulla. Integer urna. Vivamus molestie dapibus", upc: 183170073, product_id: 100054, quantity: 9964, price: 25.87, manufacturer: "Iaculis Inc."});
         Product.create({name: "Niaspan", description: "ultrices. Duis volutpat", upc: 163398937, product_id: 100057, quantity: 318, price: 42.19, manufacturer: "Iaculis Inc."});
         Product.create({name: "Benicar", description: "tempus, lorem fringilla ornare", upc: 179124165, product_id: 100059, quantity: 2074, price: 4.01, manufacturer: "Iaculis Inc."});
-        Product.create({name: "Levaquin", description: "sed pede. Cum", upc: 141465064, product_id: 100060, quantity: 1749, price: 84.85, manufacturer: "Iaculis Inc."});
+        Product.create({name: "Levaquin", description: "sed pede.", upc: 141465064, product_id: 100060, quantity: 1749, price: 84.85, manufacturer: "Iaculis Inc."});
         Product.create({name: "Atenolol", description: "scelerisque sed, sapien.", upc: 191138357, product_id: 100064, quantity: 2272, price: 43.18, manufacturer: "Iaculis Inc."});
         Product.create({name: "Lidoderm", description: "auctor ullamcorper,", upc: 167295296, product_id: 100065, quantity: 2601, price: 67.34, manufacturer: "Iaculis Inc."});
         Product.create({name: "Gabapentin", description: "vel sapien", upc: 166252915, product_id: 100066, quantity: 2224, price: 85.51, manufacturer: "Iaculis Inc."});
-        Product.create({name: "Metoprolol Succinatee", description: "eu dui. Cum", upc: 129095336, product_id: 100067, quantity: 2867, price: 93.57, manufacturer: "Iaculis Inc."});
+        Product.create({name: "Metoprolol Succinatee", description: "eu dui.", upc: 129095336, product_id: 100067, quantity: 2867, price: 93.57, manufacturer: "Iaculis Inc."});
         Product.create({name: "Cheratussin AC", description: "vitae erat vel pede blandit congue. In scelerisque", upc: 121192516, product_id: 100071, quantity: 3351, price: 62.20, manufacturer: "Iaculis Inc."});
         Product.create({name: "Hydrocodone/APAP", description: "natoque", upc: 159710182, product_id: 100072, quantity: 9526, price: 75.87, manufacturer: "Iaculis Inc."});
         Product.create({name: "Januvia", description: "Mauris", upc: 141628156, product_id: 100075, quantity: 4337, price: 53.59, manufacturer: "Iaculis Inc."});

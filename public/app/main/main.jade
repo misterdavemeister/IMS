@@ -4,4 +4,16 @@
     p Inventory Management System designed and built by David Cole
   .row
     .col-md-6
+      div(ng-include="'/partials/main/main-products'")
     .col-md-6
+      div(ng-include="'/partials/main/main-inventory'")
+  .row
+    .col-md-6
+      div(ng-include="'/partials/main/main-inbound'")
+    .col-md-6
+      div(ng-include="'/partials/main/main-outbound'")
+  .row
+    .col-md-6
+      div(ng-include="'/partials/main/main-locations'")
+    .col-md-6
+      div(ng-include="'/partials/main/main-search'")

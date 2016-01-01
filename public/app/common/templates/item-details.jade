@@ -2,5 +2,5 @@ a.btn.btn-tabs.btn-sm(href="{{ backUrl }}") << Back to {{ backUrlText }}
 h1.form-inline {{ heading }}
 .btn-tabs
   button.btn.btn-default(ng-repeat="itemButton in buttons", ng-click="itemButton.func(currentItem)")
-    a.link-alias(href="{{ itemButton.url }}") {{ itemButton.text }}
+    a.link-alias.black(href="{{ itemButton.url }}") {{ itemButton.text }}
 hr
