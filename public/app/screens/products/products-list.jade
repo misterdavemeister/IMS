@@ -15,7 +15,7 @@
     tbody
       tr(ng-repeat="product in products | filter:searchText | orderBy:sortOrder")
         td
-          a(href="/admin/product/{{product._id}}", ng-show="identity.currentUser.isAdmin()") {{ product.name }}
+          a(href="/admin/product/{{product._id}}") {{ product.name }}
         td {{ product.description }}
         td {{ product.upc }}
         td {{ product.product_id }}

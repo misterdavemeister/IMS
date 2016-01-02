@@ -124,12 +124,12 @@ function $RouteProvider() {
    *      - `{Object.<string>}` - route parameters extracted from the current
    *        `$location.path()` by applying the current route templateUrl.
    *      - `{string}` - current `$location.path()`
-   *      - `{Object}` - current `$location.search()`
+   *      - `{Object}` - current `$location.reports()`
    *
    *      The custom `redirectTo` function is expected to return a string which will be used
-   *      to update `$location.path()` and `$location.search()`.
+   *      to update `$location.path()` and `$location.reports()`.
    *
-   *    - `[reloadOnSearch=true]` - {boolean=} - reload route when only `$location.search()`
+   *    - `[reloadOnSearch=true]` - {boolean=} - reload route when only `$location.reports()`
    *      or `$location.hash()` changes.
    *
    *      If the option is set to `false` and url in the browser changes, then

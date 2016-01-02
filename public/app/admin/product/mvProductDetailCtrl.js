@@ -1,4 +1,5 @@
-angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeParams, $location, mvCachedProduct, mvProductAdmin, mvNotifier, mvProduct, alertify) {
+angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeParams, $location, mvCachedProduct, mvProductAdmin, mvNotifier, mvProduct, mvIdentity, alertify) {
+  $scope.identity = mvIdentity;
 // For product details page
   mvCachedProduct.query().$promise.then(function(collection) {
     collection.forEach(function(product) {
@@ -13,22 +14,24 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.heading = product.name;
         $scope.buttons = [
           { url:"",
-            text:'Order Product'
+            text:'Order Product',
+            auth: 'user'
           },
 
           { url:"/admin/product/edit/" + product._id,
             text:'Edit Product',
+            auth: 'admin',
             func: function() {
             }
           },
 
           { url:"/admin/product/" + product._id,
             text:'Delete Product' ,
+            auth: 'admin',
             func: function() {
               deleteProduct(product);
             }
-          }
-        ];
+          }];
       }
     });
   });
@@ -69,5 +72,5 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
             .reset();
         });
       });
-  }
+  };
 });

@@ -69,79 +69,65 @@ a.link-alias-white {
   color: #fff;
 }
 .panel-primary .inbound {
-  background-color: #5a5a5a;
-  border-color: #5a5a5a;
+  background-color: #646464;
+  border-color: #646464;
 }
 .panel-primary .inbound a {
   color: #fff;
 }
 .panel-primary .inventory {
-  background-color: #464646;
-  border-color: #464646;
+  background-color: $inventory-main-color;
+  border-color: $inventory-main-color;
 }
 .panel-primary .inventory a {
-  color: #fff;
+  color: $inventory-text-color;
 }
 .panel-primary .locations {
-  background-color: #7c7c7c;
-  border-color: #7c7c7c;
+  background-color: $locations-main-color;
+  border-color: $locations-main-color;
 }
 .panel-primary .locations a {
-  color: #fff;
+  color: $locations-text-color;
 }
 .panel-primary .outbound {
-  background-color: #6b6b6b;
-  border-color: #6b6b6b;
+  background-color: #969696;
+  border-color: #969696;
 }
 .panel-primary .outbound a {
   color: #fff;
 }
-.panel-primary .search {
-  background-color: #969696;
-  border-color: #969696;
+.panel-primary .reports {
+  background-color: #323232;
+  border-color: #323232;
 }
-.panel-primary .search a {
+.panel-primary .reports a {
   color: #fff;
 }
 .product {
   border-color: #000;
 }
+.reports {
+  border-color: #323232;
+}
 .inbound {
-  border-color: #5a5a5a;
+  border-color: #646464;
 }
 .outbound {
-  border-color: #6b6b6b;
-}
-.inventory {
-  border-color: #464646;
-}
-.locations {
-  border-color: #7c7c7c;
-}
-.search {
   border-color: #969696;
 }
 .product-header {
   background-color: #000;
   color: #fff;
 }
+.reports-header {
+  background-color: #323232;
+  color: #fff;
+}
 .inbound-header {
-  background-color: #5a5a5a;
+  background-color: #646464;
   color: #fff;
 }
 .outbound-header {
-  background-color: #6b6b6b;
-  color: #fff;
-}
-.inventory-header {
-  background-color: #464646;
-  color: #fff;
-}
-.locations-header {
-  background-color: #7c7c7c;
-  color: #fff;
-}
-.search-header {
   background-color: #969696;
   color: #fff;
 }

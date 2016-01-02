@@ -7760,7 +7760,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
      * Looks for directives on the given node and adds them to the directive collection which is
      * sorted.
      *
-     * @param node Node to search.
+     * @param node Node to reports.
      * @param directives An array to which the directives are added to. This array is sorted before
      *        the function returns.
      * @param attrs The shared attrs object which is used to populate the normalized attributes.
@@ -11744,7 +11744,7 @@ var locationPrototype = {
    *
    * Return url (e.g. `/path?a=b#hash`) when called without any parameter.
    *
-   * Change path, search and hash, when called with parameter and return `$location`.
+   * Change path, reports and hash, when called with parameter and return `$location`.
    *
    *
    * ```js
@@ -11873,34 +11873,34 @@ var locationPrototype = {
    * @description
    * This method is getter / setter.
    *
-   * Return search part (as object) of current url when called without any parameter.
+   * Return reports part (as object) of current url when called without any parameter.
    *
-   * Change search part when called with parameter and return `$location`.
+   * Change reports part when called with parameter and return `$location`.
    *
    *
    * ```js
    * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
-   * var searchObject = $location.search();
+   * var searchObject = $location.reports();
    * // => {foo: 'bar', baz: 'xoxo'}
    *
    * // set foo to 'yipee'
-   * $location.search('foo', 'yipee');
-   * // $location.search() => {foo: 'yipee', baz: 'xoxo'}
+   * $location.reports('foo', 'yipee');
+   * // $location.reports() => {foo: 'yipee', baz: 'xoxo'}
    * ```
    *
-   * @param {string|Object.<string>|Object.<Array.<string>>} search New search params - string or
+   * @param {string|Object.<string>|Object.<Array.<string>>} search New reports params - string or
    * hash object.
    *
-   * When called with a single argument the method acts as a setter, setting the `search` component
+   * When called with a single argument the method acts as a setter, setting the `reports` component
    * of `$location` to the specified value.
    *
    * If the argument is a hash object containing an array of values, these values will be encoded
-   * as duplicate search parameters in the url.
+   * as duplicate reports parameters in the url.
    *
-   * @param {(string|Number|Array<string>|boolean)=} paramValue If `search` is a string or number, then `paramValue`
-   * will override only a single search property.
+   * @param {(string|Number|Array<string>|boolean)=} paramValue If `reports` is a string or number, then `paramValue`
+   * will override only a single reports property.
    *
-   * If `paramValue` is an array, it will override the property of the `search` component of
+   * If `paramValue` is an array, it will override the property of the `reports` component of
    * `$location` specified via the first argument.
    *
    * If `paramValue` is `null`, the property specified via the first argument will be deleted.
@@ -11908,7 +11908,7 @@ var locationPrototype = {
    * If `paramValue` is `true`, the property specified via the first argument will be added with no
    * value nor trailing equal sign.
    *
-   * @return {Object} If called with no arguments returns the parsed `search` object. If called with
+   * @return {Object} If called with no arguments returns the parsed `reports` object. If called with
    * one or more arguments returns `$location` object itself.
    */
   search: function(search, paramValue) {
@@ -11929,7 +11929,7 @@ var locationPrototype = {
           this.$$search = search;
         } else {
           throw $locationMinErr('isrcharg',
-              'The first argument of the `$location#search()` call must be a string or an object.');
+              'The first argument of the `$location#reports()` call must be a string or an object.');
         }
         break;
       default:
@@ -12089,7 +12089,7 @@ function $LocationProvider() {
    * @ngdoc method
    * @name $locationProvider#hashPrefix
    * @description
-   * @param {string=} prefix Prefix for hash part (containing path and search)
+   * @param {string=} prefix Prefix for hash part (containing path and reports)
    * @returns {*} current value if used as getter or itself (chaining) if used as setter
    */
   this.hashPrefix = function(prefix) {
@@ -17769,7 +17769,7 @@ function $$TestabilityProvider() {
      * Returns an array of elements that are bound (via ng-bind or {{}})
      * to expressions matching the input.
      *
-     * @param {Element} element The element root to search from.
+     * @param {Element} element The element root to reports from.
      * @param {string} expression The binding expression to match.
      * @param {boolean} opt_exactMatch If true, only returns exact matches
      *     for the expression. Filters and whitespace are ignored.
@@ -17804,7 +17804,7 @@ function $$TestabilityProvider() {
      * Returns an array of elements that are two-way found via ng-model to
      * expressions matching the input.
      *
-     * @param {Element} element The element root to search from.
+     * @param {Element} element The element root to reports from.
      * @param {string} expression The model expression to match.
      * @param {boolean} opt_exactMatch If true, only returns exact matches
      *     for the expression.
@@ -17826,7 +17826,7 @@ function $$TestabilityProvider() {
      *
      * @description
      * Shortcut for getting the location in a browser agnostic way. Returns
-     *     the path, search, and hash. (e.g. /path?a=b#hash)
+     *     the path, reports, and hash. (e.g. /path?a=b#hash)
      */
     testability.getLocation = function() {
       return $location.url();
@@ -17838,7 +17838,7 @@ function $$TestabilityProvider() {
      * @description
      * Shortcut for navigating to a location without doing a full page reload.
      *
-     * @param {string} url The location url (path, search and hash,
+     * @param {string} url The location url (path, reports and hash,
      *     e.g. /path?a=b#hash) to go to.
      */
     testability.setLocation = function(url) {
@@ -18008,7 +18008,7 @@ var originUrl = urlResolve(window.location.href);
  *   | href          | A normalized version of the provided URL if it was not an absolute URL |
  *   | protocol      | The protocol including the trailing colon                              |
  *   | host          | The host and port (if the port is non-default) of the normalizedUrl    |
- *   | search        | The search params, minus the question mark                             |
+ *   | reports        | The reports params, minus the question mark                             |
  *   | hash          | The hash string, minus the hash symbol
  *   | hostname      | The hostname
  *   | port          | The port, without ":"
@@ -28758,7 +28758,7 @@ var optionDirective = ['$interpolate', function($interpolate) {
 
       return function(scope, element, attr) {
 
-        // This is an optimization over using ^^ since we don't want to have to search
+        // This is an optimization over using ^^ since we don't want to have to reports
         // all the way to the root of the DOM for every single option element
         var selectCtrlName = '$selectController',
             parent = element.parent(),

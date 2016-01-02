@@ -3,6 +3,9 @@
     .panel-heading.text-center.inbound Inbound
     .panel-body.text-black
       .text-center
-        .row Total Inventory: {{ inventory | number }}
-        .row Total value of inventory: {{ value | currency }}
+        .row
+          .col-md-6.text-right Open Orders:
+          .col-md-6.text-left {{ orders }}
+        .row --
+        .row --
         .col-md-12

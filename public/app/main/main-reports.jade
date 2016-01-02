@@ -1,0 +1,13 @@
+.panel.panel-primary.reports(ng-controller="mvMainReportsCtrl")
+  a.link-alias-white(href="/screens/reports")
+    .panel-heading.text-center.reports Reports
+    .panel-body.text-black
+      .text-center
+        .row
+          .col-md-6.text-right Total Inventory:
+          .col-md-6.text-left {{ inventory | number }}
+        .row --
+        .row
+          .col-md-6.text-right Total value of inventory:
+          .col-md-6.text-left {{ value | currency }}
+        .col-md-12

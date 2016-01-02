@@ -3,6 +3,11 @@
     .panel-heading.text-center.product Product
     .panel-body.text-black
       .text-center
-        .row Total Products: {{ inventory | number }}
-        .row Total value of inventory: {{ value | currency }}
+        .row
+          .col-md-6.text-right Total Products:
+          .col-md-6.text-left {{ inventory | number }}
+        .row --
+        .row
+          .col-md-6.text-right Low-Quantity Products:
+          .col-md-6.text-left 0
         .col-md-12

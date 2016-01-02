@@ -38,7 +38,7 @@ function createDefaultUsers() {
         username  : 'DCole',
         salt      : salt,
         hashed_pwd: hash,
-        roles     : ['admin']
+        roles     : ['user', 'admin']
       }, function(err) {
         if (err) console.log(err.toString());
       });

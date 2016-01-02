@@ -3,6 +3,9 @@
     .panel-heading.text-center.outbound Outbound
     .panel-body.text-black
       .text-center
-        .row Total Inventory: {{ inventory | number }}
-        .row Total value of inventory: {{ value | currency }}
+        .row
+          .col-md-6.text-right Number of Sales:
+          .col-md-6.text-left {{ sales }}
+        .row --
+        .row --
         .col-md-12
