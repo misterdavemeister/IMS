@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var locationSchema = mongoose.Schema({
-  name: String
+  name: String,
+  products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
 
 var Location = mongoose.model('Location', locationSchema);

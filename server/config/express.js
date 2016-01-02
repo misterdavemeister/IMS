@@ -1,4 +1,3 @@
-'use strict';
 var express = require('express'),
   logger = require('morgan'),
   bodyParser = require('body-parser'),
@@ -28,4 +27,4 @@ module.exports = function(app, config) {
 	  }
 	));
 	app.use(express.static(config.rootPath + '/public'));
-}
+};

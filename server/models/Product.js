@@ -10,7 +10,7 @@ var productSchema = mongoose.Schema({
   manufacturer: {type:String, required:'{PATH} is required!'},
   alarm: {type:Boolean, default: false},
   alarm_at: {type:Number, default: 1000},
-  locations: {type:[String]},
+  locations: [{type: mongoose.Schema.Types.ObjectId, ref: 'Location'}],
   allotted: {type:Number, default: 0}
 });
 

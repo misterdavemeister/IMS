@@ -1,4 +1,3 @@
-'use strict';
 var auth = require('./auth'),
     mongoose = require('mongoose'),
     //TODO: next line doesn't need to be there, right? try commenting out

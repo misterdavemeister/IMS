@@ -143,3 +143,10 @@ a.link-alias-white {
 .click {
   cursor: pointer;
 }
+.table-header-bar {
+  background-color: #b9b9b9;
+}
+.table-header-bar th {
+  min-width: 120px;
+  border: 1px solid #fff;
+}

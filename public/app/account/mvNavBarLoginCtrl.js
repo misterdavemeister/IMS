@@ -1,4 +1,3 @@
-'use strict';
 angular.module('app').controller('mvNavBarLoginCtrl', function($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
   $scope.signInFormToggle = false;
   $scope.identity = mvIdentity;

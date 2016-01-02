@@ -13,9 +13,12 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
         $scope.buttons = [
-          { url:"",
+          { url:"/screens/inbound/order/" + product._id,
             text:'Order Product',
-            auth: 'user'
+            auth: 'user',
+            func: function(product) {
+              console.log("Ordering " + product.name)
+            }
           },
 
           { url:"/admin/product/edit/" + product._id,

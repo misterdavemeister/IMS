@@ -1,11 +1,5 @@
 var Product = require('mongoose').model('Product');
 
-exports.getProducts = function(req, res) {
-  Product.find({}).exec(function(err, collection) {
-      res.send(collection);
-  });
-};
-
 exports.createProduct = function(req, res) {
   var productData = req.body;
   console.log(productData);
@@ -16,6 +10,19 @@ exports.createProduct = function(req, res) {
     }
     res.send(product);
   });
+};
+
+exports.getProducts = function(req, res) {
+  Product.find({}).exec(function(err, collection) {
+      res.send(collection);
+  });
+};
+
+exports.getProductById = function(req, res) {
+  Product.findOne({_id: req.params.id}, function(err) {
+    if (err) {res.sendStatus(400); res.send({reason:err.toString()});}
+    res.sendStatus(200);
+  })
 };
 
 exports.updateProduct = function(req, res) {
@@ -36,13 +43,6 @@ exports.updateProduct = function(req, res) {
 exports.deleteProduct = function(req, res) {
   Product.remove({_id: req.params.id}, function(err) {
     if (err) {res.status(400); res.send({reason:res.toString()});}
-    res.sendStatus(200);
-  })
-};
-
-exports.getProductById = function(req, res) {
-  Product.findOne({_id: req.params.id}, function(err) {
-    if (err) {res.sendStatus(400); res.send({reason:err.toString()});}
     res.sendStatus(200);
   })
 };

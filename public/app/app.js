@@ -60,6 +60,12 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/screens/inbound', { templateUrl: '/partials/screens/inbound/inbound',
       controller: 'mvInboundScreenCtrl', resolve: routeRoleChecks.user
     })
+    .when('/screens/inbound/order/', { templateUrl: '/partials/screens/inbound/new-purchase-order',
+      controller: 'mvNewPurchaseOrderCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/inbound/order/:id', { templateUrl: '/partials/screens/inbound/new-purchase-order',
+      controller: 'mvNewPurchaseOrderCtrl', resolve: routeRoleChecks.user
+    })
     .when('/screens/locations', { templateUrl: '/partials/screens/locations/locations',
       controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user
     })
