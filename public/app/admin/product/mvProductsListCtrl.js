@@ -10,7 +10,17 @@ angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvCach
     {value:'product_id', text:'Sort by Product ID'},
     {value:'quantity', text:'Sort by Quantity'},
     {value:'price', text:'Sort by Price'},
-    {value:'manufacturer', text:'Sort by Manufacturer'}
+    {value:'manufacturer', text:'Sort by Manufacturer'},
+    {value:'-name', text:'Sort by Product Name (reversed)'},
+    {value:'-description', text:'Sort by Product Description (reversed)'},
+    {value:'-upc', text:'Sort by Product UPC (reversed)'},
+    {value:'-product_id', text:'Sort by Product ID (reversed)'},
+    {value:'-quantity', text:'Sort by Quantity (reversed)'},
+    {value:'-price', text:'Sort by Price (reversed)'},
+    {value:'-manufacturer', text:'Sort by Manufacturer (reversed)'}
   ];
   $scope.sortOrder = $scope.sortOptions[0].value;
+  $scope.reverseOrder = function(name) {
+    $scope.sortOrder = name[0] == '-' ? name.slice(1) : '-' + name;
+  };
 });

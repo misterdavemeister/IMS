@@ -140,3 +140,6 @@ a.link-alias-white {
 .text-red {
   color: #800;
 }
+.click {
+  cursor: pointer;
+}

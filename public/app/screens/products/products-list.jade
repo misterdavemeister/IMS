@@ -5,13 +5,41 @@
   table.table.table-hover.table-striped.table-condensed
     thead
       tr
-        th Name
-        th Description
-        th UPC
-        th Product ID
-        th Quantity
-        th Price
-        th Manufacturer
+        th.click(ng-show="sortOrder != 'name' && sortOrder != '-name'", ng-click="sortOrder = 'name'") Name
+        th.click(ng-show="sortOrder == 'name' || sortOrder == '-name'", ng-click="reverseOrder(sortOrder)") Name
+          b.caret(ng-show="sortOrder == 'name'")
+          b.dropup(ng-show="sortOrder == '-name'")
+            b.caret
+        th.click(ng-show="sortOrder != 'description' && sortOrder != '-description'", ng-click="sortOrder = 'description'") Description
+        th.click(ng-show="sortOrder == 'description' || sortOrder == '-description'", ng-click="reverseOrder(sortOrder)") Description
+          b.caret(ng-show="sortOrder == 'description'")
+          b.dropup(ng-show="sortOrder == '-description'")
+            b.caret
+        th.click(ng-show="sortOrder != 'upc' && sortOrder != '-upc'", ng-click="sortOrder = 'upc'") UPC
+        th.click(ng-show="sortOrder == 'upc' || sortOrder == '-upc'", ng-click="reverseOrder(sortOrder)") UPC
+          b.caret(ng-show="sortOrder == 'upc'")
+          b.dropup(ng-show="sortOrder == '-upc'")
+            b.caret
+        th.click(ng-show="sortOrder != 'product_id' && sortOrder != '-product_id'", ng-click="sortOrder = 'product_id'") Product ID
+        th.click(ng-show="sortOrder == 'product_id' || sortOrder == '-product_id'", ng-click="reverseOrder(sortOrder)") Product ID
+          b.caret(ng-show="sortOrder == 'product_id'")
+          b.dropup(ng-show="sortOrder == '-product_id'")
+            b.caret
+        th.click(ng-show="sortOrder != 'quantity' && sortOrder != '-quantity'", ng-click="sortOrder = 'quantity'") Quantity
+        th.click(ng-show="sortOrder == 'quantity' || sortOrder == '-quantity'", ng-click="reverseOrder(sortOrder)") Quantity
+          b.caret(ng-show="sortOrder == 'quantity'")
+          b.dropup(ng-show="sortOrder == '-quantity'")
+            b.caret
+        th.click(ng-show="sortOrder != 'price' && sortOrder != '-price'", ng-click="sortOrder = 'price'") Price
+        th.click(ng-show="sortOrder == 'price' || sortOrder == '-price'", ng-click="reverseOrder(sortOrder)") Price
+          b.caret(ng-show="sortOrder == 'price'")
+          b.dropup(ng-show="sortOrder == '-price'")
+            b.caret
+        th.click(ng-show="sortOrder != 'manufacturer' && sortOrder != '-manufacturer'", ng-click="sortOrder = 'manufacturer'") Manufacturer
+        th.click(ng-show="sortOrder == 'manufacturer' || sortOrder == '-manufacturer'", ng-click="reverseOrder(sortOrder)") Manufacturer
+          b.caret(ng-show="sortOrder == 'manufacturer'")
+          b.dropup(ng-show="sortOrder == '-manufacturer'")
+            b.caret
     tbody
       tr(ng-repeat="product in products | filter:searchText | orderBy:sortOrder")
         td
