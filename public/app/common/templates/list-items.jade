@@ -1,7 +1,11 @@
-h1.form-inline.text-center(ng-class="css") {{ title }}
+h1.form-inline.text-center(ng-class="cssClass") {{ title }}
 .pull-right
   form.form-inline
     .form-group
       input.form-control(ng-model="searchText", placeholder="Filter")
     .form-group
       select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+button.btn.btn-default(ng-repeat="itemButton in buttons", ng-click="itemButton.func(currentItem)", ng-show="identity.isAuthorized(itemButton.auth)")
+  a.link-alias.black(href="{{ itemButton.url }}") {{ itemButton.text }}
+br
+br

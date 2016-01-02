@@ -31,11 +31,11 @@ function createDefaultUsers() {
     if (collection.length === 0) {
       var salt, hash;
       salt = encrypt.createSalt();
-      hash = encrypt.hashPwd(salt, 'DCole');
+      hash = encrypt.hashPwd(salt, 'admin');
       User.create({
-        firstName : 'David',
-        lastName  : 'Cole',
-        username  : 'DCole',
+        firstName : 'Administrator',
+        lastName  : ' ',
+        username  : 'admin',
         salt      : salt,
         hashed_pwd: hash,
         roles     : ['user', 'admin']
@@ -43,18 +43,18 @@ function createDefaultUsers() {
         if (err) console.log(err.toString());
       });
       salt = encrypt.createSalt();
-      hash = encrypt.hashPwd(salt, 'SGray');
-      User.create({firstName: 'Susan', lastName: 'Gray', username: 'SGray', salt: salt, hashed_pwd: hash});
+      hash = encrypt.hashPwd(salt, 'user');
+      User.create({firstName: 'User', lastName: 'One', username: 'user', salt: salt, hashed_pwd: hash});
       salt = encrypt.createSalt();
-      hash = encrypt.hashPwd(salt, 'DGole');
-      User.create({firstName: 'Dusan', lastName: 'Gole', username: 'DGole', salt: salt, hashed_pwd: hash});
+      hash = encrypt.hashPwd(salt, 'user2');
+      User.create({firstName: 'User', lastName: 'Two', username: 'user2', salt: salt, hashed_pwd: hash});
     } else if (collection.length === 1) {
       salt = encrypt.createSalt();
-      hash = encrypt.hashPwd(salt, 'SGray');
-      User.create({firstName: 'Susan', lastName: 'Gray', username: 'SGray', salt: salt, hashed_pwd: hash});
+      hash = encrypt.hashPwd(salt, 'user');
+      User.create({firstName: 'User', lastName: 'One', username: 'user', salt: salt, hashed_pwd: hash});
       salt = encrypt.createSalt();
-      hash = encrypt.hashPwd(salt, 'DGole');
-      User.create({firstName: 'Dusan', lastName: 'Gole', username: 'DGole', salt: salt, hashed_pwd: hash});
+      hash = encrypt.hashPwd(salt, 'user2');
+      User.create({firstName: 'User', lastName: 'Two', username: 'user2', salt: salt, hashed_pwd: hash});
     }
   });
 }

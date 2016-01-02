@@ -1,4 +1,6 @@
-angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUsers, $routeParams, mvUser, $location, mvNotifier, alertify) {
+angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUsers, $routeParams, mvUser, $location, mvNotifier, alertify, mvIdentity) {
+  $scope.identity = mvIdentity;
+
   mvCachedUsers.query().$promise.then(function(collection) {
     collection.forEach(function(user) {
       if (user._id === $routeParams.id) {
@@ -8,6 +10,7 @@ angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUs
         $scope.heading = user.firstName + ' ' + user.lastName;
         $scope.buttons = [{ url:"/admin/user/" + user._id,
           text:'Delete User',
+          auth: 'admin',
           func: function(user) {
             deleteUser(user);
           }

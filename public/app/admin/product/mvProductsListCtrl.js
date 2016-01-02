@@ -2,7 +2,12 @@ angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvCach
   $scope.products = mvCachedProduct.query();
   $scope.identity = mvIdentity;
   $scope.title = "Products";
-  $scope.css = "product-header";
+  $scope.cssClass = "product-header";
+
+  $scope.buttons = [{ url:"/admin/product/add",
+      text:'Add Product',
+      auth: 'admin'
+    }];
 
   $scope.sortOptions = [{value:'name', text:'Sort by Product Name'},
     {value:'description', text:'Sort by Product Description'},
@@ -20,7 +25,5 @@ angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvCach
     {value:'-manufacturer', text:'Sort by Manufacturer (reversed)'}
   ];
   $scope.sortOrder = $scope.sortOptions[0].value;
-  $scope.reverseOrder = function(name) {
-    $scope.sortOrder = name[0] == '-' ? name.slice(1) : '-' + name;
-  };
+
 });
