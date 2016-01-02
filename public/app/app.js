@@ -25,20 +25,20 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/user/:id', { templateUrl: '/partials/admin/user/user-details',
       controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.admin
     })
-    .when('/admin/product/add', { templateUrl: '/partials/admin/product/product-add',
-      controller: 'mvProductAddCtrl', resolve: routeRoleChecks.admin
+    .when('/admin/user-add', { templateUrl: '/partials/admin/user/user-add',
+      controller: 'mvUserAddCtrl', resolve: routeRoleChecks.admin
     })
     .when('/admin/product/:id', { templateUrl: '/partials/admin/product/product-details',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/admin/product-add', { templateUrl: '/partials/admin/product/product-add',
+      controller: 'mvProductAddCtrl', resolve: routeRoleChecks.admin
     })
     .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product-edit',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
 
 
-    .when('/signup', { templateUrl: '/partials/account/signup',
-      controller: 'mvSignupCtrl'
-    })
     .when('/courses', { templateUrl: '/partials/courses/course-list',
       controller: 'mvCourseListCtrl'
     })
@@ -48,6 +48,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
     })
+
 
     // SCREENS //
     .when('/screens/inventory', { templateUrl: '/partials/screens/inventory/inventory',

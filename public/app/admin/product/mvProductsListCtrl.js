@@ -4,7 +4,7 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
   $scope.title = "Products";
   $scope.cssClass = "product-header";
 
-  $scope.buttons = [{ url:"/admin/product/add",
+  $scope.buttons = [{ url:"/admin/product-add",
       text:'Add Product',
       auth: 'admin'
     }];
@@ -25,5 +25,4 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
     {value:'-manufacturer', text:'Sort by Manufacturer (reversed)'}
   ];
   $scope.sortOrder = $scope.sortOptions[0].value;
-
 });

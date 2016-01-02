@@ -3,7 +3,7 @@ angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUser
    $scope.users = mvCachedUsers.query();
    $scope.title = "Users";
 
-   $scope.buttons = [{url: "/admin/user/add",
+   $scope.buttons = [{url: "/admin/user-add",
       text:'Add User',
       auth:'admin'
    }];

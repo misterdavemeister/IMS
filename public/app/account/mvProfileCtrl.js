@@ -1,11 +1,11 @@
 angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIdentity, mvNotifier, $location) {
-  $scope.email = mvIdentity.currentUser.username;
+  $scope.username = mvIdentity.currentUser.username;
   $scope.fname = mvIdentity.currentUser.firstName;
   $scope.lname = mvIdentity.currentUser.lastName;
 
   $scope.update = function() {
     var newUserData = {
-      username: $scope.email,
+      username: $scope.username,
       firstName: $scope.fname,
       lastName: $scope.lname
     };

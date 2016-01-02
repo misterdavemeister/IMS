@@ -3,14 +3,15 @@
     h1.text-center
       em  IMS
     h5.text-center Inventory Management System Designed and Built by David Cole
-  .row
-    .col-md-6
-      div(ng-include="'/partials/main/main-products'")
-    .col-md-6
-      div(ng-include="'/partials/main/main-reports'")
-  .row
-    .col-md-6
-      div(ng-include="'/partials/main/main-inbound'")
-    .col-md-6
-      div(ng-include="'/partials/main/main-outbound'")
+  section(ng-show="identity.isAuthenticated()")
+    .row
+      .col-md-6
+        div(ng-include="'/partials/main/main-products'")
+      .col-md-6
+        div(ng-include="'/partials/main/main-reports'")
+    .row
+      .col-md-6
+        div(ng-include="'/partials/main/main-inbound'")
+      .col-md-6
+        div(ng-include="'/partials/main/main-outbound'")
 
