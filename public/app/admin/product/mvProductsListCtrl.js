@@ -1,4 +1,4 @@
-angular.module('app').controller('mvProductsScreenCtrl', function($scope, mvCachedProduct, mvIdentity) {
+angular.module('app').controller('mvProductsListCtrl', function($scope, mvCachedProduct, mvIdentity) {
   $scope.products = mvCachedProduct.query();
   $scope.identity = mvIdentity;
   $scope.title = "Products";

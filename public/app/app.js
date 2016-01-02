@@ -63,7 +63,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
       controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user
     })
     .when('/screens/products', { templateUrl: '/partials/screens/products/products-list',
-      controller: 'mvProductsScreenCtrl', resolve: routeRoleChecks.user
+      controller: 'mvProductsListCtrl', resolve: routeRoleChecks.user
     })
     .when('/screens/reports', { templateUrl: '/partials/screens/reports/reports',
       controller: 'mvReportsScreenCtrl', resolve: routeRoleChecks.user
