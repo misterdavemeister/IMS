@@ -1,4 +1,4 @@
-angular.module('app').factory('mvCachedLocation', function($scope, mvLocation) {
+angular.module('app').factory('mvCachedLocation', function(mvLocation) {
   var cachedLocation;
 
   return {

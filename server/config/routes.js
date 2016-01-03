@@ -3,7 +3,8 @@ var auth = require('./auth'),
     //TODO: next line doesn't need to be there, right? try commenting out
     User = mongoose.model('User'),
     users = require('../controllers/users'),
-    products = require('../controllers/products');
+    products = require('../controllers/products'),
+    locations = require('../controllers/locations');
     //courses = require('../controllers/courses');
 
 module.exports = function(app) {
@@ -20,13 +21,16 @@ module.exports = function(app) {
   //app.get('/api/courses', courses.getCourses);
   //app.get('/api/courses/:id', courses.getCourseById);
 
-  //screens
+  //*** screens ***//
   //products
   app.get('/api/products', products.getProducts);
   app.post('/api/products', auth.requiresRole('admin'), products.createProduct);
   app.put('/api/products', auth.requiresRole('admin'), products.updateProduct);
   app.get('/api/products/:id', products.getProductById);
   app.delete('/api/products/:id', auth.requiresRole('admin'), products.deleteProduct);
+
+  //locations
+  app.get('/api/locations', locations.getLocations);
 
   //'*' will equal <directory>/<filename>
   app.get('/partials/*', function(req, res) {

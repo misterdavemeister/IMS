@@ -22,13 +22,4 @@ function createDefaultLocation() {
   });
 }
 
-function populateProducts() {
-  Location.find({}).exec(function(err, collection) {
-    collection.forEach(function(location) {
-      location.populate('products');
-    });
-  });
-}
-
 exports.createDefaultLocation = createDefaultLocation;
-exports.populateProducts = populateProducts;

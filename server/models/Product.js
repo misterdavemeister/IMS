@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    Location = mongoose.model('Location');
+var mongoose = require('mongoose');
 
 var productSchema = mongoose.Schema({
   name: {type:String, required:'{PATH} is required!', unique: true},
@@ -93,13 +92,4 @@ function createDefaultProducts() {
   });
 }
 
-function populateLocations() {
-  Product.find({}).exec(function(err, collection) {
-    collection.forEach(function(product) {
-      product.populate('locations');
-    });
-  });
-}
-
 exports.createDefaultProducts = createDefaultProducts;
-exports.populateLocations = populateLocations;

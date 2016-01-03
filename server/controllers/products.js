@@ -14,6 +14,10 @@ exports.createProduct = function(req, res) {
 
 exports.getProducts = function(req, res) {
   Product.find({}).exec(function(err, collection) {
+    if (err) {
+      res.status(400);
+      res.send({reason:err.toString()});
+    }
       res.send(collection);
   });
 };
