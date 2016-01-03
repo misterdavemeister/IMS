@@ -4,9 +4,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   if ($routeParams.id) {
     $scope.products.$promise.then(function (collection) {
       collection.forEach(function (product) {
-        if (product._id === $routeParams.id) {
-          $scope.product = product;
-        }
+        if (product._id === $routeParams.id) { $scope.product = product; }
       })
     });
   }

@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Location = mongoose.model('Location');
 
 var productSchema = mongoose.Schema({
   name: {type:String, required:'{PATH} is required!', unique: true},
@@ -11,7 +12,8 @@ var productSchema = mongoose.Schema({
   alarm: {type:Boolean, default: false},
   alarm_at: {type:Number, default: 1000},
   locations: [{type: mongoose.Schema.Types.ObjectId, ref: 'Location'}],
-  allotted: {type:Number, default: 0}
+  allotted: {type:Number, default: 0},
+  test: Number
 });
 
 var Product = mongoose.model('Product', productSchema);
@@ -20,9 +22,10 @@ function createDefaultProducts() {
   Product.find({}).exec(function(err, collection) {
     if (err) {console.log(err.toString());}
     if (collection.length === 0) {
-        Product.create({name: "Azithromycin", description: "aliquam", upc: 144892335, product_id: 100001, quantity: 2883, price: 31.66, manufacturer: "Velit Ltd"}, function(err) {
+        Product.create({name: "Azithromycin", description: "aliquam", upc: 144892335, product_id: 100001, quantity: 2883, price: 31.66, manufacturer: "Velit Ltd"}, function(err, product) {
             if (err) console.log(err.toString());
-        });
+          });
+
         Product.create({name: "Cialis", description: "non sapien molestie orci tincidunt adipiscing. Mauris", upc: 157385776, product_id: 100002, quantity: 7426, price: 33.33, manufacturer: "Velit Ltd"});
         Product.create({name: "Doxycycline Hyclate", description: "eu", upc: 178114430, product_id: 100003, quantity: 6741, price: 33.33, manufacturer: "Velit Ltd"});
         Product.create({name: "Allopurinol", description: "diam.", upc: 164116951, product_id: 100004, quantity: 3388, price: 0.94, manufacturer: "Velit Ltd"});
@@ -90,4 +93,13 @@ function createDefaultProducts() {
   });
 }
 
+function populateLocations() {
+  Product.find({}).exec(function(err, collection) {
+    collection.forEach(function(product) {
+      product.populate('locations');
+    });
+  });
+}
+
 exports.createDefaultProducts = createDefaultProducts;
+exports.populateLocations = populateLocations;
