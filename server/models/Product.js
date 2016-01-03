@@ -92,4 +92,9 @@ function createDefaultProducts() {
   });
 }
 
+function populateProducts() {
+
+}
+
 exports.createDefaultProducts = createDefaultProducts;
+exports.populateProducts = populateProducts;

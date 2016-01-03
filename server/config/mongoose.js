@@ -16,6 +16,8 @@ module.exports = function(config) {
   locationModel.createDefaultLocation();
   productModel.createDefaultProducts();
 
+  locationModel.populateProducts();
+  productModel.populateLocations();
   //courseModel.createDefaultCourses();
 
 };
