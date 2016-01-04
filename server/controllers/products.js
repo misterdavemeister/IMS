@@ -14,7 +14,9 @@ exports.createProduct = function(req, res) {
 };
 
 exports.getProducts = function(req, res) {
-  Product.find({}).exec(function(err, collection) {
+  Product.find({})
+         .populate('locations')
+         .exec(function(err, collection) {
     if (err) {
       res.status(400);
       res.send({reason:err.toString()});
@@ -22,6 +24,11 @@ exports.getProducts = function(req, res) {
 //    productModel.populateProducts(function(err, success) {
 //      if (success) {
 //        console.log("SUCCESS! populated products");
+    collection.forEach(function(product) {
+      if (product.product_id === 100001) {
+        console.log(product.locations);
+      }
+    });
         res.send(collection);
 //      }  else {
 //        res.status(400);

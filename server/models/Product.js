@@ -508,14 +508,14 @@ function populateProducts() {
         if (err) {
           console.log(err.toString());
         } else {
-          populate('locations');
+//          populate('locations');
         }
       });
       location.save(function(err) {
         if (err) {
           console.log(err.toString());
         } else {
-          populate('products');
+//          populate('products');
         }
       });
     });
