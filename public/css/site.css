@@ -76,18 +76,18 @@ a.link-alias-white {
   color: #fff;
 }
 .panel-primary .inventory {
-  background-color: $inventory-main-color;
-  border-color: $inventory-main-color;
+  background-color: #000;
+  border-color: #000;
 }
 .panel-primary .inventory a {
-  color: $inventory-text-color;
+  color: #fff;
 }
 .panel-primary .locations {
-  background-color: $locations-main-color;
-  border-color: $locations-main-color;
+  background-color: #000;
+  border-color: #000;
 }
 .panel-primary .locations a {
-  color: $locations-text-color;
+  color: #fff;
 }
 .panel-primary .outbound {
   background-color: #969696;
