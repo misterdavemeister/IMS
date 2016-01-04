@@ -14,10 +14,10 @@ module.exports = function(config) {
 
   userModel.createDefaultUsers();
   locationModel.createDefaultLocation();
-  productModel.createDefaultProducts();
+  productModel.createDefaultProducts(productModel.populateProducts);
 
-  locationModel.populateProducts();
-  productModel.populateLocations();
+//  locationModel.populateLocations();
+//  productModel.populateProducts();
   //courseModel.createDefaultCourses();
 
 };

@@ -1,5 +1,5 @@
-var Location = require('mongoose').model('Location');
-
+var Location = require('mongoose').model('Location'),
+    locationModel = require('../models/Location');
 exports.getLocations = function(req, res) {
   Location.find({}).exec(function(err, collection) {
     if (err) {
@@ -7,5 +7,5 @@ exports.getLocations = function(req, res) {
       res.send({reason:err.toString()});
     }
     res.send(collection);
-  })
+  });
 };

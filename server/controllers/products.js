@@ -1,4 +1,5 @@
-var Product = require('mongoose').model('Product');
+var Product = require('mongoose').model('Product'),
+    productModel = require('../models/Product');
 
 exports.createProduct = function(req, res) {
   var productData = req.body;
@@ -18,7 +19,15 @@ exports.getProducts = function(req, res) {
       res.status(400);
       res.send({reason:err.toString()});
     }
-      res.send(collection);
+//    productModel.populateProducts(function(err, success) {
+//      if (success) {
+//        console.log("SUCCESS! populated products");
+        res.send(collection);
+//      }  else {
+//        res.status(400);
+//        res.send({reason:err.toString()});
+//      }
+//    });
   });
 };
 
