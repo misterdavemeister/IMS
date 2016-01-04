@@ -476,21 +476,6 @@ function createDefaultProducts(next) {
 
 function populateProducts() {
   var Location = mongoose.model('Location');
-  function populate(string) {
-    if (string === 'products') {
-      Location.findOne({name: 'Warehouse 1'})
-              .populate('products')
-              .exec(function(err, location) {
-          console.log("location is: " + location);
-        })
-    } else {
-      Product.findOne({product_id:100001})
-             .populate('locations')
-             .exec(function(err, product) {
-          console.log("product is: " + product);
-        })
-      }
-  }
   Product.findOne({product_id: 100001}, function(err, product) {
     if (err) {
       console.log(err.toString());
@@ -507,15 +492,11 @@ function populateProducts() {
       product.save(function(err) {
         if (err) {
           console.log(err.toString());
-        } else {
-//          populate('locations');
         }
       });
       location.save(function(err) {
         if (err) {
           console.log(err.toString());
-        } else {
-//          populate('products');
         }
       });
     });
