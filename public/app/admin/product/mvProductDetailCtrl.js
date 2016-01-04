@@ -12,7 +12,9 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.backUrl = "/screens/products";
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
-        $scope.locations = product.locations[0].name;
+        if (product.locations.length > 0) {
+          $scope.locations = product.locations[0].name;
+        }
         $scope.buttons = [
           { url:"/screens/inbound/order/" + product._id,
             text:'Order Product',
