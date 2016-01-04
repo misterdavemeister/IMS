@@ -12,6 +12,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.backUrl = "/screens/products";
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
+        $scope.locations = product.locations[0].name;
         $scope.buttons = [
           { url:"/screens/inbound/order/" + product._id,
             text:'Order Product',
@@ -38,6 +39,12 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
       }
     });
   });
+
+  $scope.approved = function(key) {
+    console.log(key);
+   if (key === 'locations') return false;
+    else return true;
+  };
 
 // For product edit page
   $scope.update = function(product) {

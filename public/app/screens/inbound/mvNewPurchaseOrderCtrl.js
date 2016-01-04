@@ -1,8 +1,8 @@
 angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $routeParams, mvCachedProduct, mvCachedLocation) {
   $scope.products = mvCachedProduct.query();
   mvCachedLocation.query().$promise.then(function(collection) {
-    $scope.locations = collection;
-    console.log($scope.locations);
+    $scope.location = collection[0].name;
+    $scope.product = collection[0].products[0].name;
   });
 
   if ($routeParams.id) {

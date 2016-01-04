@@ -19,7 +19,7 @@ function createDefaultLocation() {
   });
 }
 
-function populateLocations(next) {
+/*function populateLocations(next) {
   var Product = mongoose.model('Product');
   Location.find({}).exec(function(err, collection) {
     if (err) {console.log(err.toString());}
@@ -47,7 +47,7 @@ function populateLocations(next) {
       console.log("nothing in database for 'location'");
     }
   });
-}
+}*/
 
 exports.createDefaultLocation = createDefaultLocation;
-exports.populateLocations = populateLocations;
+//exports.populateLocations = populateLocations;
