@@ -2,7 +2,6 @@ var mongoose = require('mongoose'),
     userModel = require('../models/User'),
     locationModel = require('../models/Location'),
     productModel = require('../models/Product');
-    //courseModel = require('../models/Course');
 
 module.exports = function(config) {
   mongoose.connect(config.db);
@@ -15,7 +14,4 @@ module.exports = function(config) {
   userModel.createDefaultUsers();
   locationModel.createDefaultLocation();
   productModel.createDefaultProducts(productModel.populateProducts);
-
-  //courseModel.createDefaultCourses();
-
 };

@@ -1,5 +1,5 @@
-var Location = require('mongoose').model('Location'),
-    locationModel = require('../models/Location');
+var Location = require('mongoose').model('Location');
+
 exports.getLocations = function(req, res) {
   Location.find({})
           .populate('products')
