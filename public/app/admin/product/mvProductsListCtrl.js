@@ -8,7 +8,8 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
       text:'Add Product',
       auth: 'admin'
     }];
-  $scope.searchOptions = [{value:'name', text:'Search by Product Name'},
+  $scope.searchOptions = [{value:'', text:'Search by Any'},
+                          {value:'name', text:'Search by Product Name'},
                           {value:'description', text:'Search by Product Description'},
                           {value:'upc', text:'Search by Product UPC'},
                           {value:'product_id', text:'Search by Product ID'},
@@ -36,7 +37,15 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
   $scope.sortOrder = $scope.sortOptions[0].value;
 
   $scope.search = function(row) {
-    return (angular.lowercase(String(row[$scope.searchOpt])).indexOf(angular.lowercase($scope.searchText)) !== -1);
+    return $scope.searchOpt !== '' ? (angular.lowercase(String(row[$scope.searchOpt])).indexOf(angular.lowercase($scope.searchText)) !== -1) : function(r) {
+      for(var p in r) {
+        var bool = false;
+        if (angular.lowercase(String(r[p])).indexOf(angular.lowercase($scope.searchText)) !== -1) {
+          return true;
+        }
+      }
+      return bool;
+    }(row);
   };
 
   $scope.selectionChanged = function() {

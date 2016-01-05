@@ -2,7 +2,7 @@ h1.well.text-center(ng-class="cssClass") {{ title }}
 .pull-right
   form.form-inline
     .form-group
-      input.form-control(ng-model="searchText", placeholder="Filter")
+      input.form-control(ng-model="searchText", placeholder="Search")
     .form-group
       select.form-control(ng-model="searchOpt", ng-options="item.value as item.text for item in searchOptions")
 
