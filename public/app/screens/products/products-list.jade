@@ -39,7 +39,7 @@
           b.dropup(ng-show="sortOrder == '-manufacturer'")
             b.caret
     tbody
-      tr(ng-repeat="product in products | filter:searchText | orderBy:sortOrder")
+      tr(ng-repeat="product in products | filter:search | orderBy:sortOrder")
         td
           a(href="/admin/product/{{product._id}}") {{ product.name }}
         td {{ product.description }}

@@ -1,4 +1,46 @@
 .container
-  h1.text-center New Purchase Order
-  h2 Location: {{ location }}
-  h2 Has product: {{ product }}
+  h1.well.inbound-header.text-center New Purchase Order
+  .col-md-6
+    .well
+      form.form-horizontal(name="purchaseOrderForm")
+        fieldset
+          legend.text-center Product
+          .form-group
+            label.col-md-5.control-label(for="name") Product:
+            .col-md-7
+              label.carousel-control.text-black(ng-model="name") {{ name }}
+          .form-group
+            label.col-md-5.control-label(for="upc") UPC:
+            .col-md-7
+              label.control-label(ng-model="upc") {{ upc }}
+          .form-group
+            label.col-md-5.control-label(for="product_id") Product ID:
+            .col-md-7
+              label.control-label(ng-model="product_id") {{ product_id }}
+          .form-group
+            label.col-md-5.control-label(for="price") Unit Price:
+            .col-md-7
+              label.control-label(ng-model="price") {{ price }}
+          .form-group
+            label.col-md-5.control-label(for="manufacturer") Manufacturer:
+            .col-md-7
+              label.control-label(ng-model="manufacturer") {{ manufacturer }}
+          .form-group
+            label.col-md-5.control-label(for="quantity") Quantity *
+            .col-md-7
+              input.form-control(name="quantity", type="text", placeholder="Product Quantity", ng-model="quantity", required)
+          .form-group
+            .col-md-10.col-md-offset-2
+              .pull-right
+                button.btn.btn-primary(ng-click="showPurchaseOrder()", ng-disabled="purchaseOrderForm.$invalid || purchaseOrderForm2.$invalid") Preview Order
+                | &nbsp;
+                a.btn.btn-default(ng-click="cancel()") Cancel
+  .col-md-6
+    .well
+      form.form-horizontal(name="purchaseOrderForm2")
+        fieldset
+          legend.text-center (Continued)
+          .form-group
+            label.col-md-3.control-label
+            .col-md-9
+              input.form-control

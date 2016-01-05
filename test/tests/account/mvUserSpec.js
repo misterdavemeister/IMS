@@ -14,4 +14,4 @@ describe('mvUser', function() {
       expect(user.isAdmin()).to.be.true;
     }));
   })
-})
+});
