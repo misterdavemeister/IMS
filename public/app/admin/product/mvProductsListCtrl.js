@@ -3,11 +3,14 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
   $scope.identity = mvIdentity;
   $scope.title = "Products";
   $scope.cssClass = "product-header";
-
   $scope.buttons = [{ url:"/admin/product-add",
       text:'Add Product',
-      auth: 'admin'
+      auth: 'admin',
+      func: function(test) {
+        console.log(test);
+      }
     }];
+
   $scope.searchOptions = [{value:'', text:'Search by Any'},
                           {value:'name', text:'Search by Product Name'},
                           {value:'description', text:'Search by Product Description'},
@@ -38,12 +41,13 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
 
   $scope.search = function(row) {
     return $scope.searchOpt !== '' ? (angular.lowercase(String(row[$scope.searchOpt])).indexOf(angular.lowercase($scope.searchText)) !== -1) : function(r) {
-      for(var p in r) {
-        var bool = false;
-        if (angular.lowercase(String(r[p])).indexOf(angular.lowercase($scope.searchText)) !== -1) {
-          return true;
+      var bool = false;
+      $scope.searchOptions.forEach(function(opt) {
+        var property = opt.value;
+        if ($scope.searchText === '' || angular.lowercase(String(r[property])).indexOf(angular.lowercase($scope.searchText)) !== -1) {
+          bool = true;
         }
-      }
+      });
       return bool;
     }(row);
   };

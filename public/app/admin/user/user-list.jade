@@ -8,10 +8,18 @@
           b.caret(ng-show="sortOrder == 'firstName'")
           b.dropup(ng-show="sortOrder == '-firstName'")
             b.caret
-        th Username
-        th Roles
+        th.click(ng-show="sortOrder != 'username' && sortOrder != '-username'", ng-click="sortOrder = 'username'")  Username
+        th.click(ng-show="sortOrder == 'username' || sortOrder == '-username'", ng-click="reverseOrder(sortOrder)") Username
+          b.caret(ng-show="sortOrder == 'username'")
+          b.dropup(ng-show="sortOrder == '-username'")
+            b.caret
+        th.click(ng-show="sortOrder != 'roles' && sortOrder != '-roles'", ng-click="sortOrder = 'roles'") Roles
+        th.click(ng-show="sortOrder == 'roles' || sortOrder == '-roles'", ng-click="reverseOrder(sortOrder)") Roles
+          b.caret(ng-show="sortOrder == 'roles'")
+          b.dropup(ng-show="sortOrder == '-roles'")
+            b.caret
     tbody
-      tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
+      tr(ng-repeat="user in users | filter:search | orderBy:sortOrder")
         td(ng-show="user.isAdmin()") {{ user.firstName + ' ' + user.lastName }}
         td(ng-show="!user.isAdmin()")
           a(href="/admin/user/{{user._id}}") {{ user.firstName + ' ' + user.lastName }}
