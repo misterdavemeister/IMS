@@ -2,7 +2,7 @@
   list-items
   table.table.table-hover.table-striped.table-condensed
     thead
-      tr
+      tr.table-header-bar
         th.click(ng-show="sortOrder != 'firstName' && sortOrder != '-firstName'", ng-click="sortOrder = 'firstName'") Full Name
         th.click(ng-show="sortOrder == 'firstName' || sortOrder == '-firstName'", ng-click="reverseOrder(sortOrder)") Full Name
           b.caret(ng-show="sortOrder == 'firstName'")
