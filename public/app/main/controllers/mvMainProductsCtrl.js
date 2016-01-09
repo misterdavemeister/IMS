@@ -7,7 +7,6 @@ angular.module('app').controller('mvMainProductsCtrl', function($scope, mvCached
       products.push(product);
       product_count++;
       if (product.product_id === 100001) {
-        console.log(product);
         $scope.example = product.locations[0].name;
       }
     });

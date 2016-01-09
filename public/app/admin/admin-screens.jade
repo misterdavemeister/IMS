@@ -1,0 +1,16 @@
+a.dropdown-toggle(href="", data-toggle = "dropdown", ng-show="identity.currentUser.isAdmin()") Admin
+  b.caret
+ul.dropdown-menu
+  li
+    a(href='/admin/users') Users
+  li.dropdown-submenu
+    a(href='/screens/products') Products
+    ul.dropdown-menu
+      li
+        a(href='/admin/product-add') Add Product
+  li
+    a(href='/screens/locations') Locations
+  li
+    a(href='/') Vendors
+  li
+    a(href='/') Customers

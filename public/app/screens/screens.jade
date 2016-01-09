@@ -5,9 +5,10 @@ ul.dropdown-menu
     a(href="/screens/products") Products
   li
     a(href="/screens/reports") Reports
-  li(ng-mouseenter="toggleInbound()", ng-mouseleave="toggleInbound()")
-    a.dropdown-toggle(href="/screens/inbound") Inbound
-    ul.downdown-menu(ng-show="showInbound === true")
+  li.dropdown-submenu(ng-mouseenter="toggleInbound()", ng-mouseleave="toggleInbound()")
+    a(href="/screens/inbound") Inbound
+    //ul(ng-show="showInbound === true")
+    ul.dropdown-menu
       li
         a(href="/screens/inbound/order") Purchase Order
   li

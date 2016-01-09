@@ -9,16 +9,11 @@ block main-content
           li
             a(href="/") Home
           li.dropdown(ng-include="'/partials/screens/screens'")
-          li.dropdown
-            a.dropdown-toggle(href="", data-toggle = "dropdown", ng-show="identity.currentUser.isAdmin()") Admin
-              b.caret
-            ul.dropdown-menu
-              li
-                a(href='/admin/users') User Admin
+          li.dropdown(ng-include="'/partials/admin/admin-screens'")
 
         div(ng-include="'/partials/account/navbar-login'")
             
-  section.content.content-container
+  section.content
     div(ng-view)
 
   footer.container.text-center
