@@ -1,7 +1,5 @@
 var auth = require('./auth'),
     mongoose = require('mongoose'),
-    //TODO: next line doesn't need to be there, right? try commenting out
-    User = mongoose.model('User'),
     users = require('../controllers/users'),
     products = require('../controllers/products'),
     locations = require('../controllers/locations');

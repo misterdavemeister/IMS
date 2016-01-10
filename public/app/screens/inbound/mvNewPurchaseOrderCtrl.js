@@ -1,4 +1,4 @@
-angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $routeParams, mvCachedProduct) {
+angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $routeParams, $http, mvCachedProduct) {
 /* FOR LIST OF AVAILABLE PRODUCTS?
  <input type="search" class="form-control" placeholder="Filter user groups" results="0" ng-model="searchText" />
 
@@ -8,6 +8,10 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
  ng-model="UserGroupsSelected"
  ng-options="userGroup.Id as (userGroup.Name | filter:searchText) for userGroup in AvailableUserGroups" >
  */
+  $scope.productsToOrder = [];
+  $scope.quantityToOrder = 0;
+  $scope.totalPerProduct = 0;
+  $scope.checkbox = false;
   mvCachedProduct.query().$promise.then(function (collection) {
     $scope.products = collection;
     $scope.productOptions = [];
@@ -15,19 +19,18 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       collection.forEach(function (product) {
         $scope.productOptions.push(product);
         if (product._id === $routeParams.id) {
-          $scope.name = product.name;
-          $scope.upc = product.upc;
-          $scope.product_id = product.product_id;
-          $scope.price = product.price;
-          $scope.manufacturer = product.manufacturer;
+          $scope.productsToOrder.push(product);
+//          $scope.name = product.name;
+//          $scope.upc = product.upc;
+//          $scope.product_id = product.product_id;
+//          $scope.price = product.price;
+//          $scope.manufacturer = product.manufacturer;
         }
-        $scope.selectedProduct = "select a product";
       });
     }
   });
-  $scope.showPurchaseOrder = function() {
-    console.log($scope.name);
-    console.log($scope.quantity);
+  $scope.log = function(arg) {
+    console.log(arg);
   };
   $scope.cancel = function() {
     $scope.name = "HI";
@@ -36,4 +39,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     $scope.price = "HI";
     $scope.manufacturer = "HI";
   };
+  $scope.recalculate = function(price, quantity) {
+    $scope.totalPerProduct = Math.round(price * quantity * 100) / 100;
+  }
 });
