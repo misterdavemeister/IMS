@@ -2,9 +2,10 @@
   h1.well.inbound-header.text-center New Purchase Order
   button.btn.btn-default(ng-show="checkbox === false") Delete Selected
   button.btn.btn-danger(ng-show="checkbox === true") Delete Selected
-  button.btn.btn-default Add Product
+  button.btn.btn-default(ng-click="addProduct()") Add Product
   br
   br
+
   form(name="purchaseOrderForm")
     table.table.table-hover.table-striped.table-condensed
       thead
@@ -28,13 +29,22 @@
           td {{ product.price }}
           td {{ product.manufacturer }}
           td
-            input(type="text", value="{{quantityToOrder}}", ng-model="quant", ng-change="recalculate(product.price, quant)", required)
+            input(type="text", ng-model="quant", ng-change="recalculate(product.price, quant);", required)
           td {{ totalPerProduct | currency}}
+
   .form-group
     .col-md-10.col-md-offset-2
       .pull-right
-        a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid") Place Order
+        a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid", ng-click="placeOrder(productsToOrder)") Place Order
         | &nbsp;
         a.btn.btn-default(ng-click="cancel()") Discard
-        //TODO: link up delete checkbox with the delete button
+
+  .overlay(ng-show="isAdding()")
+    button.input-group-lg.btn.btn-warning Close
+    .container.text-center
+      h1.well.inbound-header Pick a product
+      hr
+      ul
+        li(ng-repeat="product in products") {{ product.name }}
+       //TODO: link up delete checkbox with the delete button
         //TODO: make the place order button work

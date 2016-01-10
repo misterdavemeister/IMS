@@ -1,5 +1,6 @@
 body {
   padding-top: 70px;
+  margin: 0;
 }
 .navbar {
   height: 70px;
@@ -193,4 +194,20 @@ a.link-alias-white {
 }
 .small {
   max-width: 20px;
+}
+.overlay {
+  position: absolute;
+  height: 400px;
+  width: 600px;
+  left: 33%;
+}
+.overlay .container {
+  border: 2px solid #000;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+.overlay li {
+  list-style: none;
 }

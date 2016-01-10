@@ -9,9 +9,12 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
  ng-options="userGroup.Id as (userGroup.Name | filter:searchText) for userGroup in AvailableUserGroups" >
  */
   $scope.productsToOrder = [];
-  $scope.quantityToOrder = 0;
+  $scope.orderCount = 0;
+  $scope.adding = false;
+  $scope.quant = 0;
   $scope.totalPerProduct = 0;
   $scope.checkbox = false;
+
   mvCachedProduct.query().$promise.then(function (collection) {
     $scope.products = collection;
     $scope.productOptions = [];
@@ -19,7 +22,16 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       collection.forEach(function (product) {
         $scope.productOptions.push(product);
         if (product._id === $routeParams.id) {
-          $scope.productsToOrder.push(product);
+          $scope.orderCount++;
+          $scope.productsToOrder.push({
+            lineNo: $scope.orderCount,
+            name: product.name,
+            upc: product.upc,
+            product_id: product.product_id,
+            price: product.price,
+            manufacturer: product.manufacturer
+          });
+//          $scope.productsToOrder.push(product);
 //          $scope.name = product.name;
 //          $scope.upc = product.upc;
 //          $scope.product_id = product.product_id;
@@ -29,6 +41,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       });
     }
   });
+
   $scope.log = function(arg) {
     console.log(arg);
   };
@@ -40,6 +53,16 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     $scope.manufacturer = "HI";
   };
   $scope.recalculate = function(price, quantity) {
-    $scope.totalPerProduct = Math.round(price * quantity * 100) / 100;
+    var total = Math.round(price * quantity * 100) / 100;
+    $scope.totalPerProduct = total > 0 ? total : 0;
+  };
+  $scope.addProduct = function() {
+    $scope.adding = true;
+  };
+  $scope.isAdding = function() {
+    return $scope.adding;
   }
+  $scope.placeOrder = function(productsToOrder) {
+    console.log(productsToOrder);
+  };
 });
