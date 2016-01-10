@@ -12,7 +12,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   $scope.orderCount = 0;
   $scope.adding = false;
   $scope.quant = 0;
-  $scope.totalPerProduct = 0;
+  $scope.total = 0;
   $scope.checkbox = false;
 
   mvCachedProduct.query().$promise.then(function (collection) {
@@ -33,6 +33,13 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       });
     }
   });
+  function recalculateTotal() {
+    var total = 0;
+    $scope.productsToOrder.forEach(function(product) {
+      total += product.totalPerLine;
+    });
+    return total;
+  }
 
   $scope.log = function(arg) {
     console.log(arg);
@@ -44,9 +51,11 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     $scope.price = "HI";
     $scope.manufacturer = "HI";
   };
-  $scope.recalculate = function(price, quantity) {
-    var total = Math.round(price * quantity * 100) / 100;
-    $scope.totalPerProduct = total > 0 ? total : 0;
+  $scope.recalculate = function(product, quantity) {
+    var price = product.price,
+        total = Math.round(price * quantity * 100) / 100;
+    product.totalPerLine = total > 0 ? total : 0;
+    $scope.total = recalculateTotal();
   };
   $scope.addProduct = function(product) {
     console.log("ADDING");
@@ -57,7 +66,8 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       upc: product.upc,
       product_id: product.product_id,
       price: product.price,
-      manufacturer: product.manufacturer
+      manufacturer: product.manufacturer,
+      totalPerLine: 0
     });
   };
   $scope.toggleIsAdding = function() {
