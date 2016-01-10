@@ -22,15 +22,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       collection.forEach(function (product) {
         $scope.productOptions.push(product);
         if (product._id === $routeParams.id) {
-          $scope.orderCount++;
-          $scope.productsToOrder.push({
-            lineNo: $scope.orderCount,
-            name: product.name,
-            upc: product.upc,
-            product_id: product.product_id,
-            price: product.price,
-            manufacturer: product.manufacturer
-          });
+          $scope.addProduct(product);
 //          $scope.productsToOrder.push(product);
 //          $scope.name = product.name;
 //          $scope.upc = product.upc;
@@ -56,12 +48,24 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     var total = Math.round(price * quantity * 100) / 100;
     $scope.totalPerProduct = total > 0 ? total : 0;
   };
-  $scope.addProduct = function() {
-    $scope.adding = true;
+  $scope.addProduct = function(product) {
+    console.log("ADDING");
+    $scope.orderCount++;
+    $scope.productsToOrder.push({
+      lineNo: $scope.orderCount,
+      name: product.name,
+      upc: product.upc,
+      product_id: product.product_id,
+      price: product.price,
+      manufacturer: product.manufacturer
+    });
+  };
+  $scope.toggleIsAdding = function() {
+    $scope.adding = !$scope.adding;
   };
   $scope.isAdding = function() {
     return $scope.adding;
-  }
+  };
   $scope.placeOrder = function(productsToOrder) {
     console.log(productsToOrder);
   };
