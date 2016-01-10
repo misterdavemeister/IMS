@@ -38,7 +38,7 @@
       .pull-right
         .form-group
           label.control-label(for="total") Total
-            input.form-control(name="total", type="text", ng-model="total | currency", required)
+            input.form-control(name="total", type="text", value="{{total | currency}}" required)
         a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid", ng-click="placeOrder(productsToOrder)") Place Order
         | &nbsp;
         a.btn.btn-default(ng-click="cancel()") Discard
