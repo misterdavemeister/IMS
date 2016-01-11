@@ -14,6 +14,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   $scope.quant = 0;
   $scope.total = 0;
   $scope.checkbox = false;
+  $scope.checkboxCount = 0;
 
   mvCachedProduct.query().$promise.then(function (collection) {
     $scope.products = collection;
@@ -40,10 +41,21 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     });
     return total;
   }
+  $scope.isChecked = function() {
+    $scope.checkbox;
+  };
+
+  $scope.updateCheckboxes = function(product, checkbox) {
+    checkbox == false ? $scope.checkboxCount-- : $scope.checkboxCount++;
+    product.selectForDelete = checkbox;
+    $scope.checkbox = $scope.checkboxCount > 0;
+    console.log($scope.checkbox);
+  };
 
   $scope.log = function(arg) {
     console.log(arg);
   };
+
   $scope.cancel = function() {
     $scope.name = "HI";
     $scope.upc = "HI";
@@ -67,7 +79,8 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       product_id: product.product_id,
       price: product.price,
       manufacturer: product.manufacturer,
-      totalPerLine: 0
+      totalPerLine: 0,
+      selectForDelete: false
     });
   };
   $scope.toggleIsAdding = function() {

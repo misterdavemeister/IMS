@@ -1,8 +1,8 @@
 .container
   h1.well.inbound-header.text-center New Purchase Order
   .btn-tabs
-    button.btn.btn-default(ng-show="checkbox === false") Delete Selected
-    button.btn.btn-danger(ng-show="checkbox === true") Delete Selected
+    button.btn.btn-default(ng-show="!isChecked()") Delete Selected
+    button.btn.btn-danger(ng-show="isChecked()") Delete Selected
     button.btn.btn-default(ng-click="toggleIsAdding()") Add Product
   br
   br
@@ -23,7 +23,7 @@
       tbody
         tr(ng-repeat="product in productsToOrder")
           td
-            input(type="checkbox", ng-model="checkbox")
+            input(type="checkbox", ng-model="product.selectForDelete", ng-change="updateCheckboxes(product, product.selectForDelete)")
           td {{ product.name }}
           td {{ product.upc }}
           td {{ product.product_id }}
@@ -38,7 +38,7 @@
       .pull-right
         .form-group
           label.control-label(for="total") Total
-            input.form-control(name="total", type="text", value="{{total | currency}}" required)
+            input.form-control(name="total", type="text", value="{{total | currency}}", required)
         a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid", ng-click="placeOrder(productsToOrder)") Place Order
         | &nbsp;
         a.btn.btn-default(ng-click="cancel()") Discard
