@@ -42,20 +42,16 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     return total;
   }
   $scope.isChecked = function() {
-    $scope.checkbox;
+    return $scope.checkbox;
   };
-
   $scope.updateCheckboxes = function(product, checkbox) {
     checkbox == false ? $scope.checkboxCount-- : $scope.checkboxCount++;
     product.selectForDelete = checkbox;
     $scope.checkbox = $scope.checkboxCount > 0;
-    console.log($scope.checkbox);
   };
-
   $scope.log = function(arg) {
     console.log(arg);
   };
-
   $scope.cancel = function() {
     $scope.name = "HI";
     $scope.upc = "HI";
@@ -91,5 +87,19 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   };
   $scope.placeOrder = function(productsToOrder) {
     console.log(productsToOrder);
+  };
+  $scope.deleteCheckedLines = function() {
+    var marked = [];
+    $scope.productsToOrder.forEach(function(product, index) {
+      if (product.selectForDelete === true) {
+        marked.push(index);
+      }
+    });
+    for (var i = marked.length - 1; i >= 0; i--) {
+      $scope.productsToOrder.splice(marked[i], 1);
+    }
+    $scope.checkboxCount = 0;
+    $scope.checkbox = false;
+    $scope.total = recalculateTotal();
   };
 });
