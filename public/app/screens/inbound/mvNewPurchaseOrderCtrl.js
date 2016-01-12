@@ -91,7 +91,6 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   };
 
   $scope.addProduct = function(product) {
-    console.log("ADDING");
     $scope.orderCount++;
     $scope.productsToOrder.push({
       lineNo: $scope.orderCount,

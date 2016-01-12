@@ -22,21 +22,7 @@ angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUser
                          {value: '-lastName', text: 'Sort by Last Name (reversed)' },
                          {value: '-role', text: 'Sort by Role (reversed)'}
    ];
-
    $scope.searchText = "";
    $scope.searchOpt = $scope.searchOptions[0].value;
    $scope.sortOrder = $scope.sortOptions[0].value;
-
-   $scope.search = function(row) {
-      return $scope.searchOpt !== '' ? (angular.lowercase(String(row[$scope.searchOpt])).indexOf(angular.lowercase($scope.searchText)) !== -1) : function(r) {
-        var bool = false;
-        $scope.searchOptions.forEach(function(opt) {
-          var property = opt.value;
-          if ($scope.searchText === '' || angular.lowercase(String(r[property])).indexOf(angular.lowercase($scope.searchText)) !== -1) {
-            bool = true;
-          }
-        });
-        return bool;
-      }(row);
-   };
 });
