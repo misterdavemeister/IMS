@@ -53,11 +53,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     console.log(arg);
   };
   $scope.cancel = function() {
-    $scope.name = "HI";
-    $scope.upc = "HI";
-    $scope.product_id = "HI";
-    $scope.price = "HI";
-    $scope.manufacturer = "HI";
+    //cancel
   };
   $scope.recalculate = function(product, quantity) {
     var price = product.price,

@@ -28,18 +28,17 @@
           td {{ product.price }}
           td {{ product.manufacturer }}
           td
-            input(type="text", ng-model="quant", ng-change="recalculate(product, quant);", required)
+            input(type="text", ng-model="quant", ng-change="recalculate(product, quant);", greater-than-zero, select-on-click, required)
           td {{ product.totalPerLine | currency}}
 
   .form-group
     .col-md-10.col-md-offset-2
       .pull-right
         .form-group
-          label.control-label(for="total") Total
-            input.form-control(name="total", type="text", value="{{total | currency}}", required)
-        a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid", ng-click="placeOrder(productsToOrder)") Place Order
+          label Total: {{total | currency}}
+        a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid || productsToOrder.length < 1", ng-click="placeOrder(productsToOrder)") Place Order
         | &nbsp;
-        a.btn.btn-default(ng-click="cancel()") Discard
+        a.btn.btn-default(ng-click="cancel()") Cancel
 
   .overlay(ng-show="isAdding()")
     button.btn.btn-warning(ng-click="toggleIsAdding()") Close
