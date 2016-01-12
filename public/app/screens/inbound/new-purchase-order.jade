@@ -36,7 +36,7 @@
       .pull-right
         .form-group
           label Total: {{total | currency}}
-        a.btn.btn-primary(href="/", ng-disabled="purchaseOrderForm.$invalid || productsToOrder.length < 1", ng-click="placeOrder(productsToOrder)") Place Order
+        button.btn.btn-primary(ng-click="placeOrder(productsToOrder)", ng-disabled="purchaseOrderForm.$invalid || productsToOrder.length < 1" ) Place Order
         | &nbsp;
         a.btn.btn-default(ng-click="cancel()") Cancel
 
