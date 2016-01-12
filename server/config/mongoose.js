@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     userModel = require('../models/User'),
     locationModel = require('../models/Location'),
+    inboundOrderModel = require('../models/InboundOrder'),
     productModel = require('../models/Product');
 
 module.exports = function(config) {
@@ -13,5 +14,6 @@ module.exports = function(config) {
 
   userModel.createDefaultUsers();
   locationModel.createDefaultLocation();
+//  inboundOrderModel.createDefaultInboundOrders();
   productModel.createDefaultProducts(productModel.populateProducts);
 };

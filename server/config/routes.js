@@ -2,7 +2,8 @@ var auth = require('./auth'),
     mongoose = require('mongoose'),
     users = require('../controllers/users'),
     products = require('../controllers/products'),
-    locations = require('../controllers/locations');
+    locations = require('../controllers/locations'),
+    inboundOrders = require('../controllers/inboundOrders');
     //courses = require('../controllers/courses');
 
 module.exports = function(app) {
@@ -20,6 +21,10 @@ module.exports = function(app) {
   //app.get('/api/courses/:id', courses.getCourseById);
 
   //*** screens ***//
+  //inbound
+  app.get('/api/orders', inboundOrders.getInboundOrders);
+  app.post('/api/orders', auth.requiresRole('user'), inboundOrders.createInboundOrder);
+
   //products
   app.get('/api/products', products.getProducts);
   app.post('/api/products', auth.requiresRole('admin'), products.createProduct);
@@ -29,6 +34,8 @@ module.exports = function(app) {
 
   //locations
   app.get('/api/locations', locations.getLocations);
+
+  //*** end screens ***//
 
   //'*' will equal <directory>/<filename>
   app.get('/partials/*', function(req, res) {

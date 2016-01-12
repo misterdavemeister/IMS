@@ -1,4 +1,4 @@
-angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $routeParams, $http, mvCachedProduct) {
+angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $routeParams, $http, $location, mvCachedProduct, mvIdentity, mvInboundOrderAdmin, mvNotifier, mvCachedInboundOrder) {
 /* FOR LIST OF AVAILABLE PRODUCTS?
  <input type="search" class="form-control" placeholder="Filter user groups" results="0" ng-model="searchText" />
 
@@ -8,6 +8,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
  ng-model="UserGroupsSelected"
  ng-options="userGroup.Id as (userGroup.Name | filter:searchText) for userGroup in AvailableUserGroups" >
  */
+  $scope.orders = mvCachedInboundOrder.query();
   $scope.productsToOrder = [];
   $scope.orderCount = 0;
   $scope.adding = false;
@@ -34,6 +35,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       });
     }
   });
+
   function recalculateTotal() {
     var total = 0;
     $scope.productsToOrder.forEach(function(product) {
@@ -41,26 +43,53 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     });
     return total;
   }
+
+  function generateUniqueOrderID() {
+    var test = 100001,
+        orderNumberArray = [];
+
+    $scope.orders.forEach(function(order) {
+      orderNumberArray.push(order.orderNumber.toString());
+    });
+
+    while (orderNumberArray.indexOf(test.toString()) !== -1) {
+      test++;
+    }
+
+    return test;
+  }
+
   $scope.isChecked = function() {
     return $scope.checkbox;
   };
+
   $scope.updateCheckboxes = function(product, checkbox) {
     checkbox == false ? $scope.checkboxCount-- : $scope.checkboxCount++;
     product.selectForDelete = checkbox;
     $scope.checkbox = $scope.checkboxCount > 0;
   };
+
   $scope.log = function(arg) {
     console.log(arg);
   };
+
   $scope.cancel = function() {
     //cancel
   };
+
   $scope.recalculate = function(product, quantity) {
     var price = product.price,
         total = Math.round(price * quantity * 100) / 100;
-    product.totalPerLine = total > 0 ? total : 0;
+    if (total > 0) {
+      product.quantity = quantity;
+      product.totalPerLine = total > 0 ? total : 0;
+    } else {
+      product.quantity = 0;
+      product.totalPerLine = 0;
+    }
     $scope.total = recalculateTotal();
   };
+
   $scope.addProduct = function(product) {
     console.log("ADDING");
     $scope.orderCount++;
@@ -71,19 +100,54 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       product_id: product.product_id,
       price: product.price,
       manufacturer: product.manufacturer,
+      quantity: 0,
       totalPerLine: 0,
-      selectForDelete: false
+      selectForDelete: false,
+      originalObj: product
     });
   };
+
   $scope.toggleIsAdding = function() {
     $scope.adding = !$scope.adding;
   };
+
   $scope.isAdding = function() {
     return $scope.adding;
   };
+
   $scope.placeOrder = function(productsToOrder) {
-    console.log(productsToOrder);
+    var products = [],
+        orderNumber = generateUniqueOrderID();
+    productsToOrder.forEach(function(product) {
+      products.push({
+        name: product.name,
+        quantity: product.quantity,
+        product: product.originalObj._id
+      });
+    });
+    var inboundOrderData = {
+      orderNumber: orderNumber,
+      placedBy: {
+        firstName: mvIdentity.currentUser.firstName,
+        lastName: mvIdentity.currentUser.lastName,
+        username: mvIdentity.currentUser.username,
+        user: mvIdentity.currentUser._id
+      },
+      products: products,
+      totalCost: $scope.total
+    };
+    mvInboundOrderAdmin.createInboundOrder(inboundOrderData).then(function() {
+      mvCachedInboundOrder.reload();
+      mvNotifier.success('You successfully placed an order!');
+      $location.path('/screens/locations');
+    }, function(reason) {
+      mvNotifier.error(reason);
+    });
+    //supplier
+    //total
+    //unique order number
   };
+
   $scope.deleteCheckedLines = function() {
     var marked = [];
     $scope.productsToOrder.forEach(function(product, index) {

@@ -2,7 +2,6 @@ var Product = require('mongoose').model('Product');
 
 exports.createProduct = function(req, res) {
   var productData = req.body;
-  console.log(productData);
   Product.create(productData, function(err, product) {
     if (err) {
       res.status(400);
@@ -20,12 +19,7 @@ exports.getProducts = function(req, res) {
       res.status(400);
       res.send({reason:err.toString()});
     }
-    collection.forEach(function(product) {
-      if (product.product_id === 100001) {
-        console.log(product.locations);
-      }
-    });
-        res.send(collection);
+    res.send(collection);
   });
 };
 
@@ -39,7 +33,6 @@ exports.getProductById = function(req, res) {
 exports.updateProduct = function(req, res) {
   var productUpdates = req.body;
   if (!req.user.hasRole('admin')) { res.status(403); return res.end(); }
-  console.log(req.body);
   Product.update({_id: productUpdates._id}, productUpdates, function(err, numAffected) {
     if (!err) {
       console.log(numAffected.toString() + " product(s) updated");
