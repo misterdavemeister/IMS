@@ -139,7 +139,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     mvInboundOrderAdmin.createInboundOrder(inboundOrderData).then(function() {
       mvCachedInboundOrder.reload();
       mvNotifier.success('You successfully placed an order!');
-      $location.path('/screens/locations');
+      $location.path('/screens/inbound');
     }, function(reason) {
       mvNotifier.error(reason);
     });

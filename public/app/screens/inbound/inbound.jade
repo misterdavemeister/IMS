@@ -3,18 +3,30 @@
   table.table.table-hover.table-striped.table-condensed
     thead
       tr.table-header-bar
-        th.click(ng-show="sortOrder != 'name' && sortOrder != '-name'", ng-click="sortOrder = 'name'") Name
-        th.click(ng-show="sortOrder == 'name' || sortOrder == '-name'", ng-click="reverseOrder(sortOrder)") Name
-          b.caret(ng-show="sortOrder == 'name'")
-          b.dropup(ng-show="sortOrder == '-name'")
+        th.click(ng-show="sortOrder != 'orderNumber' && sortOrder != '-orderNumber'", ng-click="sortOrder = 'orderNumber'")  Order Number
+        th.click(ng-show="sortOrder == 'orderNumber' || sortOrder == '-orderNumber'", ng-click="reverseOrder(sortOrder)")  Order Number
+          b.caret(ng-show="sortOrder == 'orderNumber'")
+          b.dropup(ng-show="sortOrder == '-orderNumber'")
+            b.caret
+        th.click(ng-show="sortOrder != 'placedBy.username' && sortOrder != '-placedBy.username'", ng-click="sortOrder = 'placedBy.username'") Placed By
+        th.click(ng-show="sortOrder == 'placedBy.username' || sortOrder == '-placedBy.username'", ng-click="reverseOrder(sortOrder)") Placed By
+          b.caret(ng-show="sortOrder == 'placedBy.username'")
+          b.dropup(ng-show="sortOrder == '-placedBy.username'")
+            b.caret
+        th.click(ng-show="sortOrder != 'status' && sortOrder != '-status'", ng-click="sortOrder = 'status'") Status
+        th.click(ng-show="sortOrder == 'status' || sortOrder == '-status'", ng-click="reverseOrder(sortOrder)") Status
+          b.caret(ng-show="sortOrder == 'status'")
+          b.dropup(ng-show="sortOrder == '-status'")
+            b.caret
+        th.click(ng-show="sortOrder != 'totalCost' && sortOrder != '-totalCost'", ng-click="sortOrder = 'totalCost'") Total Cost
+        th.click(ng-show="sortOrder == 'totalCost' || sortOrder == '-totalCost'", ng-click="reverseOrder(sortOrder)") Total Cost
+          b.caret(ng-show="sortOrder == 'totalCost'")
+          b.dropup(ng-show="sortOrder == '-totalCost'")
             b.caret
     tbody
-      tr(ng-repeat="product in products | filter:search | orderBy:sortOrder")
+      tr(ng-repeat="inboundOrder in inboundOrders | filter:search | orderBy:sortOrder")
         td
-          a(href="/admin/product/{{product._id}}") {{ product.name }}
-        td {{ product.description }}
-        td {{ product.upc }}
-        td {{ product.product_id }}
-        td {{ product.quantity }}
-        td {{ product.price | currency:"$":2}}
-        td {{ product.manufacturer }}
+          a(href="/admin/inbound/{{inboundOrder._id}}") {{ inboundOrder.orderNumber }}
+        td {{ inboundOrder.placedBy.username }}
+        td {{ inboundOrder.status }}
+        td {{ inboundOrder.totalCost | currency }}

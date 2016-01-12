@@ -37,6 +37,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product-edit',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
+    .when('/admin/inbound/:id', { templateUrl: '/partials/admin/inbound/inbound-details',
+      controller: 'mvInboundDetailCtrl', resolve: routeRoleChecks.user
+    })
 
 
     .when('/courses', { templateUrl: '/partials/courses/course-list',
