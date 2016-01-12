@@ -19,7 +19,8 @@ var inboundOrderSchema = mongoose.Schema({
       ref: 'Product'
     }
   }],
-  totalCost: Number
+  totalCost: Number,
+  status: String
 });
 
 var InboundOrder = mongoose.model('InboundOrder', inboundOrderSchema);

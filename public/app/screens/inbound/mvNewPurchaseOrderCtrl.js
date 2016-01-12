@@ -134,7 +134,8 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
         user: mvIdentity.currentUser._id
       },
       products: products,
-      totalCost: $scope.total
+      totalCost: $scope.total,
+      status: 'Open'
     };
     mvInboundOrderAdmin.createInboundOrder(inboundOrderData).then(function() {
       mvCachedInboundOrder.reload();
@@ -144,8 +145,6 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       mvNotifier.error(reason);
     });
     //supplier
-    //total
-    //unique order number
   };
 
   $scope.deleteCheckedLines = function() {
