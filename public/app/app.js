@@ -28,6 +28,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/user-add', { templateUrl: '/partials/admin/user/user-add',
       controller: 'mvUserAddCtrl', resolve: routeRoleChecks.admin
     })
+    .when('/admin/user/edit/:id', { templateUrl: '/partials/account/profile',
+      controller: 'mvProfileCtrl', resolve: routeRoleChecks.admin
+    })
     .when('/admin/product/:id', { templateUrl: '/partials/admin/product/product-details',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.user
     })
@@ -48,7 +51,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/courses/:id', { templateUrl: '/partials/courses/course-details',
       controller: 'mvCourseDetailCtrl'
     })
-    .when('/profile', { templateUrl: '/partials/account/profile',
+    .when('/profile/:id', { templateUrl: '/partials/account/profile',
       controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
     })
 

@@ -74,7 +74,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   };
 
   $scope.cancel = function() {
-    //cancel
+    $location.path('/');
   };
 
   $scope.recalculate = function(product, quantity) {

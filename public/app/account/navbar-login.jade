@@ -12,6 +12,6 @@
         b.caret
       ul.dropdown-menu
         li
-          a(href='/profile') Profile
+          a(href='/profile/{{ identity.currentUser._id }}') Profile
         li
           a(href="", ng-click="signout()") Sign Out

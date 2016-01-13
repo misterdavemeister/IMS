@@ -8,13 +8,23 @@ angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUs
         $scope.backUrl = "/admin/users";
         $scope.backUrlText = "Users";
         $scope.heading = user.firstName + ' ' + user.lastName;
-        $scope.buttons = [{ url:"/admin/user/" + user._id,
-          text:'Delete User',
-          auth: 'admin',
-          func: function(user) {
-            deleteUser(user);
-          }
-        }];
+        $scope.buttons = [
+          {
+            url:"/admin/user/" + user._id,
+            text:'Delete User',
+            auth: 'admin',
+            func: function(user) {
+              deleteUser(user);
+            }
+          },
+          {
+            url: '/admin/user/edit/' + user._id,
+            text:'Edit User',
+            auth: 'admin',
+            func: function() {
+
+            }
+          }];
       }
     });
   });
