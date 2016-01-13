@@ -28,7 +28,7 @@
           td {{ product.price }}
           td {{ product.manufacturer }}
           td
-            input(type="text", ng-model="quant", ng-change="recalculate(product, quant);", greater-than-zero, select-on-click, required)
+            input(type="text", ng-model="quant", ng-change="recalculate(product, quant)", greater-than-zero, select-on-click, required)
           td {{ product.totalPerLine | currency}}
 
   .form-group

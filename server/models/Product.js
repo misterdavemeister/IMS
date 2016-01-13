@@ -10,7 +10,11 @@ var productSchema = mongoose.Schema({
   manufacturer: {type:String, required:'{PATH} is required!'},
   alarm: {type:Boolean, default: false},
   alarm_at: {type:Number, default: 1000},
-  locations: [{type: mongoose.Schema.Types.ObjectId, ref: 'Location'}],
+  locations: [{
+    locationName: String,
+    quantity: Number,
+    location: {type: mongoose.Schema.Types.ObjectId, ref: 'Location'}
+  }],
   allotted: {type:Number, default: 0},
   test: Number
 });
@@ -479,14 +483,21 @@ function populateProducts() {
   Product.findOne({product_id: 100001}, function(err, product) {
     if (err) {
       console.log(err.toString());
-//      next(err);
     }
     Location.findOne({name:'Warehouse 1'}, function(err, location) {
       if (err) {
         console.log(err.toString());
       }
-      product.locations.push(location._id);
-      location.products.push(product._id);
+      product.locations.push({
+        locationName: location.name,
+        quantity: 2883,
+        location: location._id
+      });
+      location.products.push({
+        productName: product.name,
+        quantity: 2883,
+        product: product._id
+      });
       console.log('populated product.locations');
       console.log('populated location.products');
       product.save(function(err) {

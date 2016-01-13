@@ -63,6 +63,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/screens/outbound', { templateUrl: '/partials/screens/outbound/outbound',
       controller: 'mvOutboundScreenCtrl', resolve: routeRoleChecks.user
     })
+    //inbound
     .when('/screens/inbound', { templateUrl: '/partials/screens/inbound/inbound',
       controller: 'mvInboundScreenCtrl', resolve: routeRoleChecks.user
     })
@@ -71,6 +72,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     })
     .when('/screens/inbound/order/:id', { templateUrl: '/partials/screens/inbound/new-purchase-order',
       controller: 'mvNewPurchaseOrderCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/screens/inbound/receive', { templateUrl: '/partials/screens/inbound/receiving',
+      controller: 'mvReceivingCtrl', resolve: routeRoleChecks.user
     })
     .when('/screens/locations', { templateUrl: '/partials/screens/locations/locations',
       controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user

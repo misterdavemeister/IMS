@@ -3,7 +3,8 @@ var auth = require('./auth'),
     users = require('../controllers/users'),
     products = require('../controllers/products'),
     locations = require('../controllers/locations'),
-    inboundOrders = require('../controllers/inboundOrders');
+    inboundOrders = require('../controllers/inboundOrders'),
+    loads = require('../controllers/loads');
     //courses = require('../controllers/courses');
 
 module.exports = function(app) {
@@ -14,6 +15,9 @@ module.exports = function(app) {
   app.put('/api/users', users.updateUser);
   app.get('/api/users/:id', users.getUserById);
   app.delete('/api/users/:id', auth.requiresRole('admin'), users.deleteUser);
+
+  //loads
+  app.get('/api/loads', loads.getLoads);
 
   //TODO: delete these...
   //courses

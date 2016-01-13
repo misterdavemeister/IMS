@@ -116,16 +116,20 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
 
   $scope.placeOrder = function(productsToOrder) {
     var products = [],
+        totalUnits = 0,
         orderNumber = generateUniqueOrderID();
     productsToOrder.forEach(function(product) {
+      totalUnits += Number(product.quantity);
       products.push({
         name: product.name,
         quantity: product.quantity,
+        quantityOpen: product.quantity,
         product: product.originalObj._id
       });
     });
     var inboundOrderData = {
       orderNumber: orderNumber,
+      created: Date.now,
       placedBy: {
         firstName: mvIdentity.currentUser.firstName,
         lastName: mvIdentity.currentUser.lastName,
@@ -134,12 +138,13 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       },
       products: products,
       totalCost: $scope.total,
+      totalUnits: totalUnits,
       status: 'Open'
     };
-    mvInboundOrderAdmin.createInboundOrder(inboundOrderData).then(function() {
+    mvInboundOrderAdmin.createInboundOrder(inboundOrderData).then(function(order) {
       mvCachedInboundOrder.reload();
       mvNotifier.success('You successfully placed an order!');
-      $location.path('/screens/inbound');
+      $location.path('/admin/inbound/' + order._id);
     }, function(reason) {
       mvNotifier.error(reason);
     });

@@ -1,0 +1,53 @@
+.container
+  h1.well.inbound-header.text-center Receive
+  .btn-tabs
+    button.btn.btn-default(ng-click="toggleViewOrders()", ng-show="!isViewingOrders") View Orders
+  br
+
+  table.table.table-hover.table-striped.table-condensed(ng-show="isViewingOrders")
+    thead
+      tr
+        th.table-header-bar.text-center(colspan="4")
+          h4 Orders
+      tr.table-header-bar
+        th Date Ordered
+        th Order Number
+        th Number of Products
+        th Status
+    tbody
+      tr(ng-repeat="openOrder in openOrders", ng-click="viewOrder(openOrder)")
+        td {{ openOrder.created | date }}
+        td {{ openOrder.orderNumber }}
+        td {{ openOrder.totalUnits }}
+        td {{ openOrder.status }}
+
+  table.table.table-hover.table-striped.table-condensed(ng-show="!isViewingOrders")
+    thead
+      tr
+        th.table-header-bar.text-center(colspan="4")
+          h4 Receiving Order {{ orderToReceive.orderNumber }}
+      tr.table-header-bar
+        th Product
+        th Product ID
+        th UPC
+    tbody
+      tr(ng-repeat-start="product in orderToReceive.products", ng-click="receiveProduct(product.product)")
+        td {{ product.name }}
+        td {{ product.product.product_id }}
+        td {{ product.product.upc }}
+      tr(ng-show="isReceiving(product.product._id)")
+        th.text-center(colspan="4") Creating Load for {{ product.name }}
+      tr(ng-show="isReceiving(product.product._id)")
+        th Quantity
+        th Location
+        th Load ID
+        th Confirm
+      tr(ng-repeat-end, ng-show="isReceiving(product.product._id)")
+        td
+          input(type="text", placeholder="{{product.quantityOpen}}")
+        td
+          input(type="text", placeholder="Location")
+        td
+          input(type="text", placeholder="Load ID")
+        td
+          input.btn.btn-success(type="button", value="Confirm")

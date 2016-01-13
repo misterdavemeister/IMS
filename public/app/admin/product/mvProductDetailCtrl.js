@@ -15,7 +15,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.cssClass = 'product-header';
 
         if (product.locations.length > 0) {
-          $scope.locations = product.locations[0].name;
+          $scope.locations = product.locations[0].locationName;
         }
         $scope.buttons = [
           { url:"/screens/inbound/order/" + product._id,
