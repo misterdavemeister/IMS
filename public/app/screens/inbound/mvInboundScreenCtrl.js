@@ -1,7 +1,15 @@
-angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvCachedInboundOrder) {
+angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdentity, mvCachedInboundOrder) {
+  $scope.identity = mvIdentity;
   $scope.inboundOrders = mvCachedInboundOrder.query();
   $scope.title = "Inbound";
   $scope.cssClass = "inbound-header";
+  $scope.buttons = [{ url:"/screens/inbound/order",
+    text:'New Purchase Order',
+    auth: 'user',
+    func: function(test) {
+      console.log(test);
+    }
+  }];
 
   $scope.searchOptions = [{value:'', text:'Search by Any'},
                           {value:'placedBy.username', text:'Search by User'},

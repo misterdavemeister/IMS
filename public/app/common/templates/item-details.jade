@@ -1,5 +1,5 @@
 a.btn.btn-sm(href="{{ backUrl }}") << Back to {{ backUrlText }}
-h1.form-inline {{ heading }}
+h1.well.text-center(ng-class="cssClass") {{ heading }}
 .btn-tabs
   button.btn.btn-default(ng-repeat="itemButton in buttons", ng-click="itemButton.func(currentItem)", ng-show="identity.isAuthorized(itemButton.auth)")
     a.link-alias.black(href="{{ itemButton.url }}") {{ itemButton.text }}

@@ -12,6 +12,8 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.backUrl = "/screens/products";
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
+        $scope.cssClass = 'product-header';
+
         if (product.locations.length > 0) {
           $scope.locations = product.locations[0].name;
         }
