@@ -6,31 +6,38 @@
         .form-group
           label.col-md-2.control-label(for="name") Name *
           .col-md-10
-            input.form-control(name="name", type="text", placeholder="Product Name", ng-model="name", required)
-        .form-group
-          label.col-md-2.control-label(for="description") Description *
-          .col-md-10
-            input.form-control(name="description", type="text", placeholder="Product Description", ng-model="description", required)
-        .form-group
-          label.col-md-2.control-label(for="upc") UPC *
-          .col-md-10
-            input.form-control(name='upc', type="text", placeholder="Product UPC", ng-model="upc", required)
+            input.form-control(name="name", type="text", placeholder="Product Name", ng-model="name", select-on-click, required)
         .form-group
           label.col-md-2.control-label(for="product_id") Product ID *
           .col-md-10
-            input.form-control(name="product_id", type="text", placeholder="Product ID", ng-model="product_id", required)
-        .form-group
-          label.col-md-2.control-label(for="quantity") Quantity
-          .col-md-10
-            input.form-control(name="quantity", type="text", placeholder="Product Quantity", ng-model="quantity")
+            input.form-control(name="product_id", type="text", placeholder="Product ID", ng-model="product_id", select-on-click, required)
         .form-group
           label.col-md-2.control-label(for="price") Unit Price *
           .col-md-10
-            input.form-control(name="price", type="text", placeholder="Product Price", ng-model="price", required)
+            input.form-control(name="price", type="text", placeholder="Product Price", ng-model="price", select-on-click, required)
         .form-group
-          label.col-md-2.control-label(for="manufacturer") Manufacturer *
+          label.col-md-2.control-label(for="description") Description
           .col-md-10
-            input.form-control(name="manufacturer", type="text", placeholder="Product Manufacturer", ng-model="manufacturer", required)
+            input.form-control(name="description", type="text", placeholder="Product Description", ng-model="description", select-on-click)
+        .form-group
+          label.col-md-2.control-label(for="upc") UPC
+          .col-md-10
+            input.form-control(name='upc', type="text", placeholder="Product UPC", ng-model="upc", select-on-click)
+        .form-group
+          label.col-md-2.control-label(for="quantity") Quantity
+          .col-md-10
+            input.form-control(name="quantity", type="text", placeholder="Product Quantity", ng-model="quantity", select-on-click)
+        .form-group
+          label.col-md-2.control-label(for="manufacturer") Manufacturer
+          .col-md-10
+            input.form-control(name="manufacturer", type="text", placeholder="Product Manufacturer", ng-model="manufacturer", select-on-click)
+        .form-group
+          label.col-md-2.control-label(for="alarm") Low-Level Alarm
+          .col-md-1
+            input.checkbox-inline(style="vertical-align: bottom", type="checkbox", ng-model="alarm")
+          label.col-md-3.control-label(for="alarm_at", ng-show="alarm") Set Low-Level Alarm at:
+          .col-md-5
+            input(name="alarm_at", type="text", ng-model="alarm_at", ng-show="alarm", placeholder="1000", select-on-click)
         .form-group
           .col-md-10.col-md-offset-2
             .pull-right

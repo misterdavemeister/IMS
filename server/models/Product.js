@@ -2,12 +2,12 @@ var mongoose = require('mongoose');
 
 var productSchema = mongoose.Schema({
   name: {type:String, required:'{PATH} is required!', unique: true},
-  description: {type:String, required:'{PATH} is required!'},
-  upc: {type:Number, required:'{PATH} is required!', unique: true},
+  description: String,
+  upc: {type:Number, unique: true},
   product_id: {type:Number, required:'{PATH} is required!', unique: true},
   quantity: {type:Number, default:0},
   price: {type:Number, required:'{PATH} is required!'},
-  manufacturer: {type:String, required:'{PATH} is required!'},
+  manufacturer: String,
   alarm: {type:Boolean, default: false},
   alarm_at: {type:Number, default: 1000},
   locations: [{
@@ -15,8 +15,7 @@ var productSchema = mongoose.Schema({
     quantity: Number,
     location: {type: mongoose.Schema.Types.ObjectId, ref: 'Location'}
   }],
-  allotted: {type:Number, default: 0},
-  test: Number
+  allotted: {type:Number, default: 0}
 });
 
 var Product = mongoose.model('Product', productSchema);

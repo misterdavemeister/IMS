@@ -60,7 +60,9 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
       product_id  : $scope.product_id,
       quantity    : $scope.quantity,
       price       : $scope.price,
-      manufacturer: $scope.manufacturer
+      manufacturer: $scope.manufacturer,
+      alarm       : $scope.alarm,
+      alarm_at    : $scope.alarm_at
     };
     mvProductAdmin.updateProduct(newProductData, product).then(function () {
       mvNotifier.success("Product successfully updated!");

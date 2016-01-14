@@ -4,6 +4,8 @@ angular.module('app').controller('mvProductAddCtrl', function($scope, $location,
   $scope.backUrlText = "Products";
   $scope.heading = "Add Product";
   $scope.buttons = [{}];
+  $scope.alarm = false;
+  $scope.alarm_at = 1000;
 
   $scope.addProduct = function() {
     var newProductData = {
@@ -13,7 +15,9 @@ angular.module('app').controller('mvProductAddCtrl', function($scope, $location,
       product_id  : $scope.product_id,
       quantity    : $scope.quantity,
       price       : $scope.price,
-      manufacturer: $scope.manufacturer
+      manufacturer: $scope.manufacturer,
+      alarm       : $scope.alarm,
+      alarm_at    : $scope.alarm_at
     };
     mvProductAdmin.createProduct(newProductData).then(function(product) {
       $scope.products = mvCachedProduct.reload();
