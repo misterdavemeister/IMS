@@ -7,6 +7,7 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
 
   mvCachedLocation.query().$promise.then(function(collection) {
     $scope.locations = collection;
+    $scope.location = $scope.locations[0];
   });
 
   mvCachedInboundOrder.query().$promise.then(function(collection) {
@@ -50,7 +51,7 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
     };
     mvLoadAdmin.createLoad(loadData).then(function(load) {
       mvCachedLoad.reload();
-      mvNotifier.success('Successfully received stock to load: ' + load._id);
+      mvNotifier.success('Created load on Load ID: ' + load.loadId);
       $location.path('/');
     }, function(reason) {
       mvNotifier.error(reason);
