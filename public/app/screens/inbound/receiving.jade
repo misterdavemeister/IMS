@@ -10,14 +10,15 @@
         th.table-header-bar.text-center(colspan="4")
           h4 Orders
       tr.table-header-bar
-        th Date Ordered
         th Order Number
+        th Date Ordered
         th Number of Products
         th Status
     tbody
-      tr(ng-repeat="openOrder in openOrders", ng-click="viewOrder(openOrder)")
+      tr(ng-repeat="openOrder in openOrders")
+        td
+          a.click(ng-click="viewOrder(openOrder)") {{ openOrder.orderNumber }}
         td {{ openOrder.created | date }}
-        td {{ openOrder.orderNumber }}
         td {{ openOrder.totalUnits }}
         td {{ openOrder.status }}
 
@@ -31,23 +32,33 @@
         th Product ID
         th UPC
     tbody
-      tr(ng-repeat-start="product in orderToReceive.products", ng-click="receiveProduct(product.product)")
-        td {{ product.name }}
+      tr(ng-repeat="product in orderToReceive.products")
+        td
+          a.click(ng-click="receiveProduct(product)") {{ product.name }}
         td {{ product.product.product_id }}
         td {{ product.product.upc }}
-      tr(ng-show="isReceiving(product.product._id)")
-        th.text-center(colspan="4") Creating Load for {{ product.name }}
-      tr(ng-show="isReceiving(product.product._id)")
-        th Quantity
-        th Location
-        th Load ID
-        th Confirm
-      tr(ng-repeat-end, ng-show="isReceiving(product.product._id)")
-        td
-          input(type="text", placeholder="{{product.quantityOpen}}")
-        td
-          input(type="text", placeholder="Location")
-        td
-          input(type="text", placeholder="Load ID")
-        td
-          input.btn.btn-success(type="button", value="Confirm")
+
+  .overlay(ng-show="isReceiving()")
+    button.btn.btn-warning(ng-click="toggleIsReceiving()") Cancel
+    .container.well.text-center
+      .no-overflow
+        form.form-horizontal(name="receiveToLoadForm")
+          fieldset
+            legend Creating Load For {{ productToReceive.name }}
+            .form-group
+              label.col-md-2.control-label(for="quantity") Quantity
+              .col-md-10
+                input.form-control(name="quantity", type="text", placeholder="{{ productToReceive.quantityOpen }}", ng-model="quantity", required)
+            .form-group
+              label.col-md-2.control-label Location
+              .col-md-10
+                select.form-control(ng-model="location", ng-options="loc as loc.name for loc in locations", required)
+            .form-group
+              label.col-md-2.control-label(for="load") Load ID
+              .col-md-10
+                input.form-control(name="load", type="text", placeholder="Load ID", ng-model="load", required)
+            .form-group
+              .col-md-10.col-md-offset-2
+                button.btn.btn-primary(ng-click="confirm()", ng-disabled="receiveToLoadForm.$invalid") Confirm
+                | &nbsp;
+                a.btn.btn-default(ng-click="toggleIsReceiving()") Cancel

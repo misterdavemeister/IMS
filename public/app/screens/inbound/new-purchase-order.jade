@@ -42,11 +42,9 @@
 
   .overlay(ng-show="isAdding()")
     button.btn.btn-warning(ng-click="toggleIsAdding()") Close
-    .container.text-center
+    .container.well.text-center
       h1.inbound-header Pick a product
       hr
       ul
         li(ng-repeat="product in products")
           a(ng-click="addProduct(product)") {{ product.name }}
-       //TODO: link up delete checkbox with the delete button
-        //TODO: make the place order button work

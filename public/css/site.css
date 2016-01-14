@@ -210,8 +210,10 @@ a.link-alias-white {
   width: 600px;
   margin-left: 50%;
   margin-right: 50%;
-  background: #fff;
 }
 .overlay li {
   list-style: none;
+}
+.no-overflow {
+  overflow: hidden;
 }

@@ -1,6 +1,13 @@
-angular.module('app').controller('mvReceivingCtrl', function($scope, mvCachedInboundOrder) {
+angular.module('app').controller('mvReceivingCtrl', function($scope, $location, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier) {
   $scope.openOrders = [];
+  $scope.orders = [];
+  $scope.locations = [];
   $scope.isViewingOrders = true;
+  $scope.receiving = false;
+
+  mvCachedLocation.query().$promise.then(function(collection) {
+    $scope.locations = collection;
+  });
 
   mvCachedInboundOrder.query().$promise.then(function(collection) {
     $scope.orders = collection;
@@ -21,13 +28,32 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, mvCachedInb
   };
 
   $scope.receiveProduct = function(product) {
-    $scope.receiving = product._id;
-    console.log($scope.receiving);
+    $scope.receiving = true;
+    $scope.productToReceive = product;
   };
 
-  $scope.isReceiving = function(id) {
-    console.log(id);
-    console.log($scope.receiving);
-    return $scope.receiving === id;
+  $scope.toggleIsReceiving = function() {
+    $scope.receiving = !$scope.receiving;
+  };
+
+  $scope.isReceiving = function() {
+    return $scope.receiving;
+  };
+  $scope.confirm = function() {
+    var loadData = {
+      loadId: $scope.load,
+      productName: $scope.productToReceive.name,
+      quantity: $scope.quantity,
+      locationName: $scope.location.name,
+      product: $scope.productToReceive,
+      location: $scope.location
+    };
+    mvLoadAdmin.createLoad(loadData).then(function(load) {
+      mvCachedLoad.reload();
+      mvNotifier.success('Successfully received stock to load: ' + load._id);
+      $location.path('/');
+    }, function(reason) {
+      mvNotifier.error(reason);
+    });
   };
 });

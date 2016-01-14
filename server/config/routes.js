@@ -18,6 +18,7 @@ module.exports = function(app) {
 
   //loads
   app.get('/api/loads', loads.getLoads);
+  app.post('/api/loads/', loads.createLoad);
 
   //TODO: delete these...
   //courses

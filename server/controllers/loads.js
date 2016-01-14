@@ -11,3 +11,14 @@ exports.getLoads = function(req, res) {
     res.send(collection);
   });
 };
+
+exports.createLoad = function(req, res) {
+  var loadData = req.body;
+  Load.create(loadData, function(err, load) {
+    if (err) {
+      res.status(400);
+      return res.send({reason:err.toString()});
+    }
+    res.send(load);
+  });
+};
