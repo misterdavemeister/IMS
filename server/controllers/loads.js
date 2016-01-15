@@ -16,6 +16,7 @@ exports.getLoads = function(req, res) {
 exports.createLoad = function(req, res) {
   var loadData = req.body;
   var order = loadData.order,
+      orderLine = loadData.orderLine,
       product = loadData.product,
       location = loadData.location;
 
@@ -24,14 +25,16 @@ exports.createLoad = function(req, res) {
       res.status(400);
       return res.send({reason:err.toString()});
     }
-    console.log("Order:");
-    console.log(order);
-    console.log("Product:");
-    console.log(product);
-    console.log("Location:");
-    console.log(location);
-    console.log("Load");
-    console.log(load);
+//    console.log("Order:");
+//    console.log(order);
+//    console.log("Order Line:");
+//    console.log(orderLine);
+//    console.log("Product:");
+//    console.log(product);
+//    console.log("Location:");
+//    console.log(location);
+//    console.log("Load");
+//    console.log(load);
     updateProduct(product, load);
     updateOrder(order, load);
     updateLocation(location, load);
