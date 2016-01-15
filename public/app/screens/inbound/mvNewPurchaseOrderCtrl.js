@@ -115,18 +115,26 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   };
 
   $scope.placeOrder = function(productsToOrder) {
+    // Sequence of products within order is tracked with unique number...
+    // ...which is the order number + '_seq_' + 1, 2, 3, etc
+
     var products = [],
         totalUnits = 0,
-        orderNumber = generateUniqueOrderID();
+        orderNumber = generateUniqueOrderID(),
+        sequence = 0;
+
     productsToOrder.forEach(function(product) {
+      sequence++;
       totalUnits += Number(product.quantity);
       products.push({
+        sequence: orderNumber.toString() + '_seq_' + sequence.toString(),
         name: product.name,
         quantity: product.quantity,
         quantityOpen: product.quantity,
         product: product.originalObj._id
       });
     });
+
     var inboundOrderData = {
       orderNumber: orderNumber,
       created: Date.now,
@@ -141,6 +149,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       totalUnits: totalUnits,
       status: 'Open'
     };
+
     mvInboundOrderAdmin.createInboundOrder(inboundOrderData).then(function(order) {
       mvCachedInboundOrder.reload();
       mvNotifier.success('You successfully placed an order!');

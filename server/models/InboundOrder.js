@@ -13,6 +13,7 @@ var inboundOrderSchema = mongoose.Schema({
     }
   },
   products: [{
+    sequence: String,
     name: String,
     quantity: Number,
     quantityOpen: Number,

@@ -25,7 +25,7 @@
           td {{ product.name }}
           td {{ product.upc }}
           td {{ product.product_id }}
-          td {{ product.price }}
+          td {{ product.price | currency}}
           td {{ product.manufacturer }}
           td
             input(type="text", ng-model="quant", ng-change="recalculate(product, quant)", greater-than-zero, select-on-click, required)

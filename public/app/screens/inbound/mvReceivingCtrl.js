@@ -40,13 +40,16 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
   $scope.isReceiving = function() {
     return $scope.receiving;
   };
+
   $scope.confirm = function() {
     var loadData = {
       loadId: $scope.load,
       productName: $scope.productToReceive.name,
       quantity: $scope.quantity,
       locationName: $scope.location.name,
-      product: $scope.productToReceive,
+      order: $scope.orderToReceive,
+      orderLine: $scope.productToReceive,
+      product: $scope.productToReceive.product,
       location: $scope.location
     };
     mvLoadAdmin.createLoad(loadData).then(function(load) {
