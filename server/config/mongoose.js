@@ -16,5 +16,5 @@ module.exports = function(config) {
   userModel.createDefaultUsers();
   locationModel.createDefaultLocation();
 //  inboundOrderModel.createDefaultInboundOrders();
-  productModel.createDefaultProducts(productModel.populateProducts);
+  productModel.createDefaultProducts();
 };

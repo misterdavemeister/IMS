@@ -1,14 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    loadModel = require('../models/Load'),
+    loadSchema = loadModel.loadSchema;
 
 var locationSchema = mongoose.Schema({
   name: String,
   location_id: Number,
   address: String,
-  products: [{
-    productName: String,
-    quantity: Number,
-    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' }
-  }]
+  loads: [loadSchema]
 });
 
 var Location = mongoose.model('Location', locationSchema);

@@ -6,9 +6,6 @@ angular.module('app').controller('mvMainProductsCtrl', function($scope, mvCached
     collection.forEach(function(product) {
       products.push(product);
       product_count++;
-      if (product.product_id === 100001) {
-        $scope.example = product.locations[0].locationName;
-      }
     });
     $scope.products = products;
     $scope.inventory = product_count;

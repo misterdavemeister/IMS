@@ -28,10 +28,6 @@ exports.createLoad = function(req, res) {
     updateProduct(product, load);
     updateOrderLine(orderLine, load);
     updateLocation(location, load);
-    //TODO:
-    //update Product quantity √
-    //update Inbound Order open orders √
-    //update location to include load
     res.send(load);
   });
 };
@@ -40,7 +36,8 @@ function updateProduct(product, load) {
   var Product = mongoose.model('Product');
   var quantityToAdd = product.quantity + load.quantity;
   Product.update({_id:product._id}, {
-    quantity: quantityToAdd
+    quantity: quantityToAdd,
+    $push: {"loads": load}
   }, function(err, numAffected) {
     if (err) {
       console.log(err);
@@ -72,5 +69,16 @@ function updateOrderLine(orderLine, load) {
 }
 
 function updateLocation(location, load) {
-  //push loads into loads property (replace products property with loads property)
+  var Location = mongoose.model('Location');
+
+  Location.update({location_id: location.location_id}, {
+    $push: {"loads": load}
+  }, function(err, numAffected) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("in updateLocation:");
+      console.log(numAffected);
+    }
+  })
 }

@@ -12,3 +12,5 @@ var loadSchema = mongoose.Schema({
 });
 
 var Load = mongoose.model('Load', loadSchema);
+
+exports.loadSchema = loadSchema;
