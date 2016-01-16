@@ -154,6 +154,9 @@ a.link-alias-white {
 .small {
   max-width: 20px;
 }
+.no-overflow {
+  overflow: hidden;
+}
 .overlay {
   position: absolute;
   top: 25%;
@@ -165,6 +168,8 @@ a.link-alias-white {
   position: relative;
   border: 2px solid #000;
   overflow: auto;
+  min-height: 400px;
+  min-width: 600px;
   height: 400px;
   width: 600px;
   margin-left: 50%;
@@ -172,9 +177,6 @@ a.link-alias-white {
 }
 .overlay li {
   list-style: none;
-}
-.no-overflow {
-  overflow: hidden;
 }
 .dropdown-submenu {
   position: relative;

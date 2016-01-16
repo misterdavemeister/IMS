@@ -151,6 +151,11 @@ $inventory-text-color = white
 
 .small
   max-width 20px
+
+.no-overflow
+  overflow hidden
+
+//Overlay
 .overlay
   position absolute
   top 25%
@@ -160,14 +165,14 @@ $inventory-text-color = white
     position relative
     border 2px solid black
     overflow auto
+    min-height 400px
+    min-width 600px
     height 400px
     width 600px
     margin-left 50%
     margin-right 50%
   li
     list-style none
-.no-overflow
-  overflow hidden
 
 //submenu
 .dropdown-submenu
