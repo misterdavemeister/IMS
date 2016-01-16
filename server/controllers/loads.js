@@ -36,10 +36,10 @@ exports.createLoad = function(req, res) {
 //    console.log("Load");
 //    console.log(load);
     updateProduct(product, load);
-    updateOrder(order, load);
+    updateOrderLine(orderLine, load);
     updateLocation(location, load);
-    //update Product quantity
-    //update Inbound Order open orders
+    //update Product quantity √
+    //update Inbound Order open orders √
     //update location to include load id... product... and quantity?
     res.send(load);
   });
@@ -54,15 +54,32 @@ function updateProduct(product, load) {
     if (err) {
       console.log(err);
     } else {
+      console.log("in updateProduct:");
       console.log(numAffected);
     }
   });
 }
 
-function updateOrder(orderId, load) {
+function updateOrderLine(orderLine, load) {
+  var quantityReceived = load.quantity,
+      originalOrderQuantity = orderLine.quantity,
+      quantityOpenAfterReceivedQuantity = originalOrderQuantity - quantityReceived,
+      received = quantityOpenAfterReceivedQuantity === 0,
+      InboundOrder = mongoose.model('InboundOrder');
 
+  InboundOrder.update({"products.sequence":orderLine.sequence}, {
+    "products.$.quantityOpen": quantityOpenAfterReceivedQuantity,
+    "products.$.received": received
+  }, function(err, numAffected) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('in updateOrderLine:');
+      console.log(numAffected);
+    }
+  })
 }
 
-function updateLocation(locationId, load) {
-
+function updateLocation(location, load) {
+  //push loads into loads property (replace products property with loads property)
 }

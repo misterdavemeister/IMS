@@ -42,6 +42,8 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
   };
 
   $scope.confirm = function() {
+    //TODO: runChecks()
+    //...check that quantity is <= order quantity
     var loadData = {
       loadId: $scope.load,
       productName: $scope.productToReceive.name,
