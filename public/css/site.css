@@ -11,13 +11,6 @@ body {
 .navbar-form a {
   margin-top: 0px;
 }
-footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-footer p {
-  border-top: 1px solid #d7e0e2;
-}
 .navbar-form .form-group {
   margin-left: 10px;
   margin-top: 8px;
@@ -25,6 +18,13 @@ footer p {
 .navbar-form button {
   margin-left: 10px;
   margin-top: 8px;
+}
+footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+footer p {
+  border-top: 1px solid #d7e0e2;
 }
 .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button).cancel {
   background-color: #f00;
@@ -151,6 +151,31 @@ a.link-alias-white {
   min-width: 120px;
   border: 1px solid #fff;
 }
+.small {
+  max-width: 20px;
+}
+.overlay {
+  position: absolute;
+  top: 25%;
+}
+.overlay button {
+  margin-left: 50%;
+}
+.overlay .container {
+  position: relative;
+  border: 2px solid #000;
+  overflow: auto;
+  height: 400px;
+  width: 600px;
+  margin-left: 50%;
+  margin-right: 50%;
+}
+.overlay li {
+  list-style: none;
+}
+.no-overflow {
+  overflow: hidden;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -191,29 +216,4 @@ a.link-alias-white {
   -webkit-border-radius: 6px 0 6px 6px;
   -moz-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px;
-}
-.small {
-  max-width: 20px;
-}
-.overlay {
-  position: absolute;
-  top: 25%;
-}
-.overlay button {
-  margin-left: 50%;
-}
-.overlay .container {
-  position: relative;
-  border: 2px solid #000;
-  overflow: auto;
-  height: 400px;
-  width: 600px;
-  margin-left: 50%;
-  margin-right: 50%;
-}
-.overlay li {
-  list-style: none;
-}
-.no-overflow {
-  overflow: hidden;
 }
