@@ -25,22 +25,13 @@ exports.createLoad = function(req, res) {
       res.status(400);
       return res.send({reason:err.toString()});
     }
-//    console.log("Order:");
-//    console.log(order);
-//    console.log("Order Line:");
-//    console.log(orderLine);
-//    console.log("Product:");
-//    console.log(product);
-//    console.log("Location:");
-//    console.log(location);
-//    console.log("Load");
-//    console.log(load);
     updateProduct(product, load);
     updateOrderLine(orderLine, load);
     updateLocation(location, load);
+    //TODO:
     //update Product quantity √
     //update Inbound Order open orders √
-    //update location to include load id... product... and quantity?
+    //update location to include load
     res.send(load);
   });
 };
