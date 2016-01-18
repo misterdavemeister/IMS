@@ -1,0 +1,3 @@
+.btn-tabs
+  button.btn.btn-default(ng-repeat="itemButton in buttons", ng-click="itemButton.click()", ng-show="identity.isAuthorized(itemButton.auth)", ng-class="{active: itemButton.isCurrent()}")
+    a.link-alias(href="{{ itemButton.url }}") {{ itemButton.text }}

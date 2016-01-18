@@ -3,13 +3,29 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, mvCached
   $scope.identity = mvIdentity;
   $scope.title = "Products";
   $scope.cssClass = "product-header";
-  $scope.buttons = [{ url:"/admin/product-add",
-      text:'Add Product',
-      auth: 'admin',
-      func: function(test) {
-        console.log(test);
-      }
-    }];
+  $scope.buttons = [{
+    url      : "/screens/products",
+    text     : "Products",
+    auth     : 'user',
+    current  : true,
+    click    : function () {
+      this.current = true;
+    },
+    isCurrent: function () {
+      return this.current;
+    }
+  }, {
+    url      :"/admin/product-add",
+    text     :'Add Product',
+    auth     : 'admin',
+    current  : false,
+    click    : function(test) {
+      console.log(test);
+    },
+    isCurrent: function() {
+      return this.current;
+    }
+  }];
 
   $scope.searchOptions = [{value:'', text:'Search by Any'},
                           {value:'name', text:'Search by Product Name'},

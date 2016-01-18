@@ -1,0 +1,1 @@
+<div class="btn-tabs"><button ng-repeat="itemButton in buttons" ng-click="itemButton.click()" ng-show="identity.isAuthorized(itemButton.auth)" ng-class="{active: itemButton.isCurrent()}" class="btn btn-default"><a href="{{ itemButton.url }}" class="link-alias">{{ itemButton.text }}</a></button></div>

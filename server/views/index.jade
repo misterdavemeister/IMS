@@ -14,7 +14,8 @@ block main-content
         div(ng-include="'/partials/account/navbar-login'")
             
   section.content
-    div(ng-view)
+    .content-container
+      div(ng-view)
 
   footer.container.text-center
     p &copy; 2016 David Cole

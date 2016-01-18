@@ -6,7 +6,7 @@ angular.module('app')
          };
 
          $scope.search = function(row) {
-           return $scope.searchOpt !== '' ? (angular.lowercase(String(row[$scope.searchOpt])).indexOf(angular.lowercase($scope.searchText)) !== -1) : function(r) {
+           return $scope.searchOpt !== '' ? (angular.lowercase(String(row[$scope.searchOpt])).indexOf(angular.lowercase($scope.searchText)) !== -1) : (function(r) {
              var bool = false;
              $scope.searchOptions.forEach(function(opt) {
                var property = opt.value;
@@ -15,7 +15,7 @@ angular.module('app')
                }
              });
              return bool;
-           }(row);
+           })(row);
          };
        })
        .directive('listItems', function() {

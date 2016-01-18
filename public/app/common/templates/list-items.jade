@@ -5,9 +5,5 @@ h1.well.text-center(ng-class="cssClass") {{ title }}
       input.form-control(ng-model="searchText", placeholder="Search")
     .form-group
       select.form-control(ng-model="searchOpt", ng-options="item.value as item.text for item in searchOptions")
-
-.btn-tabs
-  button.btn.btn-default(ng-repeat="itemButton in buttons", ng-click="itemButton.func()", ng-show="identity.isAuthorized(itemButton.auth)")
-    a.link-alias.black(href="{{ itemButton.url }}") {{ itemButton.text }}
 br
 br
