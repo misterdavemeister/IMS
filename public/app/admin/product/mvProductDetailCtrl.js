@@ -13,28 +13,56 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
         $scope.cssClass = 'product-header';
+        $scope.activeTab = 1;
 
         $scope.buttons = [
+          {
+            url: "/admin/product/" + product._id,
+            text: "Product Details",
+            auth: 'user',
+            id: 1,
+            click: function(id) {
+              $scope.activeTab = id;
+            },
+            isCurrent: function(id) {
+              return $scope.activeTab === id;
+            }
+          },
           { url:"/screens/inbound/order/" + product._id,
             text:'Order Product',
             auth: 'user',
-            func: function(product) {
+            id: 2,
+            click: function(id, product) {
+              $scope.activeTab = id;
               console.log("Ordering " + product.name)
+            },
+            isCurrent: function() {
+              return this.current;
             }
           },
 
           { url:"/admin/product/edit/" + product._id,
             text:'Edit Product',
             auth: 'admin',
-            func: function() {
+            id: 3,
+            click: function(id) {
+              $scope.activeTab = id;
+            },
+            isCurrent: function() {
+              return this.current;
             }
           },
 
           { url:"/admin/product/" + product._id,
             text:'Delete Product' ,
             auth: 'admin',
-            func: function() {
+            id: 4,
+            click: function(id, product) {
+              $scope.activeTab = id;
               deleteProduct(product);
+            },
+            isCurrent: function() {
+              return this.current;
             }
           }];
       }
