@@ -3,11 +3,19 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
   $scope.inboundOrders = mvCachedInboundOrder.query();
   $scope.title = "Inbound";
   $scope.cssClass = "inbound-header";
-  $scope.buttons = [{ url:"/screens/inbound/order",
+  $scope.buttons = [{
+    url:"/screens/inbound/order",
     text:'New Purchase Order',
     auth: 'user',
-    func: function(test) {
-      console.log(test);
+    func: function() {
+      console.log(arguments);
+    }
+  }, {
+    url: "/screens/inbound/receive",
+    text: "Receive Product",
+    auth: 'user',
+    func: function() {
+      console.log(arguments);
     }
   }];
 

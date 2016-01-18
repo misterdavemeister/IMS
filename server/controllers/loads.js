@@ -51,7 +51,7 @@ function updateProduct(product, load) {
 function updateOrderLine(orderLine, load) {
   var quantityReceived = load.quantity,
       originalOrderQuantity = orderLine.quantity,
-      quantityOpenAfterReceivedQuantity = originalOrderQuantity - quantityReceived,
+      quantityOpenAfterReceivedQuantity = orderLine.quantityOpen - quantityReceived,
       received = quantityOpenAfterReceivedQuantity === 0,
       InboundOrder = mongoose.model('InboundOrder');
 

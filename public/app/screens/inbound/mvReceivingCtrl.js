@@ -1,4 +1,5 @@
 angular.module('app').controller('mvReceivingCtrl', function($scope, $location, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier) {
+  //sort products to receive by whether or not they're open, make closed (received) products non-clickable
   $scope.openOrders = [];
   $scope.orders = [];
   $scope.locations = [];
@@ -56,6 +57,7 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
     };
     mvLoadAdmin.createLoad(loadData).then(function(load) {
       mvCachedLoad.reload();
+      mvCachedInboundOrder.reload();
       mvNotifier.success('Created load on Load ID: ' + load.loadId);
       $location.path('/');
     }, function(reason) {
