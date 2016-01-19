@@ -54,7 +54,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
           },
 
           { url:"/admin/product/" + product._id,
-            text:'Delete Product' ,
+            text:'Delete Product',
             auth: 'admin',
             id: 4,
             click: function(id, product) {

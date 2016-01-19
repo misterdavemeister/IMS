@@ -2,10 +2,20 @@ angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUser
    $scope.identity = mvIdentity;
    $scope.users = mvCachedUsers.query();
    $scope.title = "Users";
+   $scope.alarm = false;
+   $scope.alarm_at = 1000;
+   $scope.activeTab = 1;
 
    $scope.buttons = [{url: "/admin/user-add",
       text:'Add User',
-      auth:'admin'
+      auth:'admin',
+      id: 1,
+      click: function(id) {
+        $scope.activeTab = id;
+      },
+      isCurrent: function(id) {
+        return $scope.activeTab === id;
+      }
    }];
 
    $scope.searchOptions = [{value:'', text:'Search by Any'},
