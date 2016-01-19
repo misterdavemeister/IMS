@@ -3,20 +3,42 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
   $scope.inboundOrders = mvCachedInboundOrder.query();
   $scope.title = "Inbound";
   $scope.cssClass = "inbound-header";
+  $scope.active = 1;
+
   $scope.buttons = [{
+    url:"/screens/inbound",
+    text:'Inbound',
+    auth: 'user',
+    id: 1,
+    click    : function (id) {
+      $scope.active = id;
+    },
+    isCurrent: function (id) {
+      return $scope.active === id;
+    }
+  },
+  {
     url:"/screens/inbound/order",
     text:'New Purchase Order',
     auth: 'user',
-    func: function() {
-      console.log(arguments);
+    id: 2,
+    click    : function (id) {
+      $scope.active = id;
+    },
+    isCurrent: function (id) {
+      return $scope.active === id;
     }
   }, {
     url: "/screens/inbound/receive",
     text: "Receive Product",
     auth: 'user',
-    func: function() {
-      console.log(arguments);
-    }
+    id: 3,
+      click    : function (id) {
+        $scope.active = id;
+      },
+      isCurrent: function (id) {
+        return $scope.active === id;
+      }
   }];
 
   $scope.searchOptions = [{value:'', text:'Search by Any'},
@@ -36,4 +58,5 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
   ];
   $scope.searchOpt = $scope.searchOptions[0].value;
   $scope.sortOrder = $scope.sortOptions[0].value;
+
 });

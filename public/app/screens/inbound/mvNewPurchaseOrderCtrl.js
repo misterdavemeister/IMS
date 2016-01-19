@@ -16,6 +16,47 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   $scope.total = 0;
   $scope.checkbox = false;
   $scope.checkboxCount = 0;
+  $scope.active = 2;
+
+  $scope.buttons = [{
+    url:"/screens/inbound",
+    text:'Inbound',
+    auth: 'user',
+    id: 1,
+    click    : function (id) {
+      $scope.adding = false;
+      $scope.active = id;
+    },
+    isCurrent: function (id) {
+      return $scope.active === id;
+    }
+  },
+  {
+    url:"/screens/inbound/order",
+    text:'New Purchase Order',
+    auth: 'user',
+    id: 2,
+    click    : function (id) {
+      $scope.adding = false;
+      $scope.active = id;
+    },
+    isCurrent: function (id) {
+      return $scope.active === id;
+    }
+  },
+    {
+      url: "/screens/inbound/receive",
+      text: "Receive Product",
+      auth: 'user',
+      id: 3,
+      click    : function (id) {
+        $scope.adding = false;
+        $scope.active = id;
+      },
+      isCurrent: function (id) {
+        return $scope.active === id;
+      }
+    }];
 
   mvCachedProduct.query().$promise.then(function (collection) {
     $scope.products = collection;
@@ -58,6 +99,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
 
     return test;
   }
+
 
   $scope.isChecked = function() {
     return $scope.checkbox;

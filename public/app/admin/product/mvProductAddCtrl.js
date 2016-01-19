@@ -1,3 +1,4 @@
+//TODO: NO LONGER IN USE
 angular.module('app').controller('mvProductAddCtrl', function($scope, $location, mvCachedProduct, mvNotifier, mvProductAdmin){
   // FOR LIST-ITEMS TEMPLATE //
   $scope.backUrl = "/screens/products";

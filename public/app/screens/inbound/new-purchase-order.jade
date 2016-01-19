@@ -1,8 +1,8 @@
 .container
+  button-tabs
   h1.well.inbound-header.text-center New Purchase Order
-  .btn-tabs
-    button.btn.btn-default(ng-click="toggleIsAdding()") Add Product
-    button.btn.btn-danger(ng-show="isChecked()", ng-click="deleteCheckedLines()") Delete Selected
+  button.btn.btn-default.non-tab(ng-click="toggleIsAdding()") Add Product
+  button.btn.btn-danger.non-tab(ng-show="isChecked()", ng-click="deleteCheckedLines()") Delete Selected
   br
 
   form(name="purchaseOrderForm")
