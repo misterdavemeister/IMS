@@ -9,6 +9,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
  ng-options="userGroup.Id as (userGroup.Name | filter:searchText) for userGroup in AvailableUserGroups" >
  */
   $scope.orders = mvCachedInboundOrder.query();
+  $scope.identity = mvIdentity;
   $scope.productsToOrder = [];
   $scope.orderCount = 0;
   $scope.adding = false;
@@ -16,8 +17,9 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   $scope.total = 0;
   $scope.checkbox = false;
   $scope.checkboxCount = 0;
-  $scope.active = 2;
 
+  //Button Tabs
+  $scope.active = 2;
   $scope.buttons = [{
     url:"/screens/inbound",
     text:'Inbound',
@@ -26,6 +28,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     click    : function (id) {
       $scope.adding = false;
       $scope.active = id;
+      $location.path(this.url);
     },
     isCurrent: function (id) {
       return $scope.active === id;
@@ -39,6 +42,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     click    : function (id) {
       $scope.adding = false;
       $scope.active = id;
+      $location.path(this.url);
     },
     isCurrent: function (id) {
       return $scope.active === id;
@@ -52,6 +56,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       click    : function (id) {
         $scope.adding = false;
         $scope.active = id;
+        $location.path(this.url);
       },
       isCurrent: function (id) {
         return $scope.active === id;

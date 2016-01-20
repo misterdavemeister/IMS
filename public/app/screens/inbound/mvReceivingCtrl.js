@@ -1,11 +1,56 @@
-angular.module('app').controller('mvReceivingCtrl', function($scope, $location, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier) {
+angular.module('app').controller('mvReceivingCtrl', function($scope, $location, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier, mvIdentity) {
   //sort products to receive by whether or not they're open, make closed (received) products non-clickable
+  $scope.identity = mvIdentity;
   $scope.openOrders = [];
   $scope.orders = [];
   $scope.locations = [];
   $scope.isViewingOrders = true;
   $scope.receiving = false;
 
+  //Button Tabs
+  $scope.active = 3;
+  $scope.buttons = [{
+    url:"/screens/inbound",
+    text:'Inbound',
+    auth: 'user',
+    id: 1,
+    click    : function (id) {
+      $scope.adding = false;
+      $scope.active = id;
+      $location.path(this.url);
+    },
+    isCurrent: function (id) {
+      return $scope.active === id;
+    }
+  },
+                    {
+                      url:"/screens/inbound/order",
+                      text:'New Purchase Order',
+                      auth: 'user',
+                      id: 2,
+                      click    : function (id) {
+                        $scope.adding = false;
+                        $scope.active = id;
+                        $location.path(this.url);
+                      },
+                      isCurrent: function (id) {
+                        return $scope.active === id;
+                      }
+                    },
+                    {
+                      url: "/screens/inbound/receive",
+                      text: "Receive Product",
+                      auth: 'user',
+                      id: 3,
+                      click    : function (id) {
+                        $scope.adding = false;
+                        $scope.active = id;
+                        $location.path(this.url);
+                      },
+                      isCurrent: function (id) {
+                        return $scope.active === id;
+                      }
+                    }];
   mvCachedLocation.query().$promise.then(function(collection) {
     $scope.locations = collection;
     $scope.location = $scope.locations[0];

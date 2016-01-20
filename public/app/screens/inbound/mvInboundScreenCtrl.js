@@ -1,10 +1,11 @@
-angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdentity, mvCachedInboundOrder) {
+angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdentity, mvCachedInboundOrder, $location) {
   $scope.identity = mvIdentity;
   $scope.inboundOrders = mvCachedInboundOrder.query();
   $scope.title = "Inbound";
   $scope.cssClass = "inbound-header";
-  $scope.active = 1;
 
+  //Button Tabs
+  $scope.active = 1;
   $scope.buttons = [{
     url:"/screens/inbound",
     text:'Inbound',
@@ -12,6 +13,7 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
     id: 1,
     click    : function (id) {
       $scope.active = id;
+      $location.path(this.url);
     },
     isCurrent: function (id) {
       return $scope.active === id;
@@ -24,6 +26,7 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
     id: 2,
     click    : function (id) {
       $scope.active = id;
+      $location.path(this.url);
     },
     isCurrent: function (id) {
       return $scope.active === id;
@@ -35,6 +38,7 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
     id: 3,
       click    : function (id) {
         $scope.active = id;
+        $location.path(this.url);
       },
       isCurrent: function (id) {
         return $scope.active === id;

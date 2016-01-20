@@ -44,6 +44,10 @@ module.exports = function(app) {
 
   //'*' will equal <directory>/<filename>
   app.get('/partials/*', function(req, res) {
+    console.log('req.params[0]');
+    console.log(req.params[0]);
+    console.log(req.params);
+    console.log(req.params);
     res.render('../../public/app/' + req.params[0])
   });
 

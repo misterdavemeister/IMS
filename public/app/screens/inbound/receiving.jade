@@ -1,7 +1,7 @@
 .container
+  button-tabs
   h1.well.inbound-header.text-center Receive
-  .btn-tabs
-    button.btn.btn-default(ng-click="toggleViewOrders()", ng-show="!isViewingOrders") View Orders
+  button.btn.btn-default.non-tab(ng-click="toggleViewOrders()", ng-show="!isViewingOrders") View Orders
   br
 
   table.table.table-hover.table-striped.table-condensed(ng-show="isViewingOrders")
