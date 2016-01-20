@@ -23,6 +23,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
             id: 1,
             click: function(id) {
               $scope.activeTab = id;
+              $location.path(this.url);
             },
             isCurrent: function(id) {
               return $scope.activeTab === id;
@@ -35,6 +36,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
             click: function(id, product) {
               $scope.activeTab = id;
               console.log("Ordering " + product.name)
+              $location.path(this.url);
             },
             isCurrent: function() {
               return this.current;
@@ -47,6 +49,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
             id: 3,
             click: function(id) {
               $scope.activeTab = id;
+              $location.path(this.url);
             },
             isCurrent: function() {
               return this.current;

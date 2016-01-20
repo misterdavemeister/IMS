@@ -95,6 +95,6 @@
                 input(name="alarm_at", type="text", ng-model="alarm_at", ng-show="alarm", placeholder="1000", select-on-click)
             .form-group
               .col-md-10.col-md-offset-2
-                button.btn.btn-primary(ng-click="confirm()", ng-disabled="addProductForm.$invalid") Confirm
+                button.btn.btn-primary(ng-click="addProduct()", ng-disabled="addProductForm.$invalid") Confirm
                 | &nbsp;
                 a.btn.btn-default(ng-click="cancel()") Cancel
