@@ -76,6 +76,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/screens/inbound/receive', { templateUrl: '/partials/screens/inbound/receiving',
       controller: 'mvReceivingCtrl', resolve: routeRoleChecks.user
     })
+    .when('/screens/inbound/receive/:id', { templateUrl: '/partials/screens/inbound/receiving',
+      controller: 'mvReceivingCtrl', resolve: routeRoleChecks.user
+    })
     .when('/screens/locations', { templateUrl: '/partials/screens/locations/locations',
       controller: 'mvLocationsScreenCtrl', resolve: routeRoleChecks.user
     })

@@ -1,9 +1,11 @@
-angular.module('app').controller('mvReceivingCtrl', function($scope, $location, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier, mvIdentity) {
+angular.module('app').controller('mvReceivingCtrl', function($scope, $location, $route, $routeParams, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier, mvIdentity) {
   //sort products to receive by whether or not they're open, make closed (received) products non-clickable
   $scope.identity = mvIdentity;
   $scope.openOrders = [];
   $scope.orders = [];
   $scope.locations = [];
+  $scope.orderToReceive = undefined;
+  $scope.productToReceive = undefined;
   $scope.isViewingOrders = true;
   $scope.receiving = false;
 
@@ -59,6 +61,10 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
   mvCachedInboundOrder.query().$promise.then(function(collection) {
     $scope.orders = collection;
     collection.forEach(function(order) {
+      if ($routeParams.id === order._id) {
+        $scope.toggleViewOrders();
+        $scope.orderToReceive = order;
+      }
       if (order.status === 'Open') {
         $scope.openOrders.push(order);
       }
@@ -88,8 +94,9 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
   };
 
   $scope.confirm = function() {
+    $scope.toggleIsReceiving();
     //TODO: runChecks()
-    //...check that quantity is <= order quantity
+    //...check that quantity is <= order quantity && quantity is > 0
     var loadData = {
       loadId: $scope.load,
       productName: $scope.productToReceive.name,
@@ -104,7 +111,10 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
       mvCachedLoad.reload();
       mvCachedInboundOrder.reload();
       mvNotifier.success('Created load on Load ID: ' + load.loadId);
-      $location.path('/');
+      //TODO: if there are products remaining open in the order at this point, reload the page with the order still open
+      $location.path('screens/inbound/receive/' + $scope.orderToReceive._id);
+      //TODO: OTHERWISE, RELOAD THE PAGE AND SHOW THE ORDERS AVAILABLE
+      $route.reload();
     }, function(reason) {
       mvNotifier.error(reason);
     });

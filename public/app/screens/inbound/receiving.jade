@@ -31,12 +31,15 @@
         th Product
         th Product ID
         th UPC
+        th Amount Open
     tbody
       tr(ng-repeat="product in orderToReceive.products")
-        td
+        td(ng-show="product.quantityOpen > 0")
           a.click(ng-click="receiveProduct(product)") {{ product.name }}
+        td(ng-show="product.quantityOpen === 0") {{ product.name }}
         td {{ product.product.product_id }}
         td {{ product.product.upc }}
+        td {{ product.quantityOpen }}
 
   .overlay(ng-show="isReceiving()")
     button.btn.btn-warning(ng-click="toggleIsReceiving()") Cancel
