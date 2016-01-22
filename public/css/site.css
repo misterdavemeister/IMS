@@ -80,7 +80,7 @@ a.link-alias-white {
   margin-left: 10px;
 }
 .container {
-  width: 80%;
+  width: 100%;
 }
 .content-container {
   width: 80%;
@@ -188,9 +188,9 @@ a.link-alias-white {
   top: 25%;
 }
 .overlay button {
-  margin-left: 50%;
+  margin-left: 35%;
 }
-.overlay .container {
+.overlay .overlay-container {
   position: relative;
   border: 2px solid #000;
   overflow: auto;
@@ -198,8 +198,7 @@ a.link-alias-white {
   min-width: 600px;
   height: 400px;
   width: 600px;
-  margin-left: 50%;
-  margin-right: 50%;
+  margin-left: 35%;
 }
 .overlay li {
   list-style: none;
