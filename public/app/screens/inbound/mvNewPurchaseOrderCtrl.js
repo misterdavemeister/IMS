@@ -144,8 +144,12 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   };
 
   $scope.addProduct = function(product, order) {
-    console.log(product);
-    console.log(order);
+    var quantity = 0,
+        totalPerLine = 0;
+    if (order !== undefined) {
+      quantity = Number(order.quantityOpen);
+      totalPerLine = Math.round(product.price * quantity * 100) / 100;
+    }
     $scope.orderCount++;
     $scope.productsToOrder.push({
       lineNo: $scope.orderCount,
@@ -154,11 +158,12 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       product_id: product.product_id,
       price: product.price,
       manufacturer: product.manufacturer,
-      quantity: order.quantity || 0,
-      totalPerLine: order.totalPerLine || 0,
+      quantity: quantity,
+      totalPerLine: totalPerLine,
       selectForDelete: false,
       originalObj: product
     });
+    $scope.recalculate(product, quantity);
   };
 
   $scope.toggleIsAdding = function() {
@@ -245,10 +250,10 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
         totalUnits: totalUnits,
         status: 'Open'
       };
-      mvInboundOrderAdmin.updateOrder(inboundOrderData, $scope.orderToEdit).then(function(order) {
+      mvInboundOrderAdmin.updateOrder(inboundOrderData, $scope.orderToEdit).then(function() {
         mvCachedInboundOrder.reload();
         mvNotifier.success('You successfully placed an order!');
-        $location.path('/admin/inbound/' + order._id);
+        $location.path('/admin/inbound/' + $scope.orderToEdit._id);
       }, function(reason) {
         mvNotifier.error(reason);
       });

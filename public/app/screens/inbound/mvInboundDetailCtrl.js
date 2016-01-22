@@ -2,7 +2,7 @@ angular.module('app').controller('mvInboundDetailCtrl', function($scope, $routeP
   mvCachedInboundOrder.query().$promise.then(function(collection) {
     collection.forEach(function(order) {
       if (order._id === $routeParams.id) {
-        $scope.currentItem = order;
+        $scope.currentItem = new mvInboundOrder(order);
         $scope.order = order;
         $scope.heading = 'Details for Inbound Order ' + $scope.order.orderNumber;
 
@@ -37,7 +37,7 @@ angular.module('app').controller('mvInboundDetailCtrl', function($scope, $routeP
           },
 
           { url:"/screens/inbound/order/edit/" + order._id,
-            text:'Edit Product',
+            text:'Edit Order',
             auth: 'admin',
             id: 3,
             click: function(id) {
@@ -50,11 +50,12 @@ angular.module('app').controller('mvInboundDetailCtrl', function($scope, $routeP
           },
 
           { url:"/admin/product/" + order._id,
-            text:'Delete Product',
+            text:'Delete Order',
             auth: 'admin',
             id: 4,
             click: function(id, order) {
               $scope.activeTab = id;
+              console.log(order);
               deleteOrder(order);
             },
             isCurrent: function() {
@@ -71,14 +72,14 @@ angular.module('app').controller('mvInboundDetailCtrl', function($scope, $routeP
 
   var deleteOrder = function(order) {
     var id = order._id,
-        name = order.name;
+        orderNumber = order.orderNumber;
     alertify
       .okBtn("Yes")
       .cancelBtn("No")
-      .confirm("Delete " +name+ "?", function () {
+      .confirm("Delete order number " +orderNumber+ "?", function () {
         mvInboundOrder.delete({_id: id}, function () {
           $scope.products = mvCachedInboundOrder.reload();
-          $location.path("/screens/products/");
+          $location.path("/screens/inbound/");
           mvNotifier.success("You have successfully deleted the product '" + name + "'!");
           alertify
             .reset();

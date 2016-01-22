@@ -29,6 +29,9 @@ module.exports = function(app) {
   //inbound
   app.get('/api/orders', inboundOrders.getInboundOrders);
   app.post('/api/orders', auth.requiresRole('user'), inboundOrders.createInboundOrder);
+  app.put('/api/orders', auth.requiresRole('admin'), inboundOrders.updateInboundOrder);
+  app.get('/api/products/:id', inboundOrders.getOrderById);
+  app.delete('/api/orders/:id', auth.requiresRole('admin'), inboundOrders.deleteInboundOrder);
 
   //products
   app.get('/api/products', products.getProducts);

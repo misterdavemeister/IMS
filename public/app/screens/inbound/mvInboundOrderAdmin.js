@@ -15,7 +15,7 @@ angular.module('app').factory('mvInboundOrderAdmin', function($q, mvInboundOrder
       var dfd   = $q.defer();
       var clone = angular.copy(order);
 
-      angular.extend(clone, newInboundData);
+      angular.extend(clone, inboundOrderData);
       clone.$update().then(function () {
         dfd.resolve();
       }, function (response) {
