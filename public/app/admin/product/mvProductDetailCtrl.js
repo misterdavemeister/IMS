@@ -13,8 +13,9 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.backUrlText = "Products";
         $scope.heading = product.name;
         $scope.cssClass = 'product-header';
-        $scope.activeTab = 1;
 
+        //Buttons
+        $scope.activeTab = 1;
         $scope.buttons = [
           {
             url: "/admin/product/" + product._id,

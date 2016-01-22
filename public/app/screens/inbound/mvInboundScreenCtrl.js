@@ -61,6 +61,6 @@ angular.module('app').controller('mvInboundScreenCtrl', function($scope, mvIdent
                         {value:'-totalCost', text:'Sort by Cost'}
   ];
   $scope.searchOpt = $scope.searchOptions[0].value;
-  $scope.sortOrder = $scope.sortOptions[0].value;
+  $scope.sortOrder = $scope.sortOptions[6].value;
 
 });

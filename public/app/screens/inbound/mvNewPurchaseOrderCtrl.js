@@ -8,7 +8,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
  ng-model="UserGroupsSelected"
  ng-options="userGroup.Id as (userGroup.Name | filter:searchText) for userGroup in AvailableUserGroups" >
  */
-  $scope.orders = mvCachedInboundOrder.query();
+
   $scope.identity = mvIdentity;
   $scope.productsToOrder = [];
   $scope.orderCount = 0;
@@ -62,6 +62,18 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
         return $scope.active === id;
       }
     }];
+  $scope.orders = mvCachedInboundOrder.query();
+  $scope.orders.$promise.then(function(collection) {
+    collection.forEach(function(order) {
+      if (order._id === $routeParams.id) {
+        $scope.orderToEdit = order;
+        $scope.productsToOrder = [];
+        $scope.orderToEdit.products.forEach(function(productInOrderToEdit) {
+          $scope.addProduct(productInOrderToEdit.product, productInOrderToEdit);
+        });
+      }
+    });
+  });
 
   mvCachedProduct.query().$promise.then(function (collection) {
     $scope.products = collection;
@@ -71,12 +83,6 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
         $scope.productOptions.push(product);
         if (product._id === $routeParams.id) {
           $scope.addProduct(product);
-//          $scope.productsToOrder.push(product);
-//          $scope.name = product.name;
-//          $scope.upc = product.upc;
-//          $scope.product_id = product.product_id;
-//          $scope.price = product.price;
-//          $scope.manufacturer = product.manufacturer;
         }
       });
     }
@@ -137,7 +143,9 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     $scope.total = recalculateTotal();
   };
 
-  $scope.addProduct = function(product) {
+  $scope.addProduct = function(product, order) {
+    console.log(product);
+    console.log(order);
     $scope.orderCount++;
     $scope.productsToOrder.push({
       lineNo: $scope.orderCount,
@@ -146,8 +154,8 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       product_id: product.product_id,
       price: product.price,
       manufacturer: product.manufacturer,
-      quantity: 0,
-      totalPerLine: 0,
+      quantity: order.quantity || 0,
+      totalPerLine: order.totalPerLine || 0,
       selectForDelete: false,
       originalObj: product
     });
@@ -205,6 +213,46 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
       mvNotifier.error(reason);
     });
     //supplier
+  };
+
+  $scope.updateOrder = function(productsToOrder) {
+    var products = [],
+        totalUnits = 0,
+        orderNumber = $scope.orderToEdit.orderNumber,
+        sequence = 0;
+
+    productsToOrder.forEach(function(product) {
+      sequence++;
+      totalUnits += Number(product.quantity);
+      products.push({
+                      sequence: orderNumber.toString() + '_seq_' + sequence.toString(),
+                      name: product.name,
+                      quantity: product.quantity,
+                      quantityOpen: product.quantity,
+                      product: product.originalObj._id
+                    });
+      var inboundOrderData = {
+        orderNumber: orderNumber,
+        created: Date.now,
+        placedBy: {
+          firstName: mvIdentity.currentUser.firstName,
+          lastName: mvIdentity.currentUser.lastName,
+          username: mvIdentity.currentUser.username,
+          user: mvIdentity.currentUser._id
+        },
+        products: products,
+        totalCost: $scope.total,
+        totalUnits: totalUnits,
+        status: 'Open'
+      };
+      mvInboundOrderAdmin.updateOrder(inboundOrderData, $scope.orderToEdit).then(function(order) {
+        mvCachedInboundOrder.reload();
+        mvNotifier.success('You successfully placed an order!');
+        $location.path('/admin/inbound/' + order._id);
+      }, function(reason) {
+        mvNotifier.error(reason);
+      });
+    });
   };
 
   $scope.deleteCheckedLines = function() {

@@ -73,6 +73,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/screens/inbound/order/:id', { templateUrl: '/partials/screens/inbound/new-purchase-order',
       controller: 'mvNewPurchaseOrderCtrl', resolve: routeRoleChecks.user
     })
+    .when('/screens/inbound/order/edit/:id', { templateUrl: '/partials/screens/inbound/edit-purchase-order',
+      controller: 'mvNewPurchaseOrderCtrl', resolve: routeRoleChecks.user
+    })
     .when('/screens/inbound/receive', { templateUrl: '/partials/screens/inbound/receiving',
       controller: 'mvReceivingCtrl', resolve: routeRoleChecks.user
     })

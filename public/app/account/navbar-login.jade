@@ -4,10 +4,10 @@
       input.form-control(placeholder="Username", ng-model="username")
     .form-group(ng-show="signInFormToggle")
        input.form-control(type="password", placeholder="Password", ng-model="password")
-    button.btn.btn-primary(ng-click="signin(username, password)") Sign In
+    button.btn.btn-primary.margin-right-15(ng-click="signin(username, password)") Sign In
   ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
     li.dropdown
-      a.dropdown-toggle(href="", data-toggle="dropdown")
+      a.dropdown-toggle.margin-right-30(href="", data-toggle="dropdown")
         | {{ identity.currentUser.firstName + " " + identity.currentUser.lastName }}
         b.caret
       ul.dropdown-menu

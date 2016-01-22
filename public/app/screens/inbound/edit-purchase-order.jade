@@ -1,0 +1,50 @@
+.container
+  button-tabs
+  h1.well.inbound-header.text-center Edit Purchase Order
+  button.btn.btn-default.non-tab(ng-click="toggleIsAdding()") Add Product
+  button.btn.btn-danger.non-tab(ng-show="isChecked()", ng-click="deleteCheckedLines()") Delete Selected
+  br
+
+  form(name="purchaseOrderForm")
+    table.table.table-hover.table-striped.table-condensed
+      thead
+        tr.table-header-bar
+          th.small √
+          th Product
+          th UPC
+          th Product ID
+          th Unit Price
+          th Manufacturer
+          th Quantity
+          th Line Total
+
+      tbody
+        tr(ng-repeat="product in productsToOrder")
+          td
+            input(type="checkbox", ng-model="product.selectForDelete", ng-change="updateCheckboxes(product, product.selectForDelete)")
+          td {{ product.name }}
+          td {{ product.upc }}
+          td {{ product.product_id }}
+          td {{ product.price | currency}}
+          td {{ product.manufacturer }}
+          td
+            input(type="text", ng-model="quant", ng-change="recalculate(product, quant)", greater-than-zero, select-on-click, required)
+          td {{ product.totalPerLine | currency}}
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      .pull-right
+        .form-group
+          label Total: {{total | currency}}
+        button.btn.btn-primary(ng-click="updateOrder(productsToOrder)", ng-disabled="purchaseOrderForm.$invalid || productsToOrder.length < 1" ) Confirm Changes
+        | &nbsp;
+        a.btn.btn-default(ng-click="cancel()") Cancel
+
+  .overlay(ng-show="isAdding()")
+    button.btn.btn-warning(ng-click="toggleIsAdding()") Close
+    .overlay-container.well.text-center
+      h1.inbound-header Pick a product
+      hr
+      ul
+        li(ng-repeat="product in products")
+          a.click(ng-click="addProduct(product)") {{ product.name }}
