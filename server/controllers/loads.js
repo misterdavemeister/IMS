@@ -75,21 +75,13 @@ function updateOrder(order, productObj, load) {
       InboundOrder = mongoose.model('InboundOrder');
 
   orderProducts.forEach(function(product) {
-    console.log("SHOWING PRODUCT IDS");
-    console.log("LOOK HERE::::");
-    console.log(product.quantity);
-    console.log(product.quantityOpen);
     if (productObj._id === product.product._id) {
-      console.log("productObj_id === product.product._id");
       amountOpen += (product.quantityOpen - load.quantity);
     } else {
-      console.log("load.product._id !== product._id");
       amountOpen += product.quantityOpen;
     }
   });
 
-  console.log("amount open after receive is...");
-  console.log(amountOpen);
   orderStatus = amountOpen > 0 ? 'Open' : 'Closed';
 
   InboundOrder.update({_id:order._id}, {
