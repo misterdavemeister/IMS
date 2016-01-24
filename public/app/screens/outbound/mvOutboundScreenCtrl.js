@@ -1,4 +1,4 @@
-angular.module('app').controller('mvOutboundScreenCtrl', function($scope) {
+angular.module('app').controller('mvOutboundScreenCtrl', function($scope, $location, mvIdentity, mvCachedOutboundOrder) {
   this.name = "mvOutboundScreenCtrl";
   //console.log("You are in: " + this.name);
   $scope.title = "Outbound";

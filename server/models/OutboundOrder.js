@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var inboundOrderSchema = mongoose.Schema({
+var outboundOrderSchema = mongoose.Schema({
   orderNumber: {type: Number, unique: true},
   created: {type:Date, default: Date.now},
   placedBy: {
@@ -28,4 +28,4 @@ var inboundOrderSchema = mongoose.Schema({
   status: String
 });
 
-var InboundOrder = mongoose.model('InboundOrder', inboundOrderSchema);
+var OutboundOrder = mongoose.model('OutboundOrder', outboundOrderSchema);

@@ -4,6 +4,7 @@ var auth = require('./auth'),
     products = require('../controllers/products'),
     locations = require('../controllers/locations'),
     inboundOrders = require('../controllers/inboundOrders'),
+    outboundOrders = require('../controllers/outboundOrders'),
     loads = require('../controllers/loads');
     //courses = require('../controllers/courses');
 
@@ -30,8 +31,15 @@ module.exports = function(app) {
   app.get('/api/orders', inboundOrders.getInboundOrders);
   app.post('/api/orders', auth.requiresRole('user'), inboundOrders.createInboundOrder);
   app.put('/api/orders', auth.requiresRole('admin'), inboundOrders.updateInboundOrder);
-  app.get('/api/products/:id', inboundOrders.getOrderById);
+  app.get('/api/orders/:id', inboundOrders.getOrderById);
   app.delete('/api/orders/:id', auth.requiresRole('admin'), inboundOrders.deleteInboundOrder);
+
+  //outbound
+  app.get('/api/sales', outboundOrders.getOutboundOrders);
+//  app.post('/api/sales', auth.requiresRole('user'), outboundOrders.createOutboundOrder);
+//  app.put('/api/sales', auth.requiresRole('admin'), outboundOrders.updateOutboundOrder);
+//  app.get('/api/sales/:id', outboundOrders.getOrderById);
+//  app.delete('/api/sales/:id', auth.requiresRole('admin'), outboundOrders.deleteOutboundOrder);
 
   //products
   app.get('/api/products', products.getProducts);
