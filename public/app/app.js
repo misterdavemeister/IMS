@@ -40,10 +40,14 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/admin/product/edit/:id', { templateUrl: '/partials/admin/product/product-edit',
       controller: 'mvProductDetailCtrl', resolve: routeRoleChecks.admin
     })
+    //admin inbound
     .when('/admin/inbound/:id', { templateUrl: '/partials/screens/inbound/inbound-details',
       controller: 'mvInboundDetailCtrl', resolve: routeRoleChecks.user
     })
-
+    //admin outbound
+    .when('/admin/outbound/:id', { templateUrl: '/partials/screens/outbound/outbound-details',
+      controller: 'mvOutboundDetailCtrl', resolve: routeRoleChecks.user
+    })
 
     .when('/courses', { templateUrl: '/partials/courses/course-list',
       controller: 'mvCourseListCtrl'
@@ -60,9 +64,11 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/screens/inventory', { templateUrl: '/partials/screens/inventory/inventory',
       controller: 'mvInventoryScreenCtrl', resolve: routeRoleChecks.user
     })
+    //outbound
     .when('/screens/outbound', { templateUrl: '/partials/screens/outbound/outbound',
       controller: 'mvOutboundScreenCtrl', resolve: routeRoleChecks.user
     })
+
     //inbound
     .when('/screens/inbound', { templateUrl: '/partials/screens/inbound/inbound',
       controller: 'mvInboundScreenCtrl', resolve: routeRoleChecks.user
