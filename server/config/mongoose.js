@@ -18,4 +18,5 @@ module.exports = function(config) {
   locationModel.createDefaultLocation();
 //  inboundOrderModel.createDefaultInboundOrders();
   productModel.createDefaultProducts();
+  outboundOrderModel.createDefaultOutboundOrder();
 };

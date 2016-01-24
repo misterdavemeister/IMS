@@ -29,3 +29,16 @@ var outboundOrderSchema = mongoose.Schema({
 });
 
 var OutboundOrder = mongoose.model('OutboundOrder', outboundOrderSchema);
+
+function createDefaultOutboundOrder() {
+  OutboundOrder.find({}).exec(function(err, collection) {
+    if (err) {console.log(err.toString());}
+    if (collection.length === 0) {
+      OutboundOrder.create({
+        orderNumber: 1991991020
+                           });
+    }
+  });
+}
+
+exports.createDefaultOutboundOrder = createDefaultOutboundOrder;
