@@ -8,21 +8,46 @@ angular.module('app').controller('mvUserDetailCtrl', function($scope, mvCachedUs
         $scope.backUrl = "/admin/users";
         $scope.backUrlText = "Users";
         $scope.heading = user.firstName + ' ' + user.lastName;
+
+        $scope.activeTab = 1;
         $scope.buttons = [
+          {
+            url:"/admin/user/" + user._id,
+            text:'User Details',
+            auth: 'admin',
+            id: 1,
+            click: function(id) {
+              $scope.activeTab = id;
+              $location.path(this.url);
+            },
+            isCurrent: function(id) {
+              return $scope.activeTab === id;
+            }
+          },
           {
             url:"/admin/user/" + user._id,
             text:'Delete User',
             auth: 'admin',
-            func: function(user) {
+            id: 2,
+            click: function(id) {
+              $scope.activeTab = id;
               deleteUser(user);
+            },
+            isCurrent: function(id) {
+              return $scope.activeTab === id;
             }
           },
           {
             url: '/admin/user/edit/' + user._id,
             text:'Edit User',
             auth: 'admin',
-            func: function() {
-
+            id: 3,
+            click: function(id) {
+              $scope.activeTab = id;
+              $location.path(this.url);
+            },
+            isCurrent: function(id) {
+              return $scope.activeTab === id;
             }
           }];
       }

@@ -15,7 +15,9 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
         $scope.cssClass = 'product-header';
 
         //Buttons
-        $scope.activeTab = 1;
+        if (!$scope.activeTab) {
+          $scope.activeTab = 1;
+        }
         $scope.buttons = [
           {
             url: "/admin/product/" + product._id,
@@ -49,8 +51,8 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
             auth: 'admin',
             id: 3,
             click: function(id) {
-              $scope.activeTab = id;
               $location.path(this.url);
+              $scope.activeTab = id;
             },
             isCurrent: function() {
               return this.current;

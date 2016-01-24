@@ -1,4 +1,4 @@
-angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUsers, mvIdentity) {
+angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUsers, mvIdentity, $location) {
    $scope.identity = mvIdentity;
    $scope.users = mvCachedUsers.query();
    $scope.title = "Users";
@@ -12,6 +12,7 @@ angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUser
       id: 1,
       click: function(id) {
         $scope.activeTab = id;
+        $location.path(this.url);
       },
       isCurrent: function(id) {
         return $scope.activeTab === id;

@@ -62,6 +62,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
         return $scope.active === id;
       }
     }];
+
   $scope.orders = mvCachedInboundOrder.query();
   $scope.orders.$promise.then(function(collection) {
     collection.forEach(function(order) {
@@ -127,7 +128,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   };
 
   $scope.cancel = function() {
-    $location.path('/');
+    $location.path('/screens/inbound');
   };
 
   $scope.recalculate = function(product, quantity) {
