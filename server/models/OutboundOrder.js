@@ -37,6 +37,9 @@ function createDefaultOutboundOrder() {
       OutboundOrder.create({
         orderNumber: 1991991020
                            });
+      OutboundOrder.create({
+        orderNumber:101010101010101010101010101
+                           });
     }
   });
 }
