@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     locationModel = require('../models/Location'),
     productModel = require('../models/Product'),
     inboundOrderModel = require('../models/InboundOrder'),
-    outboundOrderModel = require('../models/OutboundOrder');
+    outboundOrderModel = require('../models/OutboundOrder'),
     loadModel = require('../models/Load');
 
 module.exports = function(config) {
