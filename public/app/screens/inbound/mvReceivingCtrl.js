@@ -1,4 +1,4 @@
-angular.module('app').controller('mvReceivingCtrl', function($scope, $location, $route, $routeParams, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier, mvIdentity) {
+angular.module('app').controller('mvReceivingCtrl', function($scope, $location, $route, $routeParams, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier, mvIdentity, mvCachedProduct) {
   //sort products to receive by whether or not they're open, make closed (received) products non-clickable
   $scope.identity = mvIdentity;
   $scope.openOrders = [];
@@ -110,6 +110,8 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
     mvLoadAdmin.createLoad(loadData).then(function(load) {
       mvCachedLoad.reload();
       mvCachedInboundOrder.reload();
+      mvCachedProduct.reload();
+      mvCachedLocation.reload();
       mvNotifier.success('Created load on Load ID: ' + load.loadId);
       //TODO: if there are products remaining open in the order at this point, reload the page with the order still open
       $location.path('screens/inbound/receive/' + $scope.orderToReceive._id);

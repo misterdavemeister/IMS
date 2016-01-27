@@ -36,6 +36,7 @@ exports.createLoad = function(req, res) {
 function updateProduct(product, load) {
   var Product = mongoose.model('Product');
   var quantityToAdd = product.quantity + load.quantity;
+  console.log(quantityToAdd);
   Product.update({_id:product._id}, {
     quantity: quantityToAdd,
     $push: {"loads": load}
@@ -43,8 +44,8 @@ function updateProduct(product, load) {
     if (err) {
       console.log(err);
     } else {
-      console.log("in updateProduct:");
-      console.log(numAffected);
+//      console.log("in updateProduct:");
+//      console.log(numAffected);
     }
   });
 }
@@ -63,8 +64,8 @@ function updateOrderLine(orderLine, load) {
     if (err) {
       console.log(err);
     } else {
-      console.log('in updateOrderLine:');
-      console.log(numAffected);
+//      console.log('in updateOrderLine:');
+//      console.log(numAffected);
     }
   })
 }
@@ -90,8 +91,8 @@ function updateOrder(order, productObj, load) {
     if (err) {
       console.log(err);
     } else {
-      console.log('in updateOrder:');
-      console.log(numAffected);
+//      console.log('in updateOrder:');
+//      console.log(numAffected);
     }
   })
 }
@@ -105,8 +106,8 @@ function updateLocation(location, load) {
     if (err) {
       console.log(err);
     } else {
-      console.log("in updateLocation:");
-      console.log(numAffected);
+//      console.log("in updateLocation:");
+//      console.log(numAffected);
     }
   })
 }
