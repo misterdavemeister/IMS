@@ -113,9 +113,7 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
       mvCachedProduct.reload();
       mvCachedLocation.reload();
       mvNotifier.success('Created load on Load ID: ' + load.loadId);
-      //TODO: if there are products remaining open in the order at this point, reload the page with the order still open
       $location.path('screens/inbound/receive/' + $scope.orderToReceive._id);
-      //TODO: OTHERWISE, RELOAD THE PAGE AND SHOW THE ORDERS AVAILABLE
       $route.reload();
     }, function(reason) {
       mvNotifier.error(reason);
