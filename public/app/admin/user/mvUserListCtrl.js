@@ -6,13 +6,14 @@ angular.module('app').controller('mvUserListCtrl', function($scope, mvCachedUser
    $scope.alarm_at = 1000;
    $scope.activeTab = 1;
 
-   $scope.buttons = [{url: "/admin/user-add",
-      text:'Add User',
+   $scope.buttons = [{url: "/admin/users",
+      text:'Users',
       auth:'admin',
       id: 1,
       click: function(id) {
         $scope.activeTab = id;
         $location.path(this.url);
+        console.log("went to " + this.url);
       },
       isCurrent: function(id) {
         return $scope.activeTab === id;

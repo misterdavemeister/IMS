@@ -1,6 +1,9 @@
+//controller: mvUserListCtrl
 .container
   button-tabs
   list-items
+  button.btn.btn-default.non-tab(ng-show="identity.isAuthorized('admin')")
+    a.link-alias(href="/admin/user-add") Add User
   table.table.table-hover.table-striped.table-condensed
     thead
       tr.table-header-bar
