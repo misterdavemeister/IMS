@@ -19,6 +19,7 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
 
     if ($scope.password && $scope.password.length > 0) {
       newUserData.password = $scope.password;
+      console.log('password saved to newUserData object in mvProfileCtrl.js: ' + $scope.password);
     }
     if (mvIdentity.currentUser._id === $routeParams.id) {
       mvAuth.updateCurrentUser(newUserData).then(function (user) {
@@ -31,6 +32,7 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
     }
     else {
       mvAuth.updateUser(newUserData, $scope.user).then(function (user) {
+        console.log(user);
         mvNotifier.success('Account successfully updated');
         $scope.users = mvCachedUsers.reload();
         $location.path('/');
