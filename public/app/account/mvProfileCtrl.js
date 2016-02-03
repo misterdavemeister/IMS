@@ -32,8 +32,8 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
     }
     else {
       mvAuth.updateUser(newUserData, $scope.user).then(function (user) {
-        console.log(user);
         mvNotifier.success('Account successfully updated');
+//        console.log(user);
         $scope.users = mvCachedUsers.reload();
         $location.path('/');
       }, function (reason) {

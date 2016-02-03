@@ -44,13 +44,12 @@ exports.updateUser = function(req, res) {
           return res.end();
     }
     // User making this update is an admin and is updating an account other than own
-    console.log(userUpdates.password);
     userUpdates.hashed_pwd = encrypt.hashPwd(userUpdates.salt, userUpdates.password);
     User.findOneAndUpdate({_id: userUpdates._id}, userUpdates, {upsert:false}, function(err, user) {
       if (!err) {
-        console.log(user);
-        //console.log(numAffected.toString() + " user(s) updated");
+//        console.log(user);
         res.send(user);
+//        res.sendStatus(200);
       } else {
         res.status(400);
         res.send({reason:err.toString()})
