@@ -24,6 +24,7 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
     if (mvIdentity.currentUser._id === $routeParams.id) {
       mvAuth.updateCurrentUser(newUserData).then(function (user) {
         mvNotifier.success('Your user account has been updated');
+        console.log(user);
         $scope.users = mvCachedUsers.reload();
         $location.path('/');
       }, function (reason) {

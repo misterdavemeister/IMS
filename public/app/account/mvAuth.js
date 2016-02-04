@@ -34,9 +34,9 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser) 
 
       var clone = angular.copy(mvIdentity.currentUser);
       angular.extend(clone, newUserData);
-      clone.$update().then(function() {
+      clone.$update().then(function(user) {
         mvIdentity.currentUser = clone;
-        dfd.resolve();
+        dfd.resolve(user);
       }, function(response) {
         dfd.reject(response.data.reason);
       });
