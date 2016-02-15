@@ -1,6 +1,6 @@
 .container
   button-tabs
-  h1.well.inbound-header.text-center Receive
+  list-items
   button.btn.btn-default.non-tab(ng-click="toggleViewOrders()", ng-show="!isViewingOrders") View Orders
   br
 
@@ -10,12 +10,32 @@
         th.table-header-bar.text-center(colspan="4")
           h4 Orders
       tr.table-header-bar
-        th Order Number
-        th Date Ordered
-        th Number of Products
-        th Status
+        th.click(ng-show="sortOrder != 'orderNumber' && sortOrder != '-orderNumber'", ng-click="sortOrder = 'orderNumber'")  Order Number
+        th.click(ng-show="sortOrder == 'orderNumber' || sortOrder == '-orderNumber'", ng-click="reverseOrder(sortOrder)")  Order Number
+          b.caret(ng-show="sortOrder == 'orderNumber'")
+          b.dropup(ng-show="sortOrder == '-orderNumber'")
+            b.caret
+        th.click(ng-show="sortOrder != 'created' && sortOrder != '-created'", ng-click="sortOrder = 'created'")  Date Ordered
+        th.click(ng-show="sortOrder == 'created' || sortOrder == '-created'", ng-click="reverseOrder(sortOrder)") Date Ordered
+          b.caret(ng-show="sortOrder == 'created'")
+          b.dropup(ng-show="sortOrder == '-created'")
+            b.caret
+        th.click(ng-show="sortOrder != 'totalUnits' && sortOrder != '-totalUnits'", ng-click="sortOrder = 'totalUnits'") Number of Products
+        th.click(ng-show="sortOrder == 'totalUnits' || sortOrder == '-totalUnits'", ng-click="reverseOrder(sortOrder)") Number of Products
+          b.caret(ng-show="sortOrder == 'totalUnits'")
+          b.dropup(ng-show="sortOrder == '-totalUnits'")
+            b.caret
+        th.click(ng-show="sortOrder != 'status' && sortOrder != '-status'", ng-click="sortOrder = 'status'") Status
+        th.click(ng-show="sortOrder == 'status' || sortOrder == '-status'", ng-click="reverseOrder(sortOrder)") Status
+          b.caret(ng-show="sortOrder == 'status'")
+          b.dropup(ng-show="sortOrder == '-status'")
+            b.caret
+        //th Order Number
+        //th Date Ordered
+        //th Number of Products
+        //th Status
     tbody
-      tr(ng-repeat="openOrder in openOrders")
+      tr(ng-repeat="openOrder in openOrders | filter:search | orderBy:sortOrder")
         td
           a.click(ng-click="viewOrder(openOrder)") {{ openOrder.orderNumber }}
         td {{ openOrder.created | date }}

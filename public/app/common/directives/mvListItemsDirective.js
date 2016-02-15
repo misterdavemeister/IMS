@@ -22,6 +22,9 @@ angular.module('app')
          return {
            restrict: 'E',
            templateUrl: '/partials/common/templates/list-items',
-           controller: 'listItemsDirectiveCtrl'
+           controller: 'listItemsDirectiveCtrl',
+           link: function(scope, elem, attrs, ctrl) {
+             console.log(ctrl);
+           }
          };
        });

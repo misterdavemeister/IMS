@@ -6,37 +6,31 @@ var auth = require('./auth'),
     inboundOrders = require('../controllers/inboundOrders'),
     outboundOrders = require('../controllers/outboundOrders'),
     loads = require('../controllers/loads');
-    //courses = require('../controllers/courses');
 
 module.exports = function(app) {
 
   //users
   app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
-  app.post('/api/users', users.createUser);
-  app.put('/api/users', users.updateUser);
-  app.get('/api/users/:id', users.getUserById);
+  app.post('/api/users', auth.requiresRole('admin'), users.createUser);
+  app.put('/api/users', auth.requiresApiLogin, users.updateUser);
+  app.get('/api/users/:id', auth.requiresRole('admin'), users.getUserById);
   app.delete('/api/users/:id', auth.requiresRole('admin'), users.deleteUser);
 
   //loads
   app.get('/api/loads', loads.getLoads);
-  app.post('/api/loads/', loads.createLoad);
-
-  //TODO: delete these...
-  //courses
-  //app.get('/api/courses', courses.getCourses);
-  //app.get('/api/courses/:id', courses.getCourseById);
+  app.post('/api/loads/', auth.requiresApiLogin, loads.createLoad);
 
   //*** screens ***//
   //inbound
   app.get('/api/orders', inboundOrders.getInboundOrders);
-  app.post('/api/orders', auth.requiresRole('user'), inboundOrders.createInboundOrder);
+  app.post('/api/orders', auth.requiresApiLogin, inboundOrders.createInboundOrder);
   app.put('/api/orders', auth.requiresRole('admin'), inboundOrders.updateInboundOrder);
   app.get('/api/orders/:id', inboundOrders.getOrderById);
   app.delete('/api/orders/:id', auth.requiresRole('admin'), inboundOrders.deleteInboundOrder);
 
   //outbound
   app.get('/api/sales', outboundOrders.getOutboundOrders);
-//  app.post('/api/sales', auth.requiresRole('user'), outboundOrders.createOutboundOrder);
+//  app.post('/api/sales', auth.requiresApiLogin, outboundOrders.createOutboundOrder);
 //  app.put('/api/sales', auth.requiresRole('admin'), outboundOrders.updateOutboundOrder);
   app.get('/api/sales/:id', outboundOrders.getOrderById);
 //  app.delete('/api/sales/:id', auth.requiresRole('admin'), outboundOrders.deleteOutboundOrder);

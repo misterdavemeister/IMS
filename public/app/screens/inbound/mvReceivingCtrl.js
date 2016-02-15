@@ -1,6 +1,8 @@
 angular.module('app').controller('mvReceivingCtrl', function($scope, $location, $route, $routeParams, mvCachedInboundOrder, mvCachedLocation, mvLoadAdmin, mvCachedLoad, mvNotifier, mvIdentity, mvCachedProduct) {
   //sort products to receive by whether or not they're open, make closed (received) products non-clickable
   $scope.identity = mvIdentity;
+  $scope.title = "Receive";
+  $scope.cssClass= "inbound-header";
   $scope.openOrders = [];
   $scope.orders = [];
   $scope.locations = [];
@@ -53,6 +55,25 @@ angular.module('app').controller('mvReceivingCtrl', function($scope, $location, 
                         return $scope.active === id;
                       }
                     }];
+  // Table Bar "Order By"
+  $scope.searchOptions = [{value:'', text:'Search by Any'},
+                          {value:'placedBy.username', text:'Search by User'},
+                          {value:'orderNumber', text:'Search by Order Number'},
+                          {value:'status', text:'Search by Status'},
+                          {value:'totalCost', text:'Search by Cost'}
+  ];
+  $scope.sortOptions = [{value:'orderNumber', text:'Sort by Order Number'},
+                        {value:'created', text:'Sort by Date'},
+                        {value:'totalUnits', text:'Sort by Number of Products'},
+                        {value:'status', text:'Sort by Status'},
+                        {value:'-orderNumber', text:'Sort by Order Number (reversed)'},
+                        {value:'-created', text:'Sort by Date (reversed)'},
+                        {value:'-totalUnits', text:'Sort by Number of Products (reversed)'},
+                        {value:'-status', text:'Sort by Status (reversed)'}
+  ];
+  $scope.searchOpt = $scope.searchOptions[0].value;
+  $scope.sortOrder = $scope.sortOptions[0].value;
+
   mvCachedLocation.query().$promise.then(function(collection) {
     $scope.locations = collection;
     $scope.location = $scope.locations[0];
