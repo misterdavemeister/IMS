@@ -11,7 +11,7 @@ var productSchema = mongoose.Schema({
   price: {type:Number, required:'{PATH} is required!'},
   manufacturer: String,
   alarm: {type:Boolean, default: false},
-  alarm_at: {type:Number, default: 1000},
+  alarm_at: {type:Number, default: 100},
   allotted: {type:Number, default: 0},
   loads: [loadSchema]
 });
