@@ -17,6 +17,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
   $scope.total = 0;
   $scope.checkbox = false;
   $scope.checkboxCount = 0;
+  $scope.uniqueOrderNumber = undefined;
 
   //Button Tabs
   $scope.active = 2;
@@ -74,6 +75,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
         });
       }
     });
+    $scope.uniqueOrderNumber = generateUniqueOrderID();
   });
 
   mvCachedProduct.query().$promise.then(function (collection) {
@@ -181,14 +183,14 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
 
     var products = [],
         totalUnits = 0,
-        orderNumber = generateUniqueOrderID(),
+//        orderNumber = generateUniqueOrderID(),
         sequence = 0;
 
     productsToOrder.forEach(function(product) {
       sequence++;
       totalUnits += Number(product.quantity);
       products.push({
-        sequence: orderNumber.toString() + '_seq_' + sequence.toString(),
+        sequence: $scope.uniqueOrderNumber.toString() + '_seq_' + sequence.toString(),
         name: product.name,
         quantity: product.quantity,
         quantityOpen: product.quantity,
@@ -197,7 +199,7 @@ angular.module('app').controller('mvNewPurchaseOrderCtrl', function($scope, $rou
     });
 
     var inboundOrderData = {
-      orderNumber: orderNumber,
+      orderNumber: $scope.uniqueOrderNumber,
       created: Date.now,
       placedBy: {
         firstName: mvIdentity.currentUser.firstName,
