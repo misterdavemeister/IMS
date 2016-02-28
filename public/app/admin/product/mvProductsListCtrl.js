@@ -5,6 +5,7 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, $locatio
   $scope.cssClass = "product-header";
   $scope.adding = false;
   $scope.active = 1;
+  $scope.lowQuantity = false;
 
   $scope.buttons = [{
     url      : "/screens/products",
@@ -92,4 +93,20 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, $locatio
       mvNotifier.error(reason);
     });
   };
+
+    $scope.toggleLowQuantity = function() {
+        $scope.lowQuantity = !$scope.lowQuantity;
+        console.log($scope.lowQuantity);
+    };
+
+    $scope.approved = function(product) {
+        if ($scope.lowQuantity === true) {
+            if (product.alarm_on && product.quantity <= product.alarm_at) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else return true; // SHOW ALL PRODUCTS
+    };
 });
