@@ -251,3 +251,7 @@ a.link-alias-white {
 .margin-right-30 {
   margin-right: 30px;
 }
+.table-striped > tbody > tr:nth-of-type(odd).lowQuantity,
+.lowQuantity {
+  background: #ffa60c;
+}

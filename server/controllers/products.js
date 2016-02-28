@@ -19,6 +19,15 @@ exports.getProducts = function(req, res) {
       res.status(400);
       res.send({reason:err.toString()});
     }
+           collection.forEach(function(product) {
+             if (product.alarm_on && product.quantity <= product.alarm_at) {
+               product.alarm = true;
+             }
+             else {
+               product.alarm = false;
+             }
+             console.log(product.alarm);
+           });
     res.send(collection);
   });
 };

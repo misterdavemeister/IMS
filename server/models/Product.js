@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    loadModel = require('../models/Load'),
+var mongoose = require('mongoose'), loadModel = require('../models/Load'),
     loadSchema = loadModel.loadSchema;
 
 var productSchema = mongoose.Schema({
@@ -10,8 +9,9 @@ var productSchema = mongoose.Schema({
   quantity: {type:Number, default:0},
   price: {type:Number, required:'{PATH} is required!'},
   manufacturer: String,
-  alarm: {type:Boolean, default: false},
-  alarm_at: {type:Number, default: 1000},
+  alarm: {type:Boolean, default: false}, // ALARM ACTIVE -- PRODUCT HAS LOW QUANTITY
+  alarm_on: {type:Boolean, default: false}, // ALARM FUNCTION IS AVAILABLE
+  alarm_at: {type:Number, default: 100},
   allotted: {type:Number, default: 0},
   loads: [loadSchema]
 });

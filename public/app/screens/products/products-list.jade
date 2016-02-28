@@ -1,7 +1,11 @@
 .container
   button-tabs
   list-items
-  table.table.table-hover.table-striped.table-condensed
+  button.btn.btn-default(ng-click="toggleLowQuantity()", ng-show="lowQuantity") All Products
+  button.btn.btn-default(ng-click="toggleLowQuantity()", ng-show="lowQuantity === false") Low Quantity Products
+  br
+  br
+  table.table.table-striped.table-condensed
     thead
       tr.table-header-bar
         th.click(ng-show="sortOrder != 'name' && sortOrder != '-name'", ng-click="sortOrder = 'name'") Name
@@ -40,7 +44,7 @@
           b.dropup(ng-show="sortOrder == '-manufacturer'")
             b.caret
     tbody
-      tr(ng-repeat="product in products | filter:search | orderBy:sortOrder")
+      tr(ng-repeat="product in products | filter:search | orderBy:sortOrder", ng-class="{lowQuantity: product.alarm_on && product.quantity <= product.alarm_at}", ng-show="approved(product)")
         td
           a(href="/admin/product/{{product._id}}") {{ product.name }}
         td {{ product.description }}
@@ -86,9 +90,9 @@
               .col-md-9
                 input.form-control(name="manufacturer", type="text", placeholder="Product Manufacturer", ng-model="manufacturer", select-on-click)
             .form-group
-              label.col-md-3.control-label(for="alarm") Low-Level Alarm
+              label.col-md-3.control-label(for="alarm_on") Low-Level Alarm
               .col-md-1
-                input.checkbox-inline(style="vertical-align: bottom", type="checkbox", ng-model="alarm")
+                input.checkbox-inline(style="vertical-align: bottom", type="checkbox", ng-model="alarm_on")
             .form-group
               label.col-md-3.control-label(for="alarm_at", ng-show="alarm") Set Low-Level Alarm at:
               .col-md-1
