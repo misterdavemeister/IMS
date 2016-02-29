@@ -10,8 +10,8 @@ var productSchema = mongoose.Schema({
   price: {type:Number, required:'{PATH} is required!'},
   manufacturer: String,
   alarm: {type:Boolean, default: false}, // ALARM ACTIVE -- PRODUCT HAS LOW QUANTITY
-  alarm_on: {type:Boolean, default: false}, // ALARM FUNCTION IS AVAILABLE
-  alarm_at: {type:Number, default: 100},
+  alarm_enabled: {type:Boolean, default: false}, // ALARM FUNCTION IS AVAILABLE
+  alarm_at: {type:Number, default: 1000},
   allotted: {type:Number, default: 0},
   loads: [loadSchema]
 });
@@ -47,10 +47,10 @@ function createDefaultProducts() {
         Product.create({name: "Nasonex", description: "cursus", upc: 125855610, product_id: 100008, quantity: 6222, price: 79.66, manufacturer: "Velit Ltd"}, function(err) {
           if (err) console.log(err.toString());
         });
-        Product.create({name: "Methylprednisolone", description: "egestas, urna justo faucibus lectus, a", upc: 180311855, product_id: 100009, quantity: 199, price: 68.88, manufacturer: "Velit Ltd"}, function(err) {
+        Product.create({name: "Methylprednisolone", description: "egestas, urna justo faucibus lectus, a", upc: 180311855, product_id: 100009, quantity: 199, price: 68.88, manufacturer: "Velit Ltd", alarm: false, alarm_enabled: true}, function(err) {
           if (err) console.log(err.toString());
         });
-        Product.create({name: "Lovaza", description: "turpis egestas.", upc: 160846374, product_id: 100010, quantity: 910, price: 66.06, manufacturer: "Velit Ltd"}, function(err) {
+        Product.create({name: "Lovaza", description: "turpis egestas.", upc: 160846374, product_id: 100010, quantity: 910, price: 66.06, manufacturer: "Velit Ltd", alarm: false, alarm_enabled:true}, function(err) {
           if (err) console.log(err.toString());
         });
         Product.create({name: "Diazepam", description: "Duis at lacus. Quisque purus sapien,", upc: 130208003, product_id: 100011, quantity: 6806, price: 77.57, manufacturer: "Velit Ltd"}, function(err) {

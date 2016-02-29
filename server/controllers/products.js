@@ -20,7 +20,7 @@ exports.getProducts = function(req, res) {
       res.send({reason:err.toString()});
     }
            collection.forEach(function(product) {
-             if (product.alarm_on && product.quantity <= product.alarm_at) {
+             if (product.alarm_enabled && product.quantity <= product.alarm_at) {
                product.alarm = true;
              }
              else {

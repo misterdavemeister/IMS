@@ -35,13 +35,13 @@
             input.form-control(name="manufacturer", type="text", placeholder="Product Manufacturer", ng-model="manufacturer", select-on-click)
 
         .form-group
-          label.col-md-2.control-label(for="alarm_on") Low-Level Alarm
+          label.col-md-2.control-label(for="alarm_enabled") Low-Level Alarm
           .col-md-1
-            input.checkbox-inline(style="vertical-align: bottom", type="checkbox", ng-model="alarm_on")
+            input.checkbox-inline(style="vertical-align: bottom", type="checkbox", ng-model="alarm_enabled")
 
-          label.col-md-3.control-label(for="alarm_at", ng-show="alarm_on") Set Low-Level Alarm at:
+          label.col-md-3.control-label(for="alarm_at", ng-show="alarm_enabled") Set Low-Level Alarm at:
           .col-md-5
-            input(name="alarm_at", type="text", ng-model="alarm_at", ng-show="alarm_on", placeholder="1000", select-on-click)
+            input(name="alarm_at", type="text", ng-model="alarm_at", ng-show="alarm_enabled", placeholder="1000", select-on-click)
         .form-group
           .col-md-10.col-md-offset-2
             .pull-right

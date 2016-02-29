@@ -93,7 +93,7 @@ angular.module('app').controller('mvProductDetailCtrl', function($scope, $routeP
       price       : $scope.price,
       manufacturer: $scope.manufacturer,
       alarm       : $scope.alarm,
-      alarm_on    : $scope.alarm_on,
+      alarm_enabled    : $scope.alarm_enabled,
       alarm_at    : $scope.alarm_at
     };
     mvProductAdmin.updateProduct(newProductData, product).then(function () {

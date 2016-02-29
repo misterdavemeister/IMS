@@ -101,7 +101,7 @@ angular.module('app').controller('mvProductsListCtrl', function($scope, $locatio
 
     $scope.approved = function(product) {
         if ($scope.lowQuantity === true) {
-            if (product.alarm_on && product.quantity <= product.alarm_at) {
+            if (product.alarm_enabled && product.quantity <= product.alarm_at) {
                 return true;
             } else {
                 return false;
